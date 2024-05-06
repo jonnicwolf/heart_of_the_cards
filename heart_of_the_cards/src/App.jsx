@@ -13,12 +13,11 @@ function App() {
 };
 
 const Container = styled.div`
-  height: 102vh;
-  width: 102vw;
+  height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transform: translate(-10px, -10px);
   position: fixed;
 `;
 
