@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
+import Nav from './components/navigation/Nav';
+
 function App() {
 
   return (
     <Container>
-      yoyyoyoyo
+      <Nav />
     </Container>
   );
 };
@@ -15,10 +17,9 @@ const Container = styled.div`
   width: 102vw;
   display: flex;
   flex-direction: column;
-  background-color: #669897;
   overflow: hidden;
-  padding: 15px;
-  transform: translate(-10px, -10px)
+  transform: translate(-10px, -10px);
+  position: fixed;
 `;
 
 export default App;
