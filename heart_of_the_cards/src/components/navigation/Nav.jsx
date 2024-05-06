@@ -17,21 +17,26 @@ const Container = styled.div`
   align-items: flex-end;
   border: 1px solid red;
   height: 5vw;
-  margin: 30px;
+  
+  transform: translateX(-10px);
 `;
 const Dummy = styled.div`
   width: 10%;
   height: 100%;
-`
+`;
 const MenuSwitch = styled.button`
   width: 10%;
   height: 100%;
-`
+  background: none;
+  border: 1px solid red;
+  border: none;
+`;
 const Bump = styled.div`
   width: 180px;
   height: 70px;
   border: 1px solid red;
   border-radius: 50%;
+  background: white;
 `;
 
 export default Nav;

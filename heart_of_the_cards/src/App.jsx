@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Routes, Route } from 'react-dom'
 import styled from 'styled-components';
 
 import Nav from './components/navigation/Nav';
@@ -7,6 +8,9 @@ function App() {
 
   return (
     <Container>
+      <Routes>
+        <Route to='/'/>
+      </Routes>
       <Nav />
     </Container>
   );
@@ -17,7 +21,6 @@ const Container = styled.div`
   width: 100vw;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   position: fixed;
 `;
 
