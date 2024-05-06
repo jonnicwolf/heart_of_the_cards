@@ -3,7 +3,9 @@ import styled from 'styled-components';
 
 const Home = () => {
   return (
-    <Container>Home</Container>
+    <Container>
+      Home
+    </Container>
   );
 };
 
