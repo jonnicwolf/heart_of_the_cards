@@ -16,8 +16,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   border: 1px solid red;
-  height: 5vw;
-  
+  height: 4.5%;
   transform: translateX(-10px);
 `;
 const Dummy = styled.div`
@@ -33,7 +32,7 @@ const MenuSwitch = styled.button`
 `;
 const Bump = styled.div`
   width: 180px;
-  height: 70px;
+  height: 80px;
   border: 1px solid red;
   border-radius: 50%;
   background: white;

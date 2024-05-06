@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-dom'
+import { Routes, Route } from 'react-router-dom'
 import styled from 'styled-components';
 
+import Home from './pages/Home';
 import Nav from './components/navigation/Nav';
 
 function App() {
@@ -9,8 +10,9 @@ function App() {
   return (
     <Container>
       <Routes>
-        <Route to='/'/>
+        <Route path='/' element={<Home />} />
       </Routes>
+
       <Nav />
     </Container>
   );
