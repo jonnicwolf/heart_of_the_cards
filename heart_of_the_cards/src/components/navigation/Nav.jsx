@@ -7,7 +7,10 @@ const Nav = () => {
       <Dummy />
       <Bump>
         Heart
-        <MiddleSpan><div>of</div><div>the</div></MiddleSpan>
+        <MiddleSpan>
+          <div>of</div>
+          <div>the</div>
+        </MiddleSpan>
         Cards
       </Bump>
       <MenuSwitch />

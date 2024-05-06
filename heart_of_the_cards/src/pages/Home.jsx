@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Board from '../components/Board';
+
 const Home = () => {
   return (
     <Container>
-      Home
+      <Board />
     </Container>
   );
 };
