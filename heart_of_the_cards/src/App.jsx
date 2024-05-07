@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom'
 import styled from 'styled-components';
+import '../styles/global.css';
 
 import Home from './pages/Home';
 import Nav from './components/navigation/Nav';
