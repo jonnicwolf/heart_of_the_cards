@@ -6,7 +6,9 @@ import Eye from '../components/p5/Eye';
 const Board = () => {
   return (
     <Container>
-      <Eye />
+      <EyeContainer>
+        <Eye />
+      </EyeContainer>
     </Container>
   );
 };
@@ -18,6 +20,10 @@ const Container = styled.div`
   height: 100vw;
   width: 100vw;
   padding: 40px;
+`;
+const EyeContainer = styled.div`
+  transform: translateY(-300px);
+  border: 1px solid red;
 `;
 
 export default Board;
