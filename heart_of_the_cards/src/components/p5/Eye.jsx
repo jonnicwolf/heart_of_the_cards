@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useCallback } from 'react';
 import p5 from 'p5';
 
 const Eye = () => {
-  const sketchRef = useRef();
+  const sketch_ref = useRef();
 
   const sketch = useCallback((p) => {
     let angleA, angleB, angleC, reverse = 0;

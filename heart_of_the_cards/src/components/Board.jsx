@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Eye from './p5/Eye';
+
 const Board = () => {
   return (
     <Container>
-      
+      <Eye />
     </Container>
   );
 };
