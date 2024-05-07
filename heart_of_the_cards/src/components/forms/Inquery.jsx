@@ -3,7 +3,10 @@ import styled from 'styled-components';
 
 const Inquery = () => {
   return (
-    <Query />
+    <>
+    <Query placeholder='What question burns brightest within your heart?'/>
+    
+    </>
   );
 };
 
@@ -15,7 +18,11 @@ const Query = styled.input`
   background: #a57fa0;
   text-align: center;
   color: #e1c4ca;
-  font-size: 3vw;
+  font-size: 4vw;
+  font-family: 'Amatic SC';
+  font-weight: bold;
+  outline: none;
+  }
 `;
 
 export default Inquery;
