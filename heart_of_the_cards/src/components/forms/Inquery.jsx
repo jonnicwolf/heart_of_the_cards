@@ -3,10 +3,7 @@ import styled from 'styled-components';
 
 const Inquery = () => {
   return (
-    <>
     <Query placeholder='What question burns brightest within your heart?'/>
-    
-    </>
   );
 };
 
