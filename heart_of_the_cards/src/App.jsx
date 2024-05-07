@@ -1,13 +1,31 @@
-import { useState } from 'react';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom'
 import styled from 'styled-components';
+
+import Home from './pages/Home';
+import Nav from './components/navigation/Nav';
 
 function App() {
 
   return (
-    <>
-      Heart of the Cards
-    </>
-  )
-}
+    <Container>
 
-export default App
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
+
+      <Nav />
+    </Container>
+  );
+};
+
+const Container = styled.div`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: black;
+  overflow: clip;
+`;
+
+export default App;
