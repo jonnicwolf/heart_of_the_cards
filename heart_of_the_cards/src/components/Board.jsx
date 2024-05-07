@@ -19,11 +19,9 @@ const Container = styled.div`
   align-items: center;
   height: 100vw;
   width: 100vw;
-  padding: 40px;
 `;
 const EyeContainer = styled.div`
   transform: translateY(-300px);
-  border: 1px solid red;
 `;
 
 export default Board;

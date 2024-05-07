@@ -10,12 +10,12 @@ const Eye = () => {
     let angleC= 0;
     let reverse = 0;
 
-    p.setup = () => p.createCanvas(100,200,p.WEBGL);
+    p.setup = () => p.createCanvas(100,300,p.WEBGL);
 
     p.draw = () => {
       p.push();
       p.fill('#f7ebed');
-      p.ellipse(0, 0, 75, 200, 4);
+      p.ellipse(0, 0, 75, 300, 4);
 
       p.rotateZ(reverse);
       p.fill('#b25385');
