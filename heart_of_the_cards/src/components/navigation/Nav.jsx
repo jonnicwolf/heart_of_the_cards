@@ -6,12 +6,12 @@ const Nav = () => {
     <Container>
       <Dummy />
       <Bump>
-        Heart
+        HEART
         <MiddleSpan>
           <div>of</div>
           <div>the</div>
         </MiddleSpan>
-        Cards
+        CARDS
       </Bump>
       <MenuSwitch />
     </Container>
@@ -24,7 +24,6 @@ const Container = styled.div`
   align-items: flex-end;
   border-top: 5px solid #db8aae;
   height: 6%;
-  transform: translateX(-10px);
   background: #699897;
   color: #e1c4ca;
 `;
@@ -50,7 +49,7 @@ const Bump = styled.div`
   font-family: Bagnard;
   gap: 1.5vw;
   font-size: 6vw;
-  padding: 0;
+  padding-bottom: 5px;
   margin: 0;
   background: #699897;
   border-top: 8px solid #db8aae;
@@ -59,9 +58,10 @@ const MiddleSpan = styled.span`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  align-items: center;
+  text-align: center;
   font-size: 3.3vw;
-  padding-bottom: 0.5vw;
+  padding-bottom: 1vw;
+  line-height: 35px;
 `;
 
 export default Nav;
