@@ -24,6 +24,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   position: fixed;
+  background: black;
 `;
 
 export default App;
