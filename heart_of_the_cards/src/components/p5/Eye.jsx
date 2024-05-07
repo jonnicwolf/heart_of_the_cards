@@ -1,17 +1,20 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import p5 from 'p5';
+import p5 from 'p5'
 
 const Eye = () => {
   const sketch_ref = useRef();
 
   const sketch = useCallback((p) => {
-    let angleA, angleB, angleC, reverse = 0;
+    let angleA = 0;
+    let angleB = 0;
+    let angleC= 0;
+    let reverse = 0;
 
     p.setup = () => p.createCanvas(100,200,p.WEBGL);
 
     p.draw = () => {
       p.push();
-      p.fill('#f7ebed')
+      p.fill('#f7ebed');
       p.ellipse(0, 0, 75, 200, 4);
 
       p.rotateZ(reverse);
@@ -20,7 +23,7 @@ const Eye = () => {
 
       p.fill('#699897');
       p.circle(0, 0, 50);
-      p.fill('gold')
+      p.fill('gold');
       p.circle(0, 0, 20);
       p.pop();
 
@@ -51,10 +54,10 @@ const Eye = () => {
       p.triangle(15, -10, 0, 15, -15, -10);
       p.pop();
 
-      p.angleA += 0.1;
-      p.angleB -= 0.1;
-      p.angleC += 0.1;
-      p.reverse -= 0.01;
+      angleA += 0.1;
+      angleB -= 0.1;
+      angleC += 0.1;
+      reverse -= 0.01;
 
       p.strokeWeight(2);
     };
@@ -63,7 +66,7 @@ const Eye = () => {
   useEffect(() => {
     const p5Canvas = new p5(sketch, sketch_ref.current);
     return () => p5Canvas.remove();
-  }, []);
+  }, [sketch]);
 
   return <div ref={sketch_ref} />;
 };

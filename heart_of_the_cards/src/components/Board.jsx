@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Eye from './p5/Eye';
+import Eye from '../components/p5/Eye';
 
 const Board = () => {
   return (
@@ -12,8 +12,10 @@ const Board = () => {
 };
 
 const Container = styled.div`
-  border: 1px solid black;
-  height: 110vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vw;
   width: 100vw;
   padding: 40px;
 `;

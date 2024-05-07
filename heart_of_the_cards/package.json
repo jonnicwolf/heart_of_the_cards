@@ -12,6 +12,7 @@
   "dependencies": {
     "firebase": "^10.11.1",
     "firebaseui": "^6.1.0",
+    "p5": "^1.9.3",
     "react": "^18.2.0",
     "react-dnd": "^16.0.1",
     "react-dom": "^18.2.0",
