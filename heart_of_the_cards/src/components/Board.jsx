@@ -22,9 +22,10 @@ const Container = styled.div`
   align-items: center;
   height: 100vw;
   width: 100vw;
+  gap: 20vw;
 `;
 const EyeContainer = styled.div`
-  transform: translateY(-300px);
+  // transform: translateY(-300px);
 `;
 
 export default Board;
