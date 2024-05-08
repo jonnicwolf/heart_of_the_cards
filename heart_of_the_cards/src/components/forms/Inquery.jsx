@@ -22,8 +22,7 @@ const Inquery = ({ cardSetter }) => {
 
   function handleSubmit (e) {
     e.preventDefault();
-    console.log(cards.data)
-    cardSetter(cards.data)
+    cardSetter(cards.data);
   }
 
   console.log(cards)
