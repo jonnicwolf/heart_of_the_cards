@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   useQuery,
-  useQueryClient
 } from '@tanstack/react-query';
 import styled from 'styled-components';
 
@@ -9,21 +8,30 @@ const Inquery = ({ cardSetter }) => {
   const [question, setQuestion] = useState('');
 
   function handleChange (e) {
-    setQuery(e.target.value)
+    setQuestion(e.target.value)
   };
   const getCards = async () => {
     try {
       const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3')
+      console.log(response.json())
       return response.json()
     } catch (error) { throw new Error('getCard error: ', error) }
   }
 
-  const queryClient = useQueryClient();
-  const query = useQuery({ queryKey: ['cards'], queryFn: getCards})
+  const cards = useQuery({ queryKey: ['cards'], queryFn: getCards});
+
+  function handleSubmit (e) {
+    e.preventDefault();
+    console.log(cards.data)
+    cardSetter(cards.data)
+  }
+
+  console.log(cards)
 
   return (
-    <form action="">
-      <Query placeholder='What question burns brightest within your heart?'/>
+    <form action={handleSubmit}>
+      <Query onChange={handleChange} placeholder='What question burns brightest within your heart?'/>
+      <button type='submit'>submit</button>
     </form>
   );
 };
