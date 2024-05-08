@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Eye from '../components/p5/Eye';
 import Inquery from './forms/Inquery';
 
 const Board = () => {
+  const [query, setQuery] = useState('');
+
   return (
     <Container>
       <EyeContainer>
