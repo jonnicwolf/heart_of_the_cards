@@ -18,12 +18,12 @@ const Nav = () => {
   );
 };
 
-const Container = styled.div`
+const Container = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   border-top: 5px solid #db8aae;
-  height: 6%;
+  height: 5%;
   background: #699897;
   color: #e1c4ca;
   position: relative;

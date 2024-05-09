@@ -12,11 +12,12 @@ function App() {
 
   return (
     <Container>
-
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/test' element={<Test />} />
-      </Routes>
+      <RoutesContainer>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/test' element={<Test />} />
+        </Routes>
+      </RoutesContainer>
 
       <Nav />
     </Container>
@@ -30,6 +31,9 @@ const Container = styled.div`
   flex-direction: column;
   background: black;
   overflow: clip;
+`;
+const RoutesContainer = styled.div`
+  height: 95%;
 `;
 
 export default App;
