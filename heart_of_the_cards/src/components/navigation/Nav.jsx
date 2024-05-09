@@ -59,6 +59,10 @@ const Bump = styled.div`
   margin: 0;
   background: #699897;
   // border-top: 8px solid #db8aae;
+  @media screen and (min-width: 1024px) {
+    font-size: 4rem;
+    gap: 20px;
+  }
 `;
 const MiddleSpan = styled.span`
   display: flex;
@@ -69,7 +73,7 @@ const MiddleSpan = styled.span`
   padding-bottom: 1vw;
   // line-height: 35px;
   @media screen and (min-width: 1024px) {
-    font-size: 2.5vw
+    font-size: 1.5rem
   }
 `;
 
