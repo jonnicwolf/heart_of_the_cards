@@ -51,21 +51,29 @@ const Button = styled.button`
   font-weight: bold;
   transform: translateY(-4vw);
   cursor: pointer;
+  @media screen and (min-width: 1024px) {
+    font-size: 3rem;
+  }
 `;
 const Query = styled.input`
   width: 70vw;
   border-radius: -30px;
   border: 10px groove #699897;
   height: 20vw;
+  max-height: 400px;
+  max-width: 700px;
   background: rgb(0,0,0,0.4);
   text-align: center;
   color: #e1c4ca;
   font-size: 4vw;
   font-family: 'Amatic SC';
   font-weight: bolder;
-  outline: none;
+  outline: none;  
   &::placeholder {
     color: white;
+  }
+  @media screen and (min-width: 1024px) {
+    font-size: 3rem;
   }
 `;
 
