@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import Board from '../components/Board';
 import forest2 from '../assets/forest02.jpeg'
-import forest from '../assets/forest.jpg'
 
 const Home = () => {
   return (
