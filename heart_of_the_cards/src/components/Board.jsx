@@ -9,25 +9,22 @@ const Board = () => {
 
   return (
     <Container>
-      <EyeContainer>
-        <Eye />
-      </EyeContainer>
+      <Eye />
       <Inquery />
     </Container>
   );
 };
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vw;
-  width: 100vw;
-  gap: 20vw;
-`;
-const EyeContainer = styled.div`
-  // transform: translateY(-300px);
+  height: 94vh;
+  width: 100%;
+  gap: 20vh;
+  z-index: 2;
 `;
 
 export default Board;

@@ -18,14 +18,19 @@ const Nav = () => {
   );
 };
 
-const Container = styled.div`
+const Container = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  border-top: 5px solid #db8aae;
-  height: 6%;
+  border-top: 0.5vh solid #db8aae;
+  height: 5%;
   background: #699897;
   color: #e1c4ca;
+  position: relative;
+  z-index: 2;
+  @media screen and (min-width: 1024px) {
+    height: 10%;
+  }
 `;
 const Dummy = styled.div`
   width: 10%;
@@ -39,8 +44,8 @@ const MenuSwitch = styled.button`
   border: none;
 `;
 const Bump = styled.div`
-  width: 130px;
-  height: 100px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: white;
   display: flex;
@@ -49,10 +54,12 @@ const Bump = styled.div`
   font-family: Bagnard;
   gap: 1.5vw;
   font-size: 6vw;
-  padding-bottom: 5px;
   margin: 0;
   background: #699897;
-  border-top: 8px solid #db8aae;
+  @media screen and (min-width: 1024px) {
+    font-size: 4rem;
+    gap: 20px;
+  }
 `;
 const MiddleSpan = styled.span`
   display: flex;
@@ -61,7 +68,9 @@ const MiddleSpan = styled.span`
   text-align: center;
   font-size: 3.3vw;
   padding-bottom: 1vw;
-  line-height: 35px;
+  @media screen and (min-width: 1024px) {
+    font-size: 1.5rem
+  }
 `;
 
 export default Nav;
