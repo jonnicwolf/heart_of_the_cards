@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import '../styles/global.css';
 
 import Home from './pages/Home';
+import Test from './pages/Test';
+
 import Nav from './components/navigation/Nav';
 
 function App() {
@@ -13,6 +15,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/test' element={<Test />} />
       </Routes>
 
       <Nav />

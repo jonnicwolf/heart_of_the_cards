@@ -10,19 +10,19 @@ const Card = ({ name_short }) => {
     let mandalaImg;
     let pg;
     p.preload = () =>  {
-      img = loadImage(`https://sacred-texts.com/tarot/pkt//img/${name_short}.jpg`);
-      mandalaImg = loadImage('https://img.icons8.com/ios/50/mandala.png');
+      img = p.loadImage(`https://sacred-texts.com/tarot/pkt/img/${name_short}.jpg`);
+      mandalaImg = p.loadImage('https://img.icons8.com/ios/50/mandala.png');
     }
     p.setup = () => {
-      createCanvas(1000, 1000, p.WEBGL);
-      pg = createGraphics(p.width, p.height);
+      p.createCanvas(300, 500, p.WEBGL);
+      pg = p.createGraphics(p.width, p.height);
       pg.background(255);
       drawPattern(pg);
     };
 
     p.draw = () => {
       p.rotateY(angle);
-      p.background(200);
+      
 
       p.push();
       p.translate(0, 0, -0.1);
@@ -56,7 +56,7 @@ const Card = ({ name_short }) => {
 
     p.mouseClicked = () => {
       let targetAngle = angle < p.PI ? p.PI : 0; 
-      let increment = angle < p.PI ? 0.01 : -0.01;
+      let increment = angle < p.PI ? 0.05 : -0.05;
     
       let interval = setInterval(() => {
         if ((increment > 0 && angle >= targetAngle) || (increment < 0 && angle <= targetAngle)) {
@@ -65,7 +65,7 @@ const Card = ({ name_short }) => {
         } else {
           angle += increment;
         }
-      }, 5);
+      }, 1);
     };
   });
 
