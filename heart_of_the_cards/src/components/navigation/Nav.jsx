@@ -26,6 +26,8 @@ const Container = styled.div`
   height: 6%;
   background: #699897;
   color: #e1c4ca;
+  position: relative;
+  z-index: 2;
 `;
 const Dummy = styled.div`
   width: 10%;

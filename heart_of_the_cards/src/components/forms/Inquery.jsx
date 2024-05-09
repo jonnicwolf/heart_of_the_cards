@@ -55,14 +55,18 @@ const Button = styled.button`
 const Query = styled.input`
   width: 70vw;
   border-radius: -30px;
+  border: 10px groove #699897;
   height: 20vw;
-  background-color : #a57fa0;
+  background: rgb(0,0,0,0.4);
   text-align: center;
   color: #e1c4ca;
   font-size: 4vw;
   font-family: 'Amatic SC';
-  font-weight: bold;
+  font-weight: bolder;
   outline: none;
+  &::placeholder {
+    color: white;
+  }
 `;
 
 export default Inquery;
