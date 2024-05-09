@@ -28,6 +28,9 @@ const Container = styled.footer`
   color: #e1c4ca;
   position: relative;
   z-index: 2;
+  @media screen and (min-width: 1024px) {
+    height: 10%;
+  }
 `;
 const Dummy = styled.div`
   width: 10%;
@@ -65,6 +68,9 @@ const MiddleSpan = styled.span`
   font-size: 3.3vw;
   padding-bottom: 1vw;
   // line-height: 35px;
+  @media screen and (min-width: 1024px) {
+    font-size: 2.5vw
+  }
 `;
 
 export default Nav;

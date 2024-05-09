@@ -16,7 +16,7 @@ const Home = () => {
 
 const Background = styled.img`
   position: fixed;
-  height: 94%;
+  height: 100%;
   z-index: 1;
 `;
 const Container = styled.div`
