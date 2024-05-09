@@ -22,7 +22,7 @@ const Container = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  border-top: 5px solid #db8aae;
+  border-top: 0.5vh solid #db8aae;
   height: 5%;
   background: #699897;
   color: #e1c4ca;
@@ -41,8 +41,9 @@ const MenuSwitch = styled.button`
   border: none;
 `;
 const Bump = styled.div`
-  width: 130px;
-  height: 100px;
+  width: 30px;
+  // height: 100px;
+  height: 30px;
   border-radius: 50%;
   background: white;
   display: flex;
@@ -51,10 +52,10 @@ const Bump = styled.div`
   font-family: Bagnard;
   gap: 1.5vw;
   font-size: 6vw;
-  padding-bottom: 5px;
+  // padding-bottom: 5px;
   margin: 0;
   background: #699897;
-  border-top: 8px solid #db8aae;
+  // border-top: 8px solid #db8aae;
 `;
 const MiddleSpan = styled.span`
   display: flex;
@@ -63,7 +64,7 @@ const MiddleSpan = styled.span`
   text-align: center;
   font-size: 3.3vw;
   padding-bottom: 1vw;
-  line-height: 35px;
+  // line-height: 35px;
 `;
 
 export default Nav;
