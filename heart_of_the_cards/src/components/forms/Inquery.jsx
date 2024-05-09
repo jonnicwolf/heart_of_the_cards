@@ -8,7 +8,7 @@ const Inquery = ({ cardSetter }) => {
   const [question, setQuestion] = useState('');
 
   function handleChange (e) {
-    setQuestion(e.target.value)
+    setQuestion(e.target.value);
   };
 
   const getCards = async () => {
