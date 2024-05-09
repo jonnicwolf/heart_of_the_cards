@@ -15,11 +15,15 @@ const Home = () => {
 };
 
 const Background = styled.img`
-  position: fixed;
+position: absolute;
   height: 100%;
   z-index: 1;
 `;
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: auto;
   max-width: 100%;
   background-color: #db8aae;
