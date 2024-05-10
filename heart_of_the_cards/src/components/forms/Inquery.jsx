@@ -4,11 +4,9 @@ import {
 } from '@tanstack/react-query';
 import styled from 'styled-components';
 
-const Inquery = ({ cardSetter }) => {
-  const [question, setQuestion] = useState('');
-
+const Inquery = ({ cardSetter, questionSetter }) => {
   function handleChange (e) {
-    setQuestion(e.target.value);
+    questionSetter(e.target.value);
   };
 
   const getCards = async () => {
