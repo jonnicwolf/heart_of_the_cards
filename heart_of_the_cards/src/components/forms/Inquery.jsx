@@ -20,18 +20,19 @@ const Inquery = ({ cardSetter, questionSetter }) => {
 
   function handleSubmit (e) {
     e.preventDefault();
-    cardSetter(cards.data);
+    console.log(cards.data.cards)
+    cardSetter(cards.data.cards);
   }
 
   return (
-    <Form action={handleSubmit}>
+    <Form>
       <Query onChange={handleChange} placeholder='What question burns brightest within your heart?'/>
-      <Button type='submit'>submit</Button>
+      <Button onClick={handleSubmit}>submit</Button>
     </Form>
   );
 };
 
-const Form = styled.form`
+const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

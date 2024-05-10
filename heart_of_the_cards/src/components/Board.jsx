@@ -7,20 +7,24 @@ import Inquery from './forms/Inquery';
 
 const Board = () => {
   const [question, setQuestion] = useState(null);
-  const [cards, setCards] = useState(null);
-
+  const [cards, setCards] = useState([]);
+  console.log(cards.length)
   return (
     <Container>
       <Eye />
       {
         cards && 
         <CardContainer>
-          {cards.map(() => {
-            <Card />
+          {cards.map((card,i) => {
+            return (
+              <>
+                <Card key={i}name_short={card.name_short} />
+              </>
+            )
           })}
         </CardContainer>
       }
-      {!cards && <Inquery cardSetter={setCards} questionSetter={setQuestion} />}
+      {cards.length < 1 && <Inquery cardSetter={setCards} questionSetter={setQuestion} />}
     </Container>
   );
 };
@@ -29,6 +33,7 @@ const CardContainer = styled.div`
   width: 70vw;
   height: auto;
   display: flex;
+  gap: 1vw;
   justify-content: space-between;
 `;
 const Container = styled.div`

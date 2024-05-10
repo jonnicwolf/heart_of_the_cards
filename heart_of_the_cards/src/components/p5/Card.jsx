@@ -14,7 +14,7 @@ const Card = ({ name_short }) => {
       mandalaImg = p.loadImage('https://img.icons8.com/ios/50/mandala.png');
     }
     p.setup = () => {
-      p.createCanvas(300, 500, p.WEBGL);
+      p.createCanvas(240, 400, p.WEBGL);
       pg = p.createGraphics(p.width, p.height);
       pg.background(255);
       drawPattern(pg);
@@ -28,14 +28,14 @@ const Card = ({ name_short }) => {
       p.translate(0, 0, -0.1);
       p.texture(pg);
       p.noStroke();
-      p.plane(300, 500);
+      p.plane(240, 400);
       p.pop();
 
       p.texture(img);
       p.push();
       p.translate(0, 0, 0.1);
       p.noStroke();
-      p.plane(300, 500);
+      p.plane(240, 400);
       p.pop();
     };
 
