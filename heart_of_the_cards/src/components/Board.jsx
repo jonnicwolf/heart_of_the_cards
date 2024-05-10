@@ -19,9 +19,8 @@ const Board = () => {
             <Card />
           })}
         </CardContainer>
-
       }
-      {/* <Inquery cardSetter={setCards} questionSetter={setQuestion} /> */}
+      {!cards && <Inquery cardSetter={setCards} questionSetter={setQuestion} />}
     </Container>
   );
 };
