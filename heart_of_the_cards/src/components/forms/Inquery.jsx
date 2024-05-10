@@ -20,7 +20,6 @@ const Inquery = ({ cardSetter, questionSetter }) => {
 
   function handleSubmit (e) {
     e.preventDefault();
-    console.log(cards.data.cards)
     cardSetter(cards.data.cards);
   }
 
@@ -56,7 +55,6 @@ const Button = styled.button`
 `;
 const Query = styled.input`
   width: 70vw;
-  border-radius: -30px;
   border: 10px groove #699897;
   height: 20vw;
   max-height: 400px;
@@ -66,7 +64,7 @@ const Query = styled.input`
   color: #e1c4ca;
   font-size: 4vw;
   font-family: 'Amatic SC';
-  font-weight: bolder;
+  font-weight: bold;
   outline: none;  
   &::placeholder {
     color: white;

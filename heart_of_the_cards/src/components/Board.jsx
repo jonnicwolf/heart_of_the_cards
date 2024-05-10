@@ -9,18 +9,16 @@ import Inquery from './forms/Inquery';
 const Board = () => {
   const [question, setQuestion] = useState(null);
   const [cards, setCards] = useState([]);
-  console.log(cards.length)
+
   return (
     <Container>
       <Eye />
       {
         cards && 
         <CardContainer>
-          {cards.map((card,i) => {
+          {cards.map((card) => {
             return (
-              <>
-                <Card key={uuidv4()} name_short={card.name_short} />
-              </>
+              <Card key={uuidv4()} name_short={card.name_short} />
             )
           })}
         </CardContainer>

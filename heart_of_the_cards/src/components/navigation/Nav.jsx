@@ -58,7 +58,7 @@ const Bump = styled.div`
   background: #699897;
   @media screen and (min-width: 1024px) {
     font-size: 4rem;
-    gap: 20px;
+    gap: 10px;
   }
 `;
 const MiddleSpan = styled.span`
@@ -69,7 +69,11 @@ const MiddleSpan = styled.span`
   font-size: 3.3vw;
   padding-bottom: 1vw;
   @media screen and (min-width: 1024px) {
-    font-size: 1.5rem
+    font-size: 1.5rem;
+    padding: 0.5vw;
+  }
+  @media screen and (min-width: 1500px) {
+    padding: 0.5vw;
   }
 `;
 
