@@ -45,7 +45,7 @@ const Container = styled.div`
   align-items: center;
   height: 94vh;
   width: 100%;
-  gap: 20vh;
+  gap: 10vh;
   z-index: 2;
 `;
 
