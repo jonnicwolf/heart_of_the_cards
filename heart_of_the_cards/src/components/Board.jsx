@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import styled from 'styled-components';
 
 import Eye from '../components/p5/Eye';
@@ -18,7 +19,7 @@ const Board = () => {
           {cards.map((card,i) => {
             return (
               <>
-                <Card key={i}name_short={card.name_short} />
+                <Card key={uuidv4()} name_short={card.name_short} />
               </>
             )
           })}
