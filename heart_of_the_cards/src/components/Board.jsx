@@ -8,7 +8,7 @@ import Inquery from './forms/Inquery';
 
 const Board = () => {
   const [question, setQuestion] = useState(null);
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState(null);
 
   return (
     <Container>
@@ -23,7 +23,7 @@ const Board = () => {
           })}
         </CardContainer>
       }
-      {cards.length < 1 && <Inquery cardSetter={setCards} questionSetter={setQuestion} />}
+      {!cards && <Inquery cardSetter={setCards} questionSetter={setQuestion} />}
     </Container>
   );
 };
@@ -34,6 +34,7 @@ const CardContainer = styled.div`
   display: flex;
   gap: 1vw;
   justify-content: space-between;
+  flex-wrap: nowrap;
 `;
 const Container = styled.div`
   position: relative;
