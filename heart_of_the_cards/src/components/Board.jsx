@@ -13,10 +13,10 @@ const Board = () => {
   return (
     <Container>
       <Eye />
-      {
-        cards && 
+      {cards &&
         <CardContainer>
-          {cards.map((card) => {
+          {cards.map((card, i) => {
+            console.log(card, i, 'card')
             return (
               <Card key={uuidv4()} name_short={card.name_short} />
             )
@@ -30,11 +30,10 @@ const Board = () => {
 
 const CardContainer = styled.div`
   width: 70vw;
-  height: auto;
+  height: 410px;
   display: flex;
   gap: 1vw;
-  justify-content: space-between;
-  flex-wrap: nowrap;
+  overflow: hidden;
 `;
 const Container = styled.div`
   position: relative;
