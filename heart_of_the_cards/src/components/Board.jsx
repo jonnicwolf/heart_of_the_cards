@@ -16,7 +16,6 @@ const Board = () => {
       {cards &&
         <CardContainer>
           {cards.map((card, i) => {
-            console.log(card, i, 'card')
             return (
               <Card key={uuidv4()} name_short={card.name_short} />
             )
