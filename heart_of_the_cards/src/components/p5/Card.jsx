@@ -83,8 +83,8 @@ const Card = ({ name_short }) => {
 };
 
 const Wrapper = styled.div`
-  border: 5px solid white;
+  border: 6px solid white;
   border-radius: 10px;
-`
+`;
 
 export default Card;

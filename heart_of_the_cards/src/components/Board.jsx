@@ -29,10 +29,10 @@ const Board = () => {
 };
 
 const CardContainer = styled.div`
-  width: 70vw;
+  width: 780px;
   height: 410px;
   display: flex;
-  gap: 1vw;
+  gap: 10px;
   overflow: hidden;
 `;
 const Container = styled.div`
