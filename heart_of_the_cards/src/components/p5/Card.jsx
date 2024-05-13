@@ -10,10 +10,11 @@ const Card = ({ name_short }) => {
     let img;
     let mandalaImg;
     let pg;
+
     p.preload = () =>  {
       img = p.loadImage(`https://sacred-texts.com/tarot/pkt/img/${name_short}.jpg`);
       mandalaImg = p.loadImage('https://img.icons8.com/ios/50/mandala.png');
-    }
+    };
 
     p.setup = () => {
       p.createCanvas(240, 400, p.WEBGL);
@@ -65,7 +66,7 @@ const Card = ({ name_short }) => {
           angle = targetAngle;
         } else {
           angle += increment;
-        }
+        };
       }, 1);
     };
   });
