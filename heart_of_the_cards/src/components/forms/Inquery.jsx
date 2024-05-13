@@ -4,11 +4,9 @@ import {
 } from '@tanstack/react-query';
 import styled from 'styled-components';
 
-const Inquery = ({ cardSetter }) => {
-  const [question, setQuestion] = useState('');
-
+const Inquery = ({ cardSetter, questionSetter }) => {
   function handleChange (e) {
-    setQuestion(e.target.value);
+    questionSetter(e.target.value);
   };
 
   const getCards = async () => {
@@ -22,18 +20,18 @@ const Inquery = ({ cardSetter }) => {
 
   function handleSubmit (e) {
     e.preventDefault();
-    cardSetter(cards.data);
+    cardSetter(cards.data.cards);
   }
 
   return (
-    <Form action={handleSubmit}>
+    <Form>
       <Query onChange={handleChange} placeholder='What question burns brightest within your heart?'/>
-      <Button type='submit'>submit</Button>
+      <Button onClick={handleSubmit}>submit</Button>
     </Form>
   );
 };
 
-const Form = styled.form`
+const Form = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,7 +55,6 @@ const Button = styled.button`
 `;
 const Query = styled.input`
   width: 70vw;
-  border-radius: -30px;
   border: 10px groove #699897;
   height: 20vw;
   max-height: 400px;
@@ -67,7 +64,7 @@ const Query = styled.input`
   color: #e1c4ca;
   font-size: 4vw;
   font-family: 'Amatic SC';
-  font-weight: bolder;
+  font-weight: bold;
   outline: none;  
   &::placeholder {
     color: white;
