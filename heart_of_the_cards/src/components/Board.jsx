@@ -28,7 +28,7 @@ const Board = () => {
 };
 
 const CardContainer = styled.div`
-  width: 780px;
+  width: 775px;
   height: 410px;
   display: flex;
   gap: 10px;
