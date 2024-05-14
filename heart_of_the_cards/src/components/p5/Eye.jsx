@@ -9,10 +9,17 @@ const Eye = ({ width, height }) => {
     let angleB = 0;
     let angleC= 0;
     let reverse = 0;
+
     let lid_w = width / 12;
+    let blink_frames = [];
 
     p.setup = () => {
       p.createCanvas(width, height, p.WEBGL);
+    };
+
+    function run_blink () {
+      for (let i = 9; i >= 1; i-=0.1) blink_frames.push( p.ellipse(0, 0, lid_w * i, p.height, 4) ); // Close the eye
+      for (let i = 1; i <= 9; i-=0.1) blink_frames.push( p.ellipse(0, 0, lid_w * i, p.height, 4) ); // Reopen eye
     };
 
     p.draw = () => {
