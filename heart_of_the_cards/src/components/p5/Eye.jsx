@@ -11,7 +11,8 @@ const Eye = ({ width, height }) => {
     let reverse = 0;
 
     let blink_frames = [];
-    let delay = p.floor(p.random(2, 10));
+    let blink_delay = 0;
+    let rand_blink = p.random(2,10) * 1000;
     let lid_w = (p.width/12)*9;
     let is_lid_open = true;
 
@@ -34,12 +35,12 @@ const Eye = ({ width, height }) => {
           p.pop();
         }, delay);
         delay += 100; // Adjust delay
-      }
+      };
     };
 
     p.setup = () => {
-      p.createCanvas(width, height, p.WEBGL)
-      blink_delay = p.floor(p.random(200,10_000))
+      p.createCanvas(width, height, p.WEBGL);
+      blink_delay = p.floor(p.random(200,10_000));
     };
 
     p.draw = () => {
