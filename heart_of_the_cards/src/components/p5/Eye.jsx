@@ -13,18 +13,34 @@ const Eye = ({ width, height }) => {
     let blink_frames = [];
     let delay = p.floor(p.random(2, 10));
     let lid_w = (p.width/12)*9;
+    let is_lid_open = true;
 
     function run_blink () {
-      for (let i = 9; i >= 0; i--) {
-        // setTimeout does not block the execution of the loop, so all the setTimeout calls get queued almost simultaneously. Let's save each frame then in an array and iterate over that instead.
-        blink_frames.push( setTimeout(()=>p.ellipse(0, 0, (p.width/12)*i, p.height, 4),500) )
-      }
-      for (let i = 1; i <= 9; i++) {
-        blink_frames.push( setTimeout(()=>p.ellipse(0, 0, (p.width/12)*i, p.height, 4),500) )
-      }
-    }
+      // setTimeout does not block the execution of the loop, so all the setTimeout calls get queued almost simultaneously. Let's save each frame then in an array and iterate over that instead.
+      for (let i = 9; i >= 0; i--) { // Handle close
+        blink_frames.push( ()=>p.ellipse(0, 0, (p.width/12)*i, p.height, 4) );
+      };
+      for (let i = 1; i <= 9; i++) { // Handle open
+        blink_frames.push( ()=>p.ellipse(0, 0, (p.width/12)*i, p.height, 4) );
+      };
 
-    p.setup = () => p.createCanvas(width, height, p.WEBGL);
+      let delay = 0;
+      for (let step of blinkSteps) {
+        setTimeout(() => {
+          p.push();
+          p.background(255);
+          p.fill('#f7ebed'); // Not sure about this fill. Maybe no fill?
+          step();
+          p.pop();
+        }, delay);
+        delay += 100; // Adjust delay
+      }
+    };
+
+    p.setup = () => {
+      p.createCanvas(width, height, p.WEBGL)
+      blink_delay = p.floor(p.random(200,10_000))
+    };
 
     p.draw = () => {
       p.push();
