@@ -12,17 +12,17 @@ const Eye = ({ width, height }) => {
 
     let blink_frames = [];
     let blink_delay = 0;
-    let rand_blink = p.random(2,10) * 1000;
-    let lid_w = (p.width/12)*9;
+    let rand_blink = p.floor(p.random(2,10) * 1000);
+    let lid_w = (p.width/12);
     let is_lid_open = true;
 
     function run_blink () {
       // setTimeout does not block the execution of the loop, so all the setTimeout calls get queued almost simultaneously. Let's save each frame then in an array and iterate over that instead.
       for (let i = 9; i >= 0; i--) { // Handle close
-        blink_frames.push( ()=>p.ellipse(0, 0, (p.width/12)*i, p.height, 4) );
+        blink_frames.push( ()=> p.ellipse(0, 0, lid_w * i, p.height, 4) );
       };
       for (let i = 1; i <= 9; i++) { // Handle open
-        blink_frames.push( ()=>p.ellipse(0, 0, (p.width/12)*i, p.height, 4) );
+        blink_frames.push( ()=> p.ellipse(0, 0, lid_w * i, p.height, 4) );
       };
 
       let delay = 0;
@@ -40,13 +40,13 @@ const Eye = ({ width, height }) => {
 
     p.setup = () => {
       p.createCanvas(width, height, p.WEBGL);
-      blink_delay = p.floor(p.random(200,10_000));
+      blink_delay = rand_blink;
     };
 
     p.draw = () => {
       p.push();
       p.fill('#f7ebed');
-      p.ellipse(0, 0, (p.width/12)*9, p.height, 4); // Diamond
+      p.ellipse(0, 0, lid_w * 9, p.height, 4); // Diamond
 
       p.rotateZ(reverse);
       p.fill('#b25385');
