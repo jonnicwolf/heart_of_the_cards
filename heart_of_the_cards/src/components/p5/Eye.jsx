@@ -12,29 +12,27 @@ const Eye = ({ width, height }) => {
 
     let lid_w = width / 12;
     let blink_frames = [];
-    let blink_delay = p.floor(p.random(2000, 10_000));
+    //let blink_delay = p.floor(p.random(2000, 10_000));
+    let blink_delay = p.random(2000, 10_000);
 
 
     function create_blink_frames () {
-      for (let i = 9; i >= 0; i-=1) {
-        blink_frames.push(p.floor(lid_w * i))}; // Close the eye
-
-      for (let i = 1; i <= 9; i+=1) {
-        blink_frames.push(p.floor(lid_w * i))}; // Reopen eye
+      for (let i = 9; i > 0; i-=0.1) blink_frames.push(p.floor(lid_w * i)); // Close the eye
+      console.log(blink_frames)
+      //for (let i = 0; i < 9; i+=0.38) blink_frames.push(p.floor(lid_w * i)); // Reopen eye
+      //console.log(blink_frames)
     };
 
-
-
     p.setup = () => {
+      //p.createCanvas(width, height, p.WEBGL);
       p.createCanvas(width, height, p.WEBGL);
       create_blink_frames()
     };
     
     p.draw = () => {
       p.push();
-
-      
-      p.fill('#f7ebed');
+      p.noFill();
+      p.fill('black')
       let frameCount = p.frameCount > blink_frames/length - 1 ? 0 : p.frameCount;
       let frame = blink_frames[frameCount]
       p.ellipse(0, 0, blink_frames[frame], p.height, 4);
@@ -84,7 +82,14 @@ const Eye = ({ width, height }) => {
       angleB -= 0.1;
       angleC += 0.1;
       reverse -= 0.01;
-
+      
+      p.push();
+      p.fill('#f7ebed');
+      p.fill('black')
+      //p.noFill();
+      p.ellipse(0, 0, blink_frames[frame], p.height, 4);
+      p.pop();
+      
       p.strokeWeight(2);
     };
 
