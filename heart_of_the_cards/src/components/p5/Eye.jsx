@@ -21,14 +21,14 @@ const Eye = ({ width, height }) => {
       p.rotateZ(reverse);
       p.fill('#b25385');
       p.ellipse(0, 0, (p.width/12)*8, (p.width/12)*8, 6); // Hexagon
-
       p.fill('#699897');
       p.circle(0, 0, (p.width/12)*6);
 
       p.fill('gold');
-      p.circle(0, 0, 20);
+      p.circle(0, 0, (p.width/12)*2);
       p.pop();
 
+      // Eyelashes
       p.line(-40, 0, -50, 0);
       p.line(-35, -15, -50, -20);
       p.line(-35, 15, -50, 20);
