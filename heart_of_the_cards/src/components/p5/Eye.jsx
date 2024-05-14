@@ -10,15 +10,17 @@ const Eye = ({ width, height }) => {
     let angleC= 0;
     let reverse = 0;
 
+    let blink_frames = [];
     let delay = p.floor(p.random(2, 10));
     let lid_w = (p.width/12)*9;
 
     function run_blink () {
       for (let i = 9; i >= 0; i--) {
-        setTimeout(()=>p.ellipse(0, 0, (p.width/12)*i, p.height, 4),500)
+        // setTimeout does not block the execution of the loop, so all the setTimeout calls get queued almost simultaneously. Let's save each frame then in an array and iterate over that instead.
+        blink_frames.push( setTimeout(()=>p.ellipse(0, 0, (p.width/12)*i, p.height, 4),500) )
       }
       for (let i = 1; i <= 9; i++) {
-        setTimeout(()=>p.ellipse(0, 0, (p.width/12)*i, p.height, 4),500)
+        blink_frames.push( setTimeout(()=>p.ellipse(0, 0, (p.width/12)*i, p.height, 4),500) )
       }
     }
 
