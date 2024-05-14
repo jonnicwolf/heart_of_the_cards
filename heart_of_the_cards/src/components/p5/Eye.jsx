@@ -10,8 +10,7 @@ const Eye = ({ width, height }) => {
     let angleC= 0;
     let reverse = 0;
 
-    // p.setup = () => p.createCanvas(width, height, p.WEBGL);
-    p.setup = () => p.createCanvas(100,300,p.WEBGL);
+    p.setup = () => p.createCanvas(width, height, p.WEBGL);
 
     p.draw = () => {
       p.push();

@@ -12,7 +12,7 @@ const Board = () => {
 
   return (
     <Container>
-      <Eye />
+      <Eye width={100} height={300}/>
       {cards &&
         <CardContainer>
           {cards.map((card, i) => {
