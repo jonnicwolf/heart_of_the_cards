@@ -11,7 +11,7 @@ const Eye = ({ width, height }) => {
     let reverse = 0;
 
     let blink_frames = [];
-    let blink_delay = 0;
+    let blink_delay;
     let rand_blink = p.floor(p.random(2,10) * 1000);
     let lid_w = (p.width/12);
     let is_lid_open = true;
@@ -26,11 +26,12 @@ const Eye = ({ width, height }) => {
       };
 
       let delay = 0;
-      for (let step of blinkSteps) {
+      for (let step of blink_frames) {
         setTimeout(() => {
           p.push();
           p.background(255);
-          p.fill('#f7ebed'); // Not sure about this fill. Maybe no fill?
+          //p.fill('#f7ebed'); // Not sure about this fill. Maybe no fill?
+          p.noFill();
           step();
           p.pop();
         }, delay);
@@ -46,7 +47,7 @@ const Eye = ({ width, height }) => {
     p.draw = () => {
       p.push();
       p.fill('#f7ebed');
-      p.ellipse(0, 0, lid_w * 9, p.height, 4); // Diamond
+      // p.ellipse(0, 0, lid_w * 9, p.height, 4); // Diamond
 
       p.rotateZ(reverse);
       p.fill('#b25385');
@@ -92,6 +93,12 @@ const Eye = ({ width, height }) => {
       reverse -= 0.01;
 
       p.strokeWeight(2);
+
+      // Handle blink
+      if (p.millis() > blink_delay) {
+        run_blink();
+        blink_delay = p.millis() + rand_blink; // Random delay before next blink
+      };
     };
   });
 
