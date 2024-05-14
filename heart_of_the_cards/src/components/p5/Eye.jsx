@@ -64,10 +64,10 @@ const Eye = ({ width, height }) => {
 
       p.push()
       p.noLoop()
-      let delay = p.floor(p.random(10));
+      let delay = p.floor(p.random(2, 10));
       let lid_w = (p.width/12)*9;
       p.noFill()
-      
+
       function run_blink () {
         for (let i = 9; i >= 0; i--) {
           console.log((p.width/12)*i, lid_w)
@@ -81,7 +81,7 @@ const Eye = ({ width, height }) => {
         }
       }
       setTimeout(run_blink, delay*1000)
-      // p.loop()
+
       p.pop()
 
     };
