@@ -12,26 +12,41 @@ const Eye = ({ width, height }) => {
 
     let lid_w = width / 12;
     let blink_frames = [];
+    let blink_delay = p.floor(p.random(2000, 10_000));
+
+
+    function create_blink_frames () {
+      for (let i = 9; i >= 0; i-=1) {
+        blink_frames.push(p.floor(lid_w * i))}; // Close the eye
+
+      for (let i = 1; i <= 9; i+=1) {
+        blink_frames.push(p.floor(lid_w * i))}; // Reopen eye
+    };
+
+
 
     p.setup = () => {
       p.createCanvas(width, height, p.WEBGL);
+      create_blink_frames()
     };
-
-    function run_blink () {
-      for (let i = 9; i >= 1; i-=0.1) blink_frames.push( p.ellipse(0, 0, lid_w * i, p.height, 4) ); // Close the eye
-      for (let i = 1; i <= 9; i-=0.1) blink_frames.push( p.ellipse(0, 0, lid_w * i, p.height, 4) ); // Reopen eye
-    };
-
+    
     p.draw = () => {
       p.push();
-      p.fill('#f7ebed');
-      p.ellipse(0, 0, lid_w * 9, p.height, 4); // Diamond
 
+      
+      p.fill('#f7ebed');
+      let frameCount = p.frameCount > blink_frames/length - 1 ? 0 : p.frameCount;
+      let frame = blink_frames[frameCount]
+      p.ellipse(0, 0, blink_frames[frame], p.height, 4);
+      p.pop();
+
+      p.push();
       p.rotateZ(reverse);
       p.fill('#b25385');
       p.ellipse(0, 0, (p.width/12)*8, (p.width/12)*8, 6); // Hexagon
       p.fill('#699897');
       p.circle(0, 0, (p.width/12)*6);
+
 
       p.fill('gold');
       p.circle(0, 0, (p.width/12)*2);
@@ -72,6 +87,7 @@ const Eye = ({ width, height }) => {
 
       p.strokeWeight(2);
     };
+
   });
 
   useEffect(() => {
