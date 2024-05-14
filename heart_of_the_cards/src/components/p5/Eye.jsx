@@ -12,29 +12,32 @@ const Eye = ({ width, height }) => {
 
     let lid_w = width / 12;
     let blink_frames = [];
-    //let blink_delay = p.floor(p.random(2000, 10_000));
-    let blink_delay = p.random(2000, 10_000);
-
-
+    let blink_delay = p.floor(p.random(2000, 10_000));
+    let x = 0
     function create_blink_frames () {
-      for (let i = 9; i > 0; i-=0.1) blink_frames.push(p.floor(lid_w * i)); // Close the eye
-      console.log(blink_frames)
-      //for (let i = 0; i < 9; i+=0.38) blink_frames.push(p.floor(lid_w * i)); // Reopen eye
-      //console.log(blink_frames)
+      console.log(`create blink frame ran after: ${blink_delay} `)
+      for (let i = 0; i <= 9; i+=1) blink_frames.push(p.floor(lid_w * i)); // Open eye
+      for (let i = 9; i >= 0; i-=0.5) blink_frames.push(p.floor(lid_w * i)); // Close the eye
+      x+=1
+      console.log(x, 'x')
     };
 
     p.setup = () => {
-      //p.createCanvas(width, height, p.WEBGL);
       p.createCanvas(width, height, p.WEBGL);
-      create_blink_frames()
+      setInterval(create_blink_frames, blink_delay);
     };
-    
+    console.log(blink_frames)
+    console.log(blink_delay)
+    console.log(x)
+
     p.draw = () => {
+      
+      let frameCount = p.frameCount > blink_frames/length - 1 ? 0 : p.frameCount;
+      let frame = blink_frames[frameCount];
+      
       p.push();
       p.noFill();
-      p.fill('black')
-      let frameCount = p.frameCount > blink_frames/length - 1 ? 0 : p.frameCount;
-      let frame = blink_frames[frameCount]
+      // p.fill('black')
       p.ellipse(0, 0, blink_frames[frame], p.height, 4);
       p.pop();
 
@@ -83,13 +86,22 @@ const Eye = ({ width, height }) => {
       angleC += 0.1;
       reverse -= 0.01;
       
-      p.push();
-      p.fill('#f7ebed');
-      p.fill('black')
-      //p.noFill();
-      p.ellipse(0, 0, blink_frames[frame], p.height, 4);
-      p.pop();
-      
+      // p.push();
+      // p.noFill();
+      // p.fill('black')
+      // // let frameCount = p.frameCount > blink_frames/length - 1 ? 0 : p.frameCount;
+      // // let frame = blink_frames[frameCount]
+      // p.ellipse(0, 0, blink_frames[frame], p.height, 4);
+      // p.pop();
+
+      // p.push();
+      // p.noFill();
+      // p.fill('black')
+      // // let frameCount = p.frameCount > blink_frames/length - 1 ? 0 : p.frameCount;
+      // // let frame = blink_frames[frameCount]
+      // p.ellipse(0, 0, blink_frames[frame], p.height, 4);
+      // p.pop();
+
       p.strokeWeight(2);
     };
 
