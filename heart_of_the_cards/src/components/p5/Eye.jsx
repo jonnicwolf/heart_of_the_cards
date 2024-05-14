@@ -10,6 +10,18 @@ const Eye = ({ width, height }) => {
     let angleC= 0;
     let reverse = 0;
 
+    let delay = p.floor(p.random(2, 10));
+    let lid_w = (p.width/12)*9;
+
+    function run_blink () {
+      for (let i = 9; i >= 0; i--) {
+        setTimeout(()=>p.ellipse(0, 0, (p.width/12)*i, p.height, 4),500)
+      }
+      for (let i = 1; i <= 9; i++) {
+        setTimeout(()=>p.ellipse(0, 0, (p.width/12)*i, p.height, 4),500)
+      }
+    }
+
     p.setup = () => p.createCanvas(width, height, p.WEBGL);
 
     p.draw = () => {
@@ -59,31 +71,8 @@ const Eye = ({ width, height }) => {
       angleB -= 0.1;
       angleC += 0.1;
       reverse -= 0.01;
-      
+
       p.strokeWeight(2);
-
-      p.push()
-      p.noLoop()
-      let delay = p.floor(p.random(2, 10));
-      let lid_w = (p.width/12)*9;
-      p.noFill()
-
-      function run_blink () {
-        for (let i = 9; i >= 0; i--) {
-          console.log((p.width/12)*i, lid_w)
-          p.noFill*
-          setTimeout(()=>p.ellipse(0, 0, (p.width/12)*i, p.height, 4),500)
-        }
-        for (let i = 1; i <= 9; i++) {
-          console.log((p.width/12)*i)
-          p.noFill()
-          setTimeout(()=>p.ellipse(0, 0, (p.width/12)*i, p.height, 4),500)
-        }
-      }
-      setTimeout(run_blink, delay*1000)
-
-      p.pop()
-
     };
   });
 
