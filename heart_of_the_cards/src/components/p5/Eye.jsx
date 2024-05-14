@@ -11,29 +11,29 @@ const Eye = ({ width, height }) => {
     let reverse = 0;
 
     let blink_frames = [];
-    let blink_delay;
     let rand_blink = p.floor(p.random(2,10) * 1000);
-    let lid_w = (p.width/12);
+    let lid_w = (p.width/12); // Base 12 so we can work with more factors
     let is_lid_open = true;
 
     function run_blink () {
-      // setTimeout does not block the execution of the loop, so all the setTimeout calls get queued almost simultaneously. Let's save each frame then in an array and iterate over that instead.
+      // setTimeout does not block the execution of the sketch loop, so all the setTimeout calls get queued almost simultaneously. Let's save each frame in an array and iterate over that instead of using noLoop()/loop()
       for (let i = 9; i >= 0; i--) { // Handle close
         blink_frames.push( ()=> p.ellipse(0, 0, lid_w * i, p.height, 4) );
       };
       for (let i = 1; i <= 9; i++) { // Handle open
         blink_frames.push( ()=> p.ellipse(0, 0, lid_w * i, p.height, 4) );
       };
-
+      console.log(blink_frames, 'blink frames')
       let delay = 0;
       for (let step of blink_frames) {
         setTimeout(() => {
           p.push();
-          p.background(255);
+          // p.background(255);
           //p.fill('#f7ebed'); // Not sure about this fill. Maybe no fill?
           p.noFill();
           step();
           p.pop();
+          console.log(delay, 'blink execute loop')
         }, delay);
         delay += 100; // Adjust delay
       };
@@ -41,13 +41,12 @@ const Eye = ({ width, height }) => {
 
     p.setup = () => {
       p.createCanvas(width, height, p.WEBGL);
-      blink_delay = rand_blink;
     };
 
     p.draw = () => {
       p.push();
       p.fill('#f7ebed');
-      // p.ellipse(0, 0, lid_w * 9, p.height, 4); // Diamond
+      p.ellipse(0, 0, lid_w * 9, p.height, 4); // Diamond
 
       p.rotateZ(reverse);
       p.fill('#b25385');
@@ -95,10 +94,7 @@ const Eye = ({ width, height }) => {
       p.strokeWeight(2);
 
       // Handle blink
-      if (p.millis() > blink_delay) {
-        run_blink();
-        blink_delay = p.millis() + rand_blink; // Random delay before next blink
-      };
+      run_blink()
     };
   });
 
