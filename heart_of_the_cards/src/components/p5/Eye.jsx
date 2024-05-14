@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import p5 from 'p5'
 
-const Eye = () => {
+const Eye = ({ width, height }) => {
   const sketch_ref = useRef();
 
   const sketch = useCallback((p) => {
@@ -10,19 +10,21 @@ const Eye = () => {
     let angleC= 0;
     let reverse = 0;
 
+    // p.setup = () => p.createCanvas(width, height, p.WEBGL);
     p.setup = () => p.createCanvas(100,300,p.WEBGL);
 
     p.draw = () => {
       p.push();
       p.fill('#f7ebed');
-      p.ellipse(0, 0, 75, 300, 4);
+      p.ellipse(0, 0, (p.width/12)*9, p.height, 4); // Diamond
 
       p.rotateZ(reverse);
       p.fill('#b25385');
-      p.ellipse(0, 0, 65, 65, 6);
+      p.ellipse(0, 0, (p.width/12)*8, (p.width/12)*8, 6); // Hexagon
 
       p.fill('#699897');
-      p.circle(0, 0, 50);
+      p.circle(0, 0, (p.width/12)*6);
+
       p.fill('gold');
       p.circle(0, 0, 20);
       p.pop();
