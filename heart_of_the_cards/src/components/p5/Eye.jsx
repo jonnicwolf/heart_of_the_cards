@@ -4,35 +4,37 @@ import p5 from 'p5'
 const Eye = ({ width, height }) => {
   const sketch_ref = useRef();
 
+  let lid_w = width / 12;
+  let delay = 1000
+  let blink_frames = [];
+  const blink_delay = Math.floor(Math.random() * (10_000 - 2000) + 2000)
+
+  function create_blink_frames () {
+    for (let i = 0; i <= 9; i+=1) blink_frames.push(Math.floor(lid_w * i)); // Open eye
+    for (let i = 9; i >= 0; i-=(12)) blink_frames.push(Math.floor(lid_w * i)); // Close the eye
+    delay = blink_delay;
+    console.log('set interval ran', delay);
+  };
+
   const sketch = useCallback((p) => {
     let angleA = 0;
     let angleB = 0;
     let angleC= 0;
     let reverse = 0;
 
-    let lid_w = width / 12;
-    let blink_frames = [];
-    const blink_delay = () => p.floor(p.random(2000, 10_000));
-    let delay = 0
-
-    function create_blink_frames () {
-      for (let i = 0; i <= 9; i+=1) blink_frames.push(p.floor(lid_w * i)); // Open eye
-      for (let i = 9; i >= 0; i-=0.5) blink_frames.push(p.floor(lid_w * i)); // Close the eye
-      delay = blink_delay()
-      p.redraw()
-    };
-
     p.setup = () => {
       p.createCanvas(width, height, p.WEBGL);
       create_blink_frames()
     };
+
     p.draw = () => {
       let frameCount = p.frameCount > blink_frames/length - 1 ? 0 : p.frameCount;
       let frame = blink_frames[frameCount];
-      p.push()
-      p.noStroke()
+
+      p.push();
+      p.noStroke();
       p.ellipse(0,0, frame, height, 4);
-      p.pop()
+      p.pop();
 
       p.push();
       p.rotateZ(reverse);
@@ -70,6 +72,7 @@ const Eye = ({ width, height }) => {
       p.rotateX(angleC);
       p.stroke('#db8aae')
       p.triangle(15, -10, 0, 15, -15, -10);
+      p.strokeWeight(2);
       p.pop();
 
       angleA += 0.1;
@@ -77,15 +80,15 @@ const Eye = ({ width, height }) => {
       angleC += 0.1;
       reverse -= 0.01;
 
-      p.push()
-      p.noFill()
+      // Second diamond to act like an eye lid
+      p.push();
+      p.noStroke();
+      p.fill('black');
       p.ellipse(0,0, frame, height, 4);
-      p.noStroke()
-      p.pop()
+      p.pop();
 
       p.strokeWeight(1);
     };
-
   });
 
   useEffect(() => {
