@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import Eye from '../components/p5/Eye';
 import Card from '../components/p5/Card';
@@ -12,10 +12,13 @@ const Board = () => {
 
   return (
     <Container>
-      <Eye />
+      <EyeContainer>
+        <Eye width={100} height={300}/>
+      </EyeContainer>
+
       {cards &&
         <CardContainer>
-          {cards.map((card, i) => {
+          {cards.map((card) => {
             return (
               <Card key={uuidv4()} name_short={card.name_short} />
             )
@@ -33,6 +36,27 @@ const CardContainer = styled.div`
   display: flex;
   gap: 10px;
   overflow: hidden;
+`;
+const blink = keyframes`
+  0% {
+    width: 100px;
+  }
+  10% {
+    width: 0;
+  }
+  40% {
+    width: 100px;
+  }
+  100% {
+    width: 100px;
+  }
+`;
+const EyeContainer = styled.div`
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);  
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  animation: ${blink} 3s infinite;
 `;
 const Container = styled.div`
   position: relative;
