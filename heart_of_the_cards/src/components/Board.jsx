@@ -10,8 +10,6 @@ const Board = () => {
   const [question, setQuestion] = useState(null);
   const [cards, setCards] = useState(null);
 
-
-
   return (
     <Container>
       <EyeContainer>
@@ -20,7 +18,7 @@ const Board = () => {
 
       {cards &&
         <CardContainer>
-          {cards.map((card, i) => {
+          {cards.map((card) => {
             return (
               <Card key={uuidv4()} name_short={card.name_short} />
             )
@@ -43,19 +41,22 @@ const blink = keyframes`
   0% {
     width: 100px;
   }
-  50% {
+  10% {
     width: 0;
+  }
+  40% {
+    width: 100px;
   }
   100% {
     width: 100px;
   }
-`
+`;
 const EyeContainer = styled.div`
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);  
   width: 100px;
   display: flex;
   justify-content: center;
-  animation: ${blink} 0.3s infinite;
+  animation: ${blink} 3s infinite;
 `;
 const Container = styled.div`
   position: relative;
