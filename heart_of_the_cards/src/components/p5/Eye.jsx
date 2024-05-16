@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import p5 from 'p5'
+import p5 from 'p5';
 
 const Eye = ({ width, height }) => {
   const sketch_ref = useRef();
@@ -7,13 +7,12 @@ const Eye = ({ width, height }) => {
   let lid_w = width / 12;
   let delay = 1000
   let blink_frames = [];
-  const blink_delay = Math.floor(Math.random() * (10_000 - 2000) + 2000)
+  const blink_delay = Math.floor(Math.random() * (10_000 - 2000) + 2000);
 
   function create_blink_frames () {
     for (let i = 0; i <= 9; i+=1) blink_frames.push(Math.floor(lid_w * i)); // Open eye
-    for (let i = 9; i >= 0; i-=(12)) blink_frames.push(Math.floor(lid_w * i)); // Close the eye
+    for (let i = 9; i >= 0; i-=12) blink_frames.push(Math.floor(lid_w * i)); // Close the eye
     delay = blink_delay;
-    console.log('set interval ran', delay);
   };
 
   const sketch = useCallback((p) => {
@@ -24,7 +23,7 @@ const Eye = ({ width, height }) => {
 
     p.setup = () => {
       p.createCanvas(width, height, p.WEBGL);
-      create_blink_frames()
+      create_blink_frames();
     };
 
     p.draw = () => {
@@ -47,14 +46,18 @@ const Eye = ({ width, height }) => {
       p.pop();
 
       // Eyelashes
-      p.line(-40, 0, -50, 0);
+      p.push();
+      p.strokeWeight(6);
+      p.line(-36, 0, -50, 0);
       p.line(-35, -15, -50, -20);
       p.line(-35, 15, -50, 20);
+      p.pop();
 
       p.push();
       p.noFill();
       p.rotateZ(angleA);
       p.stroke('white');
+      p.strokeWeight(2);
       p.triangle(15, -10, 0, 15, -15, -10);
       p.pop();
 
@@ -63,6 +66,7 @@ const Eye = ({ width, height }) => {
       p.rotateZ(angleB);
       p.rotateY(angleB);
       p.stroke('#db8aae');
+      p.strokeWeight(2);
       p.triangle(15, -10, 0, 15, -15, -10);
       p.pop();
 
@@ -70,7 +74,8 @@ const Eye = ({ width, height }) => {
       p.noFill();
       p.rotateZ(angleC);
       p.rotateX(angleC);
-      p.stroke('#db8aae')
+      p.stroke('#db8aae');
+      p.strokeWeight(2);
       p.triangle(15, -10, 0, 15, -15, -10);
       p.strokeWeight(2);
       p.pop();
