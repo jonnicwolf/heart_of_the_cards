@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import Eye from '../components/p5/Eye';
 import Card from '../components/p5/Card';
@@ -10,9 +10,14 @@ const Board = () => {
   const [question, setQuestion] = useState(null);
   const [cards, setCards] = useState(null);
 
+
+
   return (
     <Container>
-      <Eye width={100} height={300}/>
+      <EyeContainer>
+        <Eye width={100} height={300}/>
+      </EyeContainer>
+
       {cards &&
         <CardContainer>
           {cards.map((card, i) => {
@@ -33,6 +38,24 @@ const CardContainer = styled.div`
   display: flex;
   gap: 10px;
   overflow: hidden;
+`;
+const blink = keyframes`
+  0% {
+    width: 100px;
+  }
+  50% {
+    width: 0;
+  }
+  100% {
+    width: 100px;
+  }
+`
+const EyeContainer = styled.div`
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);  
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  animation: ${blink} 0.3s infinite;
 `;
 const Container = styled.div`
   position: relative;
