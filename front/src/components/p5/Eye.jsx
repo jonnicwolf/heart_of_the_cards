@@ -8,7 +8,7 @@ const Eye = ({ width, height }) => {
   let blink_frames = [];
 
   function create_blink_frames () {
-    for (let i = 0; i <= 9; i+=1) blink_frames.push(Math.floor(lid_w * i));
+    for (let i = 0; i <= 3; i+=1) blink_frames.push(Math.floor(lid_w * i));
   };
 
   const sketch = useCallback((p) => {
@@ -23,9 +23,13 @@ const Eye = ({ width, height }) => {
     };
 
     p.draw = () => {
+      p.background(0)
       let frameCount = p.frameCount > blink_frames/length - 1 ? 0 : p.frameCount;
       let frame = blink_frames[frameCount];
-
+      
+      const irisX = p.map(p.mouseX, 0, p.width, (p.width / 36)*-1, p.width / 36);
+      const irisY = p.map(p.mouseY, 0, p.height, (p.width / 12)*-1, p.height / 24);
+      
       p.push();
       p.noStroke();
       p.fill('black')
@@ -33,13 +37,13 @@ const Eye = ({ width, height }) => {
       p.pop();
 
       p.push();
-      p.rotateZ(reverse);
+      //p.rotateZ(reverse);
       p.fill('#b25385');
-      p.ellipse(p.mouseX, p.mouseY, (p.width/12)*8, (p.width/12)*8, 6); // Hexagon
+      p.ellipse(irisX, irisY, (p.width/12)*8, (p.width/12)*8, 6); // Hexagon
       p.fill('#699897');
-      p.circle(p.mouseX, p.mouseY, (p.width/12)*6);
+      p.circle(irisX, irisY, (p.width/12)*6);
       p.fill('gold');
-      p.circle(p.mouseX, p.mouseY, (p.width/12)*2);
+      p.circle(irisX, irisY, (p.width/12)*2);
       p.pop();
 
       // Eyelashes
@@ -51,33 +55,37 @@ const Eye = ({ width, height }) => {
       p.pop();
 
       p.push();
+      p.translate(irisX, irisY);
+      // Moving Triangle 1
+      p.push();
       p.noFill();
       p.rotateZ(angleA);
       p.stroke('white');
       p.strokeWeight(2);
-      p.translate(p.mouseX, p.mouseY);
       p.triangle(15, -10, 0, 15, -15, -10);
       p.pop();
 
+      // Moving Triangle 2
       p.push();
       p.noFill();
       p.rotateZ(angleB);
       p.rotateY(angleB);
       p.stroke('#db8aae');
       p.strokeWeight(2);
-      p.translate(p.mouseX, p.mouseY);
       p.triangle(15, -10, 0, 15, -15, -10);
       p.pop();
 
+      // Moving Triangle 3
       p.push();
       p.noFill();
       p.rotateZ(angleC);
       p.rotateX(angleC);
       p.stroke('#db8aae');
       p.strokeWeight(2);
-      p.translate(p.mouseX, p.mouseY);
       p.triangle(15, -10, 0, 15, -15, -10);
       p.strokeWeight(2);
+      p.pop();
+
       p.pop();
 
       angleA += 0.1;
