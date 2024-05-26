@@ -26,7 +26,7 @@ users.get('/:id', async (req, res) =>{
 
 users.get('/:email', async (req, res) =>{
   const { email } = req.params;
-  const user = await get_usersByEmail(email);
+  const user = await get_userByEmail(email);
 
   if (user) res.status(200).json({ success: true, data: { payload: user }})
   else res.status(200).json({ success: false, data: { error: 'User not found. '}});
@@ -34,7 +34,7 @@ users.get('/:email', async (req, res) =>{
 
 users.post('/', async (req, res) => {
   try {
-    post_newUser(req.body)
+    post_newUser(req.body);
   }
   catch (error) {
     res.status(400).json({ error: 'New User not created.' });
@@ -48,7 +48,7 @@ users.put('/:id', async (req, res) => {
     res.status(200).json({ success: true, data: { payload: user } });
   }
   catch (error) {
-    res.status(400).json({ error: 'User not found. '})
+    res.status(400).json({ error: 'User not found. '});
   };
 });
 
@@ -59,7 +59,18 @@ users.delete('/:id', async (req, res) => {
     if (user) res.status(200).json(user);
   }
   catch (error) {
-    res.status(400).json({ error: 'An error occurred while deleting user. '})
+    res.status(400).json({ error: 'An error occurred while deleting user. '});
+  };
+});
+
+users.delete('/:email', async (req, res) => {
+  const { email } = req.params;
+  try {
+    const user = await delete_userByEmail(email);
+    if (user) res.status(200).json(user);
+  }
+  catch (error) {
+    res.status(400).json({ error: 'An error occurred while deleting user. '});
   };
 });
 
