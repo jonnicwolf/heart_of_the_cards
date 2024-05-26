@@ -46,6 +46,7 @@ const EyeWrapper = styled.div`
   align-items: center;
   margin: 0;
   padding: 0;
+  transform: translateX(-80px);
 `;
 const CardContainer = styled.div`
   width: 775px;
