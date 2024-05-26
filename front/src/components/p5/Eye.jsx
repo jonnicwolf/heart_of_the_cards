@@ -28,17 +28,18 @@ const Eye = ({ width, height }) => {
 
       p.push();
       p.noStroke();
+      p.fill('black')
       p.ellipse(0,0, frame, height, 4);
       p.pop();
 
       p.push();
       p.rotateZ(reverse);
       p.fill('#b25385');
-      p.ellipse(0, 0, (p.width/12)*8, (p.width/12)*8, 6); // Hexagon
+      p.ellipse(p.mouseX, p.mouseY, (p.width/12)*8, (p.width/12)*8, 6); // Hexagon
       p.fill('#699897');
-      p.circle(0, 0, (p.width/12)*6);
+      p.circle(p.mouseX, p.mouseY, (p.width/12)*6);
       p.fill('gold');
-      p.circle(0, 0, (p.width/12)*2);
+      p.circle(p.mouseX, p.mouseY, (p.width/12)*2);
       p.pop();
 
       // Eyelashes
@@ -54,6 +55,7 @@ const Eye = ({ width, height }) => {
       p.rotateZ(angleA);
       p.stroke('white');
       p.strokeWeight(2);
+      p.translate(p.mouseX, p.mouseY);
       p.triangle(15, -10, 0, 15, -15, -10);
       p.pop();
 
@@ -63,6 +65,7 @@ const Eye = ({ width, height }) => {
       p.rotateY(angleB);
       p.stroke('#db8aae');
       p.strokeWeight(2);
+      p.translate(p.mouseX, p.mouseY);
       p.triangle(15, -10, 0, 15, -15, -10);
       p.pop();
 
@@ -72,6 +75,7 @@ const Eye = ({ width, height }) => {
       p.rotateX(angleC);
       p.stroke('#db8aae');
       p.strokeWeight(2);
+      p.translate(p.mouseX, p.mouseY);
       p.triangle(15, -10, 0, 15, -15, -10);
       p.strokeWeight(2);
       p.pop();
@@ -80,13 +84,6 @@ const Eye = ({ width, height }) => {
       angleB -= 0.1;
       angleC += 0.1;
       reverse -= 0.01;
-
-      // Second diamond to act like an eye lid
-      p.push();
-      p.noStroke();
-      p.fill('black');
-      p.ellipse(0,0, frame, height, 4);
-      p.pop();
 
       p.strokeWeight(1);
     };
