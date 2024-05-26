@@ -75,6 +75,7 @@ const delete_userByID = async (id) => {
 module.exports = {
   get_allUsers,
   get_userByID,
+  get_userByEmail,
   post_newUser,
   put_updateUser,
   delete_userByEmail,
