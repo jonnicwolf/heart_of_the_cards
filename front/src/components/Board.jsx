@@ -52,8 +52,8 @@ const blink = keyframes`
   }
 `;
 const EyeContainer = styled.div`
-  //clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-  clip-path: polygon(30% 45%, 50% 0, 80% 50%, 50% 100%, 30% 55%, 0 60%, 0 50%, 0 40%);
+  clip-path: polygon(50% 0%, 85% 50%, 50% 100%, 15% 50%);
+  //clip-path: polygon(30% 45%, 50% 0, 80% 50%, 50% 100%, 30% 55%, 0 60%, 0 50%, 0 40%);
   width: 100px;
   display: flex;
   justify-content: center;
