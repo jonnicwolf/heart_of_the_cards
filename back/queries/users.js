@@ -19,8 +19,7 @@ const get_userByID = async (id) => {
 };
 
 
-
- const put_newUser = async (id ,newUser) => {
+const put_updateUser = async (id ,newUser) => {
   const { username, email, password_hash } = newUser;
 
   try {
