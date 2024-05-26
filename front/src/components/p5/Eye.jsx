@@ -23,17 +23,17 @@ const Eye = ({ width, height }) => {
     };
 
     p.draw = () => {
-      p.background(0)
+      p.background(0, 0)
       let frameCount = p.frameCount > blink_frames/length - 1 ? 0 : p.frameCount;
       let frame = blink_frames[frameCount];
       
-      const irisX = p.map(p.mouseX, 0, p.width, (p.width / 36)*-1, p.width / 36);
-      const irisY = p.map(p.mouseY, 0, p.height, (p.width / 12)*-1, p.height / 24);
+      const irisX = p.map(p.mouseX, 0, p.width, (p.width / 60)*-1, p.width / 60);
+      const irisY = p.map(p.mouseY, 0, p.height, (p.width / 24)*-1, p.height / 36);
       
       p.push();
       p.noStroke();
-      p.fill('black')
-      p.ellipse(0,0, frame, height, 4);
+      p.fill('white')
+      p.ellipse(0,0, (width/12)*8, height, 4);
       p.pop();
 
       p.push();
@@ -48,6 +48,7 @@ const Eye = ({ width, height }) => {
 
       // Eyelashes
       p.push();
+      p.stroke('white')
       p.strokeWeight(6);
       p.line(-36, 0, -50, 0);
       p.line(-35, -15, -50, -20);
