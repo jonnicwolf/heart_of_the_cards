@@ -5,14 +5,10 @@ const Eye = ({ width, height }) => {
   const sketch_ref = useRef();
 
   let lid_w = width / 12;
-  let delay = 1000
   let blink_frames = [];
-  const blink_delay = Math.floor(Math.random() * (10_000 - 2000) + 2000);
 
   function create_blink_frames () {
-    for (let i = 0; i <= 9; i+=1) blink_frames.push(Math.floor(lid_w * i)); // Open eye
-    for (let i = 9; i >= 0; i-=12) blink_frames.push(Math.floor(lid_w * i)); // Close the eye
-    delay = blink_delay;
+    for (let i = 0; i <= 9; i+=1) blink_frames.push(Math.floor(lid_w * i));
   };
 
   const sketch = useCallback((p) => {
