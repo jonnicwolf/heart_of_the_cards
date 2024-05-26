@@ -28,14 +28,26 @@ const get_userByEmail = async (email) => {
   };
 };
 
-const put_updateUser = async (id ,newUser) => {
-  const { username, email, password_hash } = newUser;
+const post_newUser = async (id, user) => {
+  try {
+    const { username, email, password_hash} = user;
+
+    const newUser = await db.one("INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING *", [username, email, password_hash]);
+    return newUser;
+  } 
+  catch (error) {
+    console.error(error);
+  };
+};
+
+const put_updateUser = async (id , user) => {
+  const { username, email, password_hash } = user;
 
   try {
-    const user = await db.one(`UPDATE users SET username=$1, email=$2, password_hash=$3 WHERE id='${id}' RETURNING *`, [username, email, password_hash,]);
-    return user;
+    const updatedUser = await db.one(`UPDATE users SET username=$1, email=$2, password_hash=$3 WHERE id='${id}' RETURNING *`, [username, email, password_hash]);
+    return updatedUser;
   }
   catch (error) {
     console.error(error);
-  }
- }
+  };
+ };
