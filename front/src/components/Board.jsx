@@ -12,9 +12,19 @@ const Board = () => {
 
   return (
     <Container>
-      <EyeContainer>
-        <Eye width={100} height={300}/>
-      </EyeContainer>
+
+      <EyeWrapper>
+        <EyeLashContainer>
+          <EyeLash_4 />
+          <EyeLash_2 />
+          <EyeLash_1 />
+          <EyeLash_3 />
+          <EyeLash_5 />
+        </EyeLashContainer>
+        <EyeContainer>
+          <Eye width={100} height={300}/>
+        </EyeContainer>
+      </EyeWrapper>
 
       {cards &&
         <CardContainer>
@@ -30,6 +40,13 @@ const Board = () => {
   );
 };
 
+const EyeWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+`;
 const CardContainer = styled.div`
   width: 775px;
   height: 410px;
@@ -52,12 +69,40 @@ const blink = keyframes`
   }
 `;
 const EyeContainer = styled.div`
-  clip-path: polygon(50% 0%, 85% 50%, 50% 100%, 15% 50%);
-  //clip-path: polygon(30% 45%, 50% 0, 80% 50%, 50% 100%, 30% 55%, 0 60%, 0 50%, 0 40%);
-  width: 100px;
+  clip-path: polygon(50% 0%, 80% 50%, 50% 100%, 20% 50%);
   display: flex;
   justify-content: center;
   animation: ${blink} 3s infinite;
+`;
+const EyeLashContainer = styled.div`
+  display: flex;
+  transform: rotate(270deg) translateY(70px);
+  height: 10%;
+  align-items: center;
+  gap: 5px;
+`;
+const EyeLash = styled.div`
+  width: 25px;
+  height: 1px;
+  background-color: black;
+  padding: 4px;
+`;
+const EyeLash_1 = styled(EyeLash)`
+  transform: rotate(90deg);
+`;
+const EyeLash_2 = styled(EyeLash)`
+  transform: rotate(70deg);
+`;
+const EyeLash_3 = styled(EyeLash)`
+  transform: rotate(-70deg);
+`;
+const EyeLash_4 = styled(EyeLash)`
+  transform: rotate(50deg) translateX(8px);
+  width: 18px;
+`;
+const EyeLash_5 = styled(EyeLash)`
+  transform: rotate(-50deg) translateX(-8px);
+  width: 18px;
 `;
 const Container = styled.div`
   position: relative;

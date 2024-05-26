@@ -4,40 +4,29 @@ import p5 from 'p5';
 const Eye = ({ width, height }) => {
   const sketch_ref = useRef();
 
-  let lid_w = width / 12;
-  let blink_frames = [];
-
-  function create_blink_frames () {
-    for (let i = 0; i <= 3; i+=1) blink_frames.push(Math.floor(lid_w * i));
-  };
-
   const sketch = useCallback((p) => {
     let angleA = 0;
     let angleB = 0;
     let angleC= 0;
     let reverse = 0;
+    const lid_w = width / 12;
 
     p.setup = () => {
       p.createCanvas(width, height, p.WEBGL);
-      create_blink_frames();
     };
 
     p.draw = () => {
-      p.background(0, 0)
-      let frameCount = p.frameCount > blink_frames/length - 1 ? 0 : p.frameCount;
-      let frame = blink_frames[frameCount];
-      
       const irisX = p.map(p.mouseX, 0, p.width, (p.width / 60)*-1, p.width / 60);
       const irisY = p.map(p.mouseY, 0, p.height, (p.width / 24)*-1, p.height / 36);
-      
+      p.background(0, 0.9);
+
       p.push();
       p.noStroke();
-      p.fill('white')
-      p.ellipse(0,0, (width/12)*8, height, 4);
+      p.fill('black')
+      p.ellipse(0, 0, lid_w * 8, height, 4);
       p.pop();
 
       p.push();
-      //p.rotateZ(reverse);
       p.fill('#b25385');
       p.ellipse(irisX, irisY, (p.width/12)*8, (p.width/12)*8, 6); // Hexagon
       p.fill('#699897');
@@ -46,17 +35,9 @@ const Eye = ({ width, height }) => {
       p.circle(irisX, irisY, (p.width/12)*2);
       p.pop();
 
-      // Eyelashes
-      p.push();
-      p.stroke('white')
-      p.strokeWeight(6);
-      p.line(-36, 0, -50, 0);
-      p.line(-35, -15, -50, -20);
-      p.line(-35, 15, -50, 20);
-      p.pop();
-
       p.push();
       p.translate(irisX, irisY);
+
       // Moving Triangle 1
       p.push();
       p.noFill();
