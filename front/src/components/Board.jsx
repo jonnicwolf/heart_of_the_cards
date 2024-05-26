@@ -86,6 +86,7 @@ const EyeLash = styled.div`
   height: 1px;
   background-color: black;
   padding: 4px;
+  border-radius: 5px;
 `;
 const EyeLash_1 = styled(EyeLash)`
   transform: rotate(90deg);
@@ -97,11 +98,11 @@ const EyeLash_3 = styled(EyeLash)`
   transform: rotate(-70deg);
 `;
 const EyeLash_4 = styled(EyeLash)`
-  transform: rotate(50deg) translateX(8px);
+  transform: rotate(50deg) translateX(7px);
   width: 18px;
 `;
 const EyeLash_5 = styled(EyeLash)`
-  transform: rotate(-50deg) translateX(-8px);
+  transform: rotate(-50deg) translateX(-7px);
   width: 18px;
 `;
 const Container = styled.div`
