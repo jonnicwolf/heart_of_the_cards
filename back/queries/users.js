@@ -18,6 +18,15 @@ const get_userByID = async (id) => {
   };
 };
 
+const get_userByEmail = async (email) => {
+  try {
+    const user = await db.one(`SELECT * FROM users WHERE email=${email}`);
+    return user;
+  }
+  catch (error) {
+    console.error(error);
+  };
+};
 
 const put_updateUser = async (id ,newUser) => {
   const { username, email, password_hash } = newUser;
