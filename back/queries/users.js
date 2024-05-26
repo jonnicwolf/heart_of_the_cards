@@ -51,3 +51,23 @@ const put_updateUser = async (id , user) => {
     console.error(error);
   };
  };
+
+const delete_userByEmail = async (email) => {
+  try {
+    const user = await db.one(`DELETE FROM users WHERE email='${email}' RETURNING *`);
+    return user;
+  }
+  catch (error) {
+    console.error(error);
+  };
+};
+
+const delete_userByID = async (id) => {
+  try {
+    const user = await db.one(`DELETE FROM users WHERE id='${id}' RETURNING *`);
+    return user;
+  }
+  catch (error) {
+    console.error(error);
+  };
+};
