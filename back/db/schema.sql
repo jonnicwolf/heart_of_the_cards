@@ -1,0 +1,21 @@
+CREATE DATABASE IF NOT EXISTS hotc_users_db;
+
+\c hotc_users_db;
+
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) NOT NULL UNIQUE,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password_hash TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS user_history (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(255) NOT NULL,
+  question TEXT NOT NULL,
+  tarot_cards JSON NOT NULL,
+  response TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  user_id INT REFERENCES users(id)
+);
