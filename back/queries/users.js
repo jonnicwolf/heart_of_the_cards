@@ -71,3 +71,12 @@ const delete_userByID = async (id) => {
     console.error(error);
   };
 };
+
+module.exports = {
+  get_allUsers,
+  get_userByID,
+  post_newUser,
+  put_updateUser,
+  delete_userByEmail,
+  delete_userByID,
+};
