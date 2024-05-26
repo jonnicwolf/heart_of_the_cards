@@ -59,10 +59,10 @@ const blink = keyframes`
   0% {
     width: 100px;
   }
-  10% {
+  1% {
     width: 0;
   }
-  40% {
+  4% {
     width: 100px;
   }
   100% {
@@ -73,7 +73,7 @@ const EyeContainer = styled.div`
   clip-path: polygon(50% 0%, 80% 50%, 50% 100%, 20% 50%);
   display: flex;
   justify-content: center;
-  animation: ${blink} 3s infinite;
+  animation: ${blink} 7s infinite;
 `;
 const EyeLashContainer = styled.div`
   display: flex;
