@@ -1,6 +1,9 @@
 import { OpenAI } from 'openai';
+import { config } from 'dotenv';
+config();
 
-export async function run() {
+
+export async function get_tarot_reading (question, cards) {
   try {
     const openai = new OpenAI({
       apiKey: import.meta.env.VITE_OPENAI_API_KEY,
@@ -14,19 +17,20 @@ export async function run() {
       try {
         const chatCompletion = await openai.chat.completions.create({
           model: "gpt-3.5-turbo",
-          messages: [{ role: 'user', content: 'hello world' }],
+          messages: [{ role: 'user', content: `Make a three card tarot reading using these cards: ${cards} and this question -> ${question}` }],
         });
 
-        console.log(chatCompletion.choices[0].message.content);
-        break;
+        return chatCompletion.choices[0].message.content;
       } catch (error) {
         if (error instanceof OpenAI.APIError && error.status === 429) {
           const retryAfter = error.response?.headers?.get('Retry-After');
           const waitTime = retryAfter ? parseInt(retryAfter, 10) * 1000 : Math.pow(2, attempts) * 1000;
+
           console.error(`Rate-limited. Retrying after ${waitTime / 1000} seconds...`);
           await delay(waitTime);
           attempts++;
-        } else {
+        }
+        else {
           throw error;
         };
       };
@@ -39,5 +43,3 @@ export async function run() {
     console.error('Unexpected error:', error);
   };
 };
-
-run();

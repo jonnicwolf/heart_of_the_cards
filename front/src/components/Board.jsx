@@ -7,9 +7,10 @@ import Card from '../components/p5/Card';
 import Inquery from './forms/Inquery';
 
 const Board = () => {
-  const [question, setQuestion] = useState(null);
+  const [reading, setReading] = useState(null);
   const [cards, setCards] = useState(null);
 
+  console.log(reading)
   return (
     <Container>
 
@@ -35,7 +36,7 @@ const Board = () => {
           })}
         </CardContainer>
       }
-      {!cards && <Inquery cardSetter={setCards} questionSetter={setQuestion} />}
+      {!cards && <Inquery cardSetter={setCards} readingSetter={setReading} />}
     </Container>
   );
 };

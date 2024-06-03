@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import {
-  useQuery,
-} from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import styled from 'styled-components';
 
-const Inquery = ({ cardSetter, questionSetter }) => {
+import { get_tarot_reading } from '../../openai_scripts/get_tarot_reading';
+
+const Inquery = ({ cardSetter, readingSetter }) => {
   function handleChange (e) {
     questionSetter(e.target.value);
   };
@@ -16,11 +16,14 @@ const Inquery = ({ cardSetter, questionSetter }) => {
     } catch (error) { throw new Error('getCard error: ', error) };
   };
 
-  const cards = useQuery({ queryKey: ['cards'], queryFn: getCards});
+  const cards = useQuery({ queryKey: ['cards'], queryFn: getCards})
+  const card_names = cards.data.cards.map(item=> item.name);
+  const reading = useQuery({ queryKey: ['tarot_reading'], queryFn: get_tarot_reading(question, card_names)})
 
   function handleSubmit (e) {
     e.preventDefault();
     cardSetter(cards.data.cards);
+    readingSetter(reading)
   }
 
   return (
