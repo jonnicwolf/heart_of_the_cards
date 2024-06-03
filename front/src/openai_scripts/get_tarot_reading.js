@@ -1,11 +1,9 @@
 import { OpenAI } from 'openai';
-import { config } from 'dotenv';
-config();
 
-async function run() {
+export async function run() {
   try {
     const openai = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey: import.meta.env.VITE_OPENAI_API_KEY,
     });
 
     let attempts = 0;
