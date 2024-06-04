@@ -6,6 +6,8 @@ import { get_tarot_reading } from '../../openai_scripts/get_tarot_reading';
 
 const Inquery = ({ cardSetter, readingSetter }) => {
   const [question, setQuestion] = useState(null);
+  const [runFetch, setRunFetch] = useState(false);
+
   function handleChange (e) {
     setQuestion(e.target.value);
   };
@@ -23,8 +25,7 @@ const Inquery = ({ cardSetter, readingSetter }) => {
 
   function handleSubmit (e) {
     e.preventDefault();
-    cardSetter(cards.data.cards);
-    readingSetter(reading);
+    setRunFetch(true);
   }
 
   return (
