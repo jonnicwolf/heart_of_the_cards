@@ -19,7 +19,18 @@ const Inquery = ({ cardSetter, readingSetter }) => {
     } catch (error) { throw new Error('getCard error: ', error) };
   };
 
-  const cards = useQuery({ queryKey: ['cards'], queryFn: getCards});
+  const {data: cards} = useQuery({
+    queryKey: ['cards'],
+    queryFn: getCards,
+    {
+      enabled: runFetch,
+      onSuccess: (data) => {
+        cardSetter(data.cards)
+        setRunFetch(false)
+      }
+    }
+  });
+
   const card_names = cards.data?.cards.map(item=> item.name);
   const reading = useQuery({ queryKey: ['tarot_reading'], queryFn: get_tarot_reading(question, card_names)});
 
