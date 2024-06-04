@@ -7,9 +7,10 @@ import Card from '../components/p5/Card';
 import Inquery from './forms/Inquery';
 
 const Board = () => {
-  const [question, setQuestion] = useState(null);
+  const [reading, setReading] = useState(null);
   const [cards, setCards] = useState(null);
 
+  // console.log('reading',reading)
   return (
     <Container>
 
@@ -26,16 +27,8 @@ const Board = () => {
         </EyeContainer>
       </EyeWrapper>
 
-      {cards &&
-        <CardContainer>
-          {cards.map((card) => {
-            return (
-              <Card key={uuidv4()} name_short={card.name_short} />
-            )
-          })}
-        </CardContainer>
-      }
-      {!cards && <Inquery cardSetter={setCards} questionSetter={setQuestion} />}
+      {cards && <CardContainer> {cards.map((card) => <Card key={uuidv4()} name_short={card.name_short} />)} </CardContainer>}
+      {!cards && <Inquery cardSetter={setCards} readingSetter={setReading} />}
     </Container>
   );
 };
