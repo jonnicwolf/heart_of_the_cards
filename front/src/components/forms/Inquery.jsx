@@ -5,8 +5,9 @@ import styled from 'styled-components';
 import { get_tarot_reading } from '../../openai_scripts/get_tarot_reading';
 
 const Inquery = ({ cardSetter, readingSetter }) => {
+  const [question, setQuestion] = useState(null);
   function handleChange (e) {
-    questionSetter(e.target.value);
+    setQuestion(e.target.value);
   };
 
   const getCards = async () => {
@@ -16,14 +17,14 @@ const Inquery = ({ cardSetter, readingSetter }) => {
     } catch (error) { throw new Error('getCard error: ', error) };
   };
 
-  const cards = useQuery({ queryKey: ['cards'], queryFn: getCards})
-  const card_names = cards.data.cards.map(item=> item.name);
-  const reading = useQuery({ queryKey: ['tarot_reading'], queryFn: get_tarot_reading(question, card_names)})
+  const cards = useQuery({ queryKey: ['cards'], queryFn: getCards});
+  const card_names = cards.data?.cards.map(item=> item.name);
+  const reading = useQuery({ queryKey: ['tarot_reading'], queryFn: get_tarot_reading(question, card_names)});
 
   function handleSubmit (e) {
     e.preventDefault();
     cardSetter(cards.data.cards);
-    readingSetter(reading)
+    readingSetter(reading);
   }
 
   return (
