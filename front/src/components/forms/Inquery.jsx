@@ -19,9 +19,7 @@ const Inquery = ({ cardSetter, readingSetter }) => {
     } catch (error) { throw new Error('getCard error: ', error) };
   };
 
-  const {data: cards} = useQuery({
-    queryKey: ['cards'],
-    queryFn: getCards,
+  const {data: cards} = useQuery(['cards'], getCards,
     {
       enabled: runFetch,
       onSuccess: (data) => {
@@ -29,9 +27,9 @@ const Inquery = ({ cardSetter, readingSetter }) => {
         setRunFetch(false)
       }
     }
-  });
+  );
 
-  const card_names = cards.data?.cards.map(item=> item.name);
+  
   const reading = useQuery({ queryKey: ['tarot_reading'], queryFn: get_tarot_reading(question, card_names)});
 
   function handleSubmit (e) {
