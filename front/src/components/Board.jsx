@@ -29,6 +29,7 @@ const Board = () => {
 
       {cards && <CardContainer> {cards.map((card) => <Card key={uuidv4()} name_short={card.name_short} />)} </CardContainer>}
       {!cards && <Inquery cardSetter={setCards} readingSetter={setReading} />}
+      {reading && <div>{reading}</div>}
     </Container>
   );
 };

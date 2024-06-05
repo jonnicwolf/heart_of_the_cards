@@ -41,18 +41,18 @@ const Inquery = ({ cardSetter, readingSetter }) => {
     e.preventDefault();
     setRunFetch(true);
   };
-
-  console.log('reading',reading)
+  console.log('cards in inquiry: ', cards)
+  console.log('reading in inquiry: ', reading)
 
   return (
-    <Form>
+    <Container>
       <Query onChange={handleChange} placeholder='What question burns brightest within your heart?'/>
       <Button onClick={handleSubmit}>submit</Button>
-    </Form>
+    </Container>
   );
 };
 
-const Form = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -96,4 +96,3 @@ const Query = styled.input`
 `;
 
 export default Inquery;
-

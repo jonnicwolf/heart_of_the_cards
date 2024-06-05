@@ -9,7 +9,7 @@ export async function get_tarot_reading (question, cards) {
       });
   
       let attempts = 0;
-      const maxAttempts = 5;
+      const maxAttempts = 2;
       const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
   
       while (attempts < maxAttempts) {
@@ -19,7 +19,6 @@ export async function get_tarot_reading (question, cards) {
             messages: [{ role: 'user', content: `Make a three card tarot reading using these cards: ${cards} and this question -> ${question}` }],
           });
           const reading = chatCompletion.choices[0].message.content;
-          console.log('reading', reading)
           return reading
         }
         catch (error) {
@@ -46,6 +45,6 @@ export async function get_tarot_reading (question, cards) {
     };
   }
   else {
-    throw new Error('Missing card or question data. get_tarot_reading did not run.')
+    throw new Error('Missing card or question data. get_tarot_reading did not run.');
   }
 };
