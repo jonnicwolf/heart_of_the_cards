@@ -21,7 +21,7 @@ const Inquery = ({ cardSetter, readingSetter }) => {
   };
 
   const {data: cards} = useQuery({
-    queryKey: ['cards'], 
+    queryKey: ['cards'],
     queryFn: getCards,
     enabled: runFetch,
     onSuccess: (data) => {
@@ -32,7 +32,7 @@ const Inquery = ({ cardSetter, readingSetter }) => {
 
   const {data: reading} = useQuery({
     queryKey: ['reading'],
-    queryFn: get_tarot_reading(question, cards?.cards.map(item => item.name)),
+    queryFn: ()=>get_tarot_reading(question, cards?.cards.map(item => item.name)),
     enabled: !!question && !!cards,
     onSuccess: (data) => readingSetter(data)
   });
@@ -41,8 +41,6 @@ const Inquery = ({ cardSetter, readingSetter }) => {
     e.preventDefault();
     setRunFetch(true);
   };
-  console.log('cards in inquiry: ', cards)
-  console.log('reading in inquiry: ', reading)
 
   return (
     <Container>

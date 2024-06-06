@@ -10,7 +10,7 @@ const Board = () => {
   const [reading, setReading] = useState(null);
   const [cards, setCards] = useState(null);
 
-  // console.log('reading',reading)
+  console.log('reading in board',reading)
   return (
     <Container>
 
