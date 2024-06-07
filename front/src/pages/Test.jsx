@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components';
-import Card from '../components/p5/Card';
+import Signup from '../components/forms/Signup';
 
 const Test = () => {
   return (
     <Container>
-      <Card name_short='ar01' />
+      <Signup />
     </Container>
   )
 }

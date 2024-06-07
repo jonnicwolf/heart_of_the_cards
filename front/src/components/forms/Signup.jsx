@@ -4,7 +4,7 @@ import { Form, Card, Button } from 'react-bootstrap';
 
 const Signup = () => {
   return (
-    <>
+    <Container>
       <Card>
         <Card.Body>
           <h2>Sign Up</h2>
@@ -26,11 +26,13 @@ const Signup = () => {
         </Card.Body>
       </Card>
       <div>Already have an account? Log In Link</div>
-    </>
+    </Container>
   )
 }
 
-const Container = styled.div``;
+const Container = styled.div`
+  border: 1px solid black;
+`;
 
 
 export default Signup;
