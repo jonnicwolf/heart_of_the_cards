@@ -18,8 +18,7 @@ export async function get_tarot_reading (question, cards) {
             model: "gpt-3.5-turbo",
             messages: [{ role: 'user', content: `Make a three card tarot reading using these cards: ${cards} and this question -> ${question}` }],
           });
-          const reading = chatCompletion.choices[0].message.content;
-          return reading;
+          return chatCompletion;
         }
         catch (error) {
           if (error instanceof OpenAI.APIError && error.status === 429) {

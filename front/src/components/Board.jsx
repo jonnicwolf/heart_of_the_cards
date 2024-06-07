@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 import styled, { keyframes } from 'styled-components';
 
@@ -6,11 +7,34 @@ import Eye from '../components/p5/Eye';
 import Card from '../components/p5/Card';
 import Inquery from './forms/Inquery';
 
-const Board = () => {
-  const [reading, setReading] = useState(null);
-  const [cards, setCards] = useState(null);
+import { get_tarot_reading } from '../openai_scripts/get_tarot_reading';
 
-  console.log('reading in board',reading)
+const Board = () => {
+  const [question, setQuestion] = useState('');
+  const [runFetch, setRunFetch] = useState(false);
+
+  const getCards = async () => {
+    try {
+      const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
+      return response.json();
+    }
+    catch (error) { throw new Error('getCard error: ', error) };
+  };
+
+  const {data: cards} = useQuery({
+    queryKey: ['cards'],
+    queryFn: getCards,
+    enabled: runFetch,
+  });
+
+  const {data: reading} = useQuery({
+    queryKey: ['reading'],
+    queryFn: ()=>get_tarot_reading(question, cards?.cards.map(item => item.name)),
+    enabled: !!question && !!cards,
+  });
+
+  // console.log('reading in board', reading)
+  // console.log('card', cards)
   return (
     <Container>
 
@@ -27,9 +51,8 @@ const Board = () => {
         </EyeContainer>
       </EyeWrapper>
 
-      {cards && <CardContainer> {cards.map((card) => <Card key={uuidv4()} name_short={card.name_short} />)} </CardContainer>}
-      {!cards && <Inquery cardSetter={setCards} readingSetter={setReading} />}
-      {reading && <div>{reading}</div>}
+      <Inquery questionSetter={setQuestion} runFetchSetterSetter={setRunFetch} />
+      
     </Container>
   );
 };

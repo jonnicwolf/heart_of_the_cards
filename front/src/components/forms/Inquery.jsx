@@ -1,45 +1,12 @@
-import React, { useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import React from 'react';
 import styled from 'styled-components';
 
-import { get_tarot_reading } from '../../openai_scripts/get_tarot_reading';
-
-const Inquery = ({ cardSetter, readingSetter }) => {
-  const [question, setQuestion] = useState(null);
-  const [runFetch, setRunFetch] = useState(false);
-
-  function handleChange (e) {
-    setQuestion(e.target.value);
-  };
-
-  const getCards = async () => {
-    try {
-      const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
-      return response.json();
-    }
-    catch (error) { throw new Error('getCard error: ', error) };
-  };
-
-  const {data: cards} = useQuery({
-    queryKey: ['cards'],
-    queryFn: getCards,
-    enabled: runFetch,
-    onSuccess: (data) => {
-      cardSetter(data.cards);
-      setRunFetch(false);
-    }
-  });
-
-  const {data: reading} = useQuery({
-    queryKey: ['reading'],
-    queryFn: ()=>get_tarot_reading(question, cards?.cards.map(item => item.name)),
-    enabled: !!question && !!cards,
-    onSuccess: (data) => readingSetter(data)
-  });
+const Inquery = ({ questionSetter, runFetchSetter }) => {
+  const handleChange = (e) => questionSetter(e.target.value);
 
   function handleSubmit (e) {
     e.preventDefault();
-    setRunFetch(true);
+    runFetchSetter(true);
   };
 
   return (
