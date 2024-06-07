@@ -21,7 +21,7 @@ const Board = () => {
 
   function readingParser(tarotString) {
     const lines = tarotString.trim().split('\n');
-    let htmlString = '';
+    let matrix = [];
 
     lines.forEach(line => {
         line = line.trim();
@@ -31,12 +31,11 @@ const Board = () => {
           const title = line.substring(3, colonIndex).trim();
           const description = line.substring(colonIndex + 1).trim();
 
-          htmlString += `<h2>${title}</h2>\n<p>${description}</p>\n`;
+          matrix.push([title, description]);
         }
-        else htmlString += `<p>${line}</p>\n`;
     });
 
-    return htmlString;
+    return matrix;
   }
 
   // const getCards = async () => {
@@ -86,9 +85,14 @@ const Board = () => {
         {reading && <Reading> {reading.choices[0].message.content} </Reading>}
           
       {!cards && <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />} */}
-      <Reading>
-        {parsedReading}
-      </Reading>
+      <ReadingContainer>
+        {parsedReading.map((item, i) => (
+          <CardReading key={uuidv4()}>
+            <h2>{item[0]}</h2>
+            <p>{item[1]}</p>
+          </CardReading>
+        ))}
+      </ReadingContainer>
     </Container>
   );
 };
@@ -170,11 +174,17 @@ const Container = styled.div`
   gap: 10vh;
   z-index: 2;
 `;
-const Reading = styled.div`
+const ReadingContainer = styled.div`
   height: 20vh;
   width: 50vw;
   max-width: 1200px;
   color: white;
 `;
+const CardReading = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 
 export default Board;
