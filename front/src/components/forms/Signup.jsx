@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Form, Card, Button, Alert } from 'react-bootstrap';
 import { useAuth } from '../contexts/AuthContext'
@@ -12,18 +13,21 @@ const Signup = () => {
   const passwordConfirmRef = useRef();
 
   const { signup } = useAuth();
+  const navigate = useNavigate()
 
   async function handleSubmit (e) {
     e.preventDefault()
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) return setError(`Passwords do not match!`)
+
     try {
       setError('')
-      setLoading(false)
+      setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value)
-    } catch (error) {
-      setError('Failed to create account.')
-    }
+      navigate('/')
+    } 
+    catch (error) {setError('Failed to create account.')}
+
     setLoading(false)
   }
 
@@ -31,7 +35,7 @@ const Signup = () => {
     <Container>
       <Card>
         <Card.Body>
-          <h2>Sign Up</h2>
+          <h2 className='w-100 text-center mb-4'>Sign Up</h2>
           {error && <Alert variant='danger'>{error}</Alert> }
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
@@ -46,11 +50,16 @@ const Signup = () => {
               <Form.Label>Password Confirmation</Form.Label>
               <Form.Control type='password' ref={passwordConfirmRef} required />
             </Form.Group>
-            <Button disabled={loading} type='submit'>Sign Up</Button>
+            <Button 
+              disabled={loading}
+              type='submit'
+              className='w-100'> Sign Up </Button>
           </Form>
         </Card.Body>
+        <div className='w-100 text-center mt-2'>
+          Already have an account? <Link to='/login'> Log In </Link>
+        </div>
       </Card>
-      <div>Already have an account? Log In Link</div>
     </Container>
   )
 }

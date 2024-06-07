@@ -5,6 +5,7 @@ import '../styles/global.css';
 
 import Home from './pages/Home';
 import Signup from './components/forms/Signup';
+import Login from './components/forms/Login';
 import Test from './pages/Test';
 
 import Nav from './components/navigation/Nav';
@@ -19,7 +20,7 @@ function App() {
           <Routes>
             <Route exact path='/' element={<Home />} />
             <Route path='/signup' element={<Signup />} />
-            <Route path='/login' element={<Signup />} />
+            <Route path='/login' element={<Login />} />
             <Route path='/test' element={<Test />} />
           </Routes>
         </RoutesContainer>
