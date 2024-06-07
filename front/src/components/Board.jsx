@@ -13,14 +13,20 @@ const Board = () => {
   const [question, setQuestion] = useState('');
   const [runFetch, setRunFetch] = useState(false);
 
-  function tarotToHTML(tarotString) {
+  const readingString = `1. Page of Swords: This card suggests that there may be some skepticism or criticism towards the project from others. It could indicate that not everyone will immediately warm up to the idea or see its potential. However, it also encourages you to stay true to your vision and be open to constructive feedback.
+
+  2. Queen of Pentacles: The Queen of Pentacles represents practicality, abundance, and nurturing energy. This card suggests that the project has the potential to be well-received by others, especially if you approach it with a grounded and nurturing mindset. People may appreciate the stability and tangible benefits that the project can bring.
+  
+  3. Nine of Pentacles: This card signifies success, independence, and self-sufficiency. It suggests that the project has the potential to attract attention and admiration from others. People may be impressed by your hard work, dedication, and the high-quality results that the project can deliver. Overall, this card indicates a positive outcome in terms of how people will perceive the project.`
+
+  function readingParser(tarotString) {
     const lines = tarotString.trim().split('\n');
     let htmlString = '';
 
     lines.forEach(line => {
         line = line.trim();
         // Check if the line starts with a number followed by a dot and a space
-        if (line[0].match(/\d/) && line[1] === '.' && line[2] === ' ') { 
+        if (!Number.isNaN(line[0]) && line[1] === '.' && line[2] === ' ') {
           const colonIndex = line.indexOf(':');
           const title = line.substring(3, colonIndex).trim();
           const description = line.substring(colonIndex + 1).trim();
@@ -32,12 +38,6 @@ const Board = () => {
 
     return htmlString;
   }
-
-  const readingString = `1. Page of Swords: This card suggests that there may be some skepticism or criticism towards the project from others. It could indicate that not everyone will immediately warm up to the idea or see its potential. However, it also encourages you to stay true to your vision and be open to constructive feedback.
-
-  2. Queen of Pentacles: The Queen of Pentacles represents practicality, abundance, and nurturing energy. This card suggests that the project has the potential to be well-received by others, especially if you approach it with a grounded and nurturing mindset. People may appreciate the stability and tangible benefits that the project can bring.
-  
-  3. Nine of Pentacles: This card signifies success, independence, and self-sufficiency. It suggests that the project has the potential to attract attention and admiration from others. People may be impressed by your hard work, dedication, and the high-quality results that the project can deliver. Overall, this card indicates a positive outcome in terms of how people will perceive the project.`
 
   // const getCards = async () => {
   //   try {
@@ -61,6 +61,8 @@ const Board = () => {
 
   // console.log('reading in board', reading)
   // console.log('card', cards)
+
+  const parsedReading = readingParser(readingString)
   return (
     <Container>
 
@@ -85,7 +87,7 @@ const Board = () => {
           
       {!cards && <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />} */}
       <Reading>
-        {/* {tarotToHTML(readingString)} */}
+        {parsedReading}
       </Reading>
     </Container>
   );
