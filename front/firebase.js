@@ -10,3 +10,6 @@ const app = firebase.initializeApp({
   appId:process.env.VITE_FIREBASE_APP_ID,
   measurementId:process.env.VITE_FIREBASE_MEASUREMENT_ID,
 })
+
+export const auth = app.auth();
+export default app;
