@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { Form, Card, Button } from 'react-bootstrap';
 
 const Signup = () => {
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const passwordConfirmRef = useRef();
   return (
     <Container>
       <Card>
