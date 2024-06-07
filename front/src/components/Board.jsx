@@ -88,8 +88,8 @@ const Board = () => {
       <ReadingContainer>
         {parsedReading.map((item, i) => (
           <CardReading key={uuidv4()}>
-            <h2>{item[0]}</h2>
-            <p>{item[1]}</p>
+            <CardHeader>{item[0]}</CardHeader>
+            <CardP>{item[1]}</CardP>
           </CardReading>
         ))}
       </ReadingContainer>
@@ -175,16 +175,28 @@ const Container = styled.div`
   z-index: 2;
 `;
 const ReadingContainer = styled.div`
-  height: 20vh;
+  height: 21vh;
   width: 50vw;
   max-width: 1200px;
   color: white;
+  overflow: scroll;
+  background: rgba(0,0,0,0.4);
+  border: 1px blur white;
+  padding: 15px;
 `;
 const CardReading = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+`;
+const CardHeader = styled.h2`
+  font-family: Bagnard;
+  font-size: 2rem
+`;
+const CardP = styled.p`
+  font-family: Amatic sc;
+  font-size: 1.5rem
 `
 
 export default Board;
