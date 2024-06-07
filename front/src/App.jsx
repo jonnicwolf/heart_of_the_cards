@@ -7,20 +7,23 @@ import Home from './pages/Home';
 import Test from './pages/Test';
 
 import Nav from './components/navigation/Nav';
+import { AuthProvider } from './components/contexts/AuthContext';
 
 function App() {
 
   return (
-    <Container>
-      <RoutesContainer>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/test' element={<Test />} />
-        </Routes>
-      </RoutesContainer>
+    <AuthProvider>
+      <Container>
+        <RoutesContainer>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/test' element={<Test />} />
+          </Routes>
+        </RoutesContainer>
 
-      <Nav />
-    </Container>
+        <Nav />
+      </Container>
+    </AuthProvider>
   );
 };
 
