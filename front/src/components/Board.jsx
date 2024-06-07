@@ -13,18 +13,13 @@ const Board = () => {
   const [question, setQuestion] = useState('');
   const [runFetch, setRunFetch] = useState(false);
 
-  const readingString = `1. Page of Swords: This card suggests that there may be some skepticism or criticism towards the project from others. It could indicate that not everyone will immediately warm up to the idea or see its potential. However, it also encourages you to stay true to your vision and be open to constructive feedback.
-
-  2. Queen of Pentacles: The Queen of Pentacles represents practicality, abundance, and nurturing energy. This card suggests that the project has the potential to be well-received by others, especially if you approach it with a grounded and nurturing mindset. People may appreciate the stability and tangible benefits that the project can bring.
-  
-  3. Nine of Pentacles: This card signifies success, independence, and self-sufficiency. It suggests that the project has the potential to attract attention and admiration from others. People may be impressed by your hard work, dedication, and the high-quality results that the project can deliver. Overall, this card indicates a positive outcome in terms of how people will perceive the project.`
-
   function readingParser(tarotString) {
     const lines = tarotString.trim().split('\n');
     let matrix = [];
-
+    console.log(lines)
     lines.forEach(line => {
         line = line.trim();
+        console.log('line:', line)
         // Check if the line starts with a number followed by a dot and a space
         if (!Number.isNaN(line[0]) && line[1] === '.' && line[2] === ' ') {
           const colonIndex = line.indexOf(':');
@@ -36,32 +31,32 @@ const Board = () => {
     });
 
     return matrix;
-  }
+  };
 
-  // const getCards = async () => {
-  //   try {
-  //     const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
-  //     return response.json();
-  //   }
-  //   catch (error) { throw new Error('getCard error: ', error) };
-  // };
+  const getCards = async () => {
+    try {
+      const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
+      return response.json();
+    }
+    catch (error) { throw new Error('getCard error: ', error) };
+  };
 
-  // const {data: cards} = useQuery({
-  //   queryKey: ['cards'],
-  //   queryFn: getCards,
-  //   enabled: runFetch,
-  // });
+  const {data: cards} = useQuery({
+    queryKey: ['cards'],
+    queryFn: getCards,
+    enabled: runFetch,
+  });
 
-  // const {data: reading} = useQuery({
-  //   queryKey: ['reading'],
-  //   queryFn: ()=>get_tarot_reading(question, cards?.cards.map(item => item.name)),
-  //   enabled: !!question && !!cards,
-  // });
+  const {data: reading} = useQuery({
+    queryKey: ['reading'],
+    queryFn: ()=>get_tarot_reading(question, cards?.cards.map(item => item.name)),
+    enabled: !!question && !!cards,
+  });
 
-  // console.log('reading in board', reading)
-  // console.log('card', cards)
+  const parsedReading = reading
+    ? readingParser(reading.choices[0].message.content)
+    : '';
 
-  const parsedReading = readingParser(readingString)
   return (
     <Container>
 
@@ -73,26 +68,28 @@ const Board = () => {
           <EyeLash_3 />
           <EyeLash_5 />
         </EyeLashContainer>
+
         <EyeContainer>
           <Eye width={100} height={300}/>
         </EyeContainer>
       </EyeWrapper>
 
-      {/* {cards && 
+      {cards && 
         <CardContainer> 
           {cards.cards.map((card) => <Card key={uuidv4()} name_short={card.name_short} />)}
-        </CardContainer>}
-        {reading && <Reading> {reading.choices[0].message.content} </Reading>}
-          
-      {!cards && <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />} */}
-      <ReadingContainer>
-        {parsedReading.map((item, i) => (
-          <CardReading key={uuidv4()}>
-            <CardHeader>{item[0]}</CardHeader>
-            <CardP>{item[1]}</CardP>
-          </CardReading>
-        ))}
-      </ReadingContainer>
+        </CardContainer>
+      }
+      {!cards && <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />}
+      {cards && parsedReading && 
+        <ReadingContainer>
+          {parsedReading.map((item, i) => (
+            <CardReading key={uuidv4()}>
+              <CardHeader>{item[0]}</CardHeader>
+              <CardP>{item[1]}</CardP>
+            </CardReading>
+          ))}
+        </ReadingContainer>
+      }
     </Container>
   );
 };
@@ -171,7 +168,7 @@ const Container = styled.div`
   align-items: center;
   height: 94vh;
   width: 100%;
-  gap: 10vh;
+  gap: 5vh;
   z-index: 2;
 `;
 const ReadingContainer = styled.div`
@@ -192,11 +189,11 @@ const CardReading = styled.div`
 `;
 const CardHeader = styled.h2`
   font-family: Bagnard;
-  font-size: 2rem
+  font-size: 2rem;
 `;
 const CardP = styled.p`
-  font-family: Amatic sc;
-  font-size: 1.5rem
-`
+  font-family: Amatic SC;
+  font-size: 1.5rem;
+`;
 
 export default Board;
