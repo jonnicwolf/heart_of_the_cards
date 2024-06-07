@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 import styled, { keyframes } from 'styled-components';
 
@@ -6,11 +7,56 @@ import Eye from '../components/p5/Eye';
 import Card from '../components/p5/Card';
 import Inquery from './forms/Inquery';
 
-const Board = () => {
-  const [reading, setReading] = useState(null);
-  const [cards, setCards] = useState(null);
+import { get_tarot_reading } from '../openai_scripts/get_tarot_reading';
 
-  // console.log('reading',reading)
+const Board = () => {
+  const [question, setQuestion] = useState('');
+  const [runFetch, setRunFetch] = useState(false);
+
+  function readingParser(tarotString) {
+    const lines = tarotString.trim().split('\n');
+    let matrix = [];
+    console.log(lines)
+    lines.forEach(line => {
+        line = line.trim();
+        console.log('line:', line)
+        // Check if the line starts with a number followed by a dot and a space
+        if (!Number.isNaN(line[0]) && line[1] === '.' && line[2] === ' ') {
+          const colonIndex = line.indexOf(':');
+          const title = line.substring(3, colonIndex).trim();
+          const description = line.substring(colonIndex + 1).trim();
+
+          matrix.push([title, description]);
+        }
+    });
+
+    return matrix;
+  };
+
+  const getCards = async () => {
+    try {
+      const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
+      return response.json();
+    }
+    catch (error) { throw new Error('getCard error: ', error) };
+  };
+
+  const {data: cards} = useQuery({
+    queryKey: ['cards'],
+    queryFn: getCards,
+    enabled: runFetch,
+  });
+
+  const {data: reading} = useQuery({
+    queryKey: ['reading'],
+    queryFn: ()=>get_tarot_reading(question, cards?.cards.map(item => item.name)),
+    enabled: !!question && !!cards,
+  });
+
+  const parsedReading = reading
+    ? readingParser(reading.choices[0].message.content)
+    : '';
+
   return (
     <Container>
 
@@ -22,13 +68,28 @@ const Board = () => {
           <EyeLash_3 />
           <EyeLash_5 />
         </EyeLashContainer>
+
         <EyeContainer>
           <Eye width={100} height={300}/>
         </EyeContainer>
       </EyeWrapper>
 
-      {cards && <CardContainer> {cards.map((card) => <Card key={uuidv4()} name_short={card.name_short} />)} </CardContainer>}
-      {!cards && <Inquery cardSetter={setCards} readingSetter={setReading} />}
+      {cards && 
+        <CardContainer> 
+          {cards.cards.map((card) => <Card key={uuidv4()} name_short={card.name_short} />)}
+        </CardContainer>
+      }
+      {!cards && <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />}
+      {cards && parsedReading && 
+        <ReadingContainer>
+          {parsedReading.map((item, i) => (
+            <CardReading key={uuidv4()}>
+              <CardHeader>{item[0]}</CardHeader>
+              <CardP>{item[1]}</CardP>
+            </CardReading>
+          ))}
+        </ReadingContainer>
+      }
     </Container>
   );
 };
@@ -107,8 +168,32 @@ const Container = styled.div`
   align-items: center;
   height: 94vh;
   width: 100%;
-  gap: 10vh;
+  gap: 5vh;
   z-index: 2;
+`;
+const ReadingContainer = styled.div`
+  height: 21vh;
+  width: 80vw;
+  max-width: 1200px;
+  color: white;
+  overflow: scroll;
+  background: rgba(0,0,0,0.4);
+  border: 1px blur white;
+  padding: 15px;
+`;
+const CardReading = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+const CardHeader = styled.h2`
+  font-family: Bagnard;
+  font-size: 3rem;
+`;
+const CardP = styled.p`
+  font-family: Amatic SC;
+  font-size: 2rem;
 `;
 
 export default Board;
