@@ -13,28 +13,54 @@ const Board = () => {
   const [question, setQuestion] = useState('');
   const [runFetch, setRunFetch] = useState(false);
 
-  const getCards = async () => {
-    try {
-      const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
-      return response.json();
-    }
-    catch (error) { throw new Error('getCard error: ', error) };
-  };
+  function tarotToHTML(tarotString) {
+    const lines = tarotString.trim().split('\n');
+    let htmlString = '';
 
-  const {data: cards} = useQuery({
-    queryKey: ['cards'],
-    queryFn: getCards,
-    enabled: runFetch,
-  });
+    lines.forEach(line => {
+        line = line.trim();
+        // Check if the line starts with a number followed by a dot and a space
+        if (line[0].match(/\d/) && line[1] === '.' && line[2] === ' ') { 
+          const colonIndex = line.indexOf(':');
+          const title = line.substring(3, colonIndex).trim();
+          const description = line.substring(colonIndex + 1).trim();
 
-  const {data: reading} = useQuery({
-    queryKey: ['reading'],
-    queryFn: ()=>get_tarot_reading(question, cards?.cards.map(item => item.name)),
-    enabled: !!question && !!cards,
-  });
+          htmlString += `<h2>${title}</h2>\n<p>${description}</p>\n`;
+        }
+        else htmlString += `<p>${line}</p>\n`;
+    });
 
-  console.log('reading in board', reading)
-  console.log('card', cards)
+    return htmlString;
+  }
+
+  const readingString = `1. Page of Swords: This card suggests that there may be some skepticism or criticism towards the project from others. It could indicate that not everyone will immediately warm up to the idea or see its potential. However, it also encourages you to stay true to your vision and be open to constructive feedback.
+
+  2. Queen of Pentacles: The Queen of Pentacles represents practicality, abundance, and nurturing energy. This card suggests that the project has the potential to be well-received by others, especially if you approach it with a grounded and nurturing mindset. People may appreciate the stability and tangible benefits that the project can bring.
+  
+  3. Nine of Pentacles: This card signifies success, independence, and self-sufficiency. It suggests that the project has the potential to attract attention and admiration from others. People may be impressed by your hard work, dedication, and the high-quality results that the project can deliver. Overall, this card indicates a positive outcome in terms of how people will perceive the project.`
+
+  // const getCards = async () => {
+  //   try {
+  //     const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
+  //     return response.json();
+  //   }
+  //   catch (error) { throw new Error('getCard error: ', error) };
+  // };
+
+  // const {data: cards} = useQuery({
+  //   queryKey: ['cards'],
+  //   queryFn: getCards,
+  //   enabled: runFetch,
+  // });
+
+  // const {data: reading} = useQuery({
+  //   queryKey: ['reading'],
+  //   queryFn: ()=>get_tarot_reading(question, cards?.cards.map(item => item.name)),
+  //   enabled: !!question && !!cards,
+  // });
+
+  // console.log('reading in board', reading)
+  // console.log('card', cards)
   return (
     <Container>
 
@@ -51,17 +77,16 @@ const Board = () => {
         </EyeContainer>
       </EyeWrapper>
 
-      {cards && 
+      {/* {cards && 
         <CardContainer> 
           {cards.cards.map((card) => <Card key={uuidv4()} name_short={card.name_short} />)}
-          {reading && 
-            <div>
-              {reading.choices[0].message.content}
-            </div>
-          }
         </CardContainer>}
-      {!cards && <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />}
-      
+        {reading && <Reading> {reading.choices[0].message.content} </Reading>}
+          
+      {!cards && <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />} */}
+      <Reading>
+        {/* {tarotToHTML(readingString)} */}
+      </Reading>
     </Container>
   );
 };
@@ -142,6 +167,12 @@ const Container = styled.div`
   width: 100%;
   gap: 10vh;
   z-index: 2;
+`;
+const Reading = styled.div`
+  height: 20vh;
+  width: 50vw;
+  max-width: 1200px;
+  color: white;
 `;
 
 export default Board;
