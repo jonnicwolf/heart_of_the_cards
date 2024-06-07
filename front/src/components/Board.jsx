@@ -33,8 +33,8 @@ const Board = () => {
     enabled: !!question && !!cards,
   });
 
-  // console.log('reading in board', reading)
-  // console.log('card', cards)
+  console.log('reading in board', reading)
+  console.log('card', cards)
   return (
     <Container>
 
@@ -51,7 +51,16 @@ const Board = () => {
         </EyeContainer>
       </EyeWrapper>
 
-      <Inquery questionSetter={setQuestion} runFetchSetterSetter={setRunFetch} />
+      {cards && 
+        <CardContainer> 
+          {cards.cards.map((card) => <Card key={uuidv4()} name_short={card.name_short} />)}
+          {reading && 
+            <div>
+              {reading.choices[0].message.content}
+            </div>
+          }
+        </CardContainer>}
+      {!cards && <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />}
       
     </Container>
   );
