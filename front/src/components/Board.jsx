@@ -173,7 +173,7 @@ const Container = styled.div`
 `;
 const ReadingContainer = styled.div`
   height: 21vh;
-  width: 50vw;
+  width: 80vw;
   max-width: 1200px;
   color: white;
   overflow: scroll;
@@ -189,11 +189,11 @@ const CardReading = styled.div`
 `;
 const CardHeader = styled.h2`
   font-family: Bagnard;
-  font-size: 2rem;
+  font-size: 3rem;
 `;
 const CardP = styled.p`
   font-family: Amatic SC;
-  font-size: 1.5rem;
+  font-size: 2rem;
 `;
 
 export default Board;
