@@ -7,7 +7,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Home from './pages/Home';
 import Signup from './components/forms/Signup';
 import Login from './components/forms/Login';
-import ForgetPassword from './components/forms/ForgetPassword';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import Test from './pages/Test';
 
 
@@ -26,7 +26,7 @@ function App() {
             </Route>
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
-            <Route path='/forgot-password' element={<ForgetPassword />} />
+            <Route path='/forgot-password' element={<ForgotPasswordPage />} />
             <Route path='/test' element={<Test />} />
 
           </Routes>
