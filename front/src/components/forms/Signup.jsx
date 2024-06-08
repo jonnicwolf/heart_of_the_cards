@@ -47,14 +47,11 @@ const Signup = () => {
             <Form.Group id="password-confirm" className='mb-3'>
               <Form.Control type='password' ref={passwordConfirmRef} required placeholder='Confirm Password' />
             </Form.Group>
-            <Button 
-              disabled={loading}
-              type='submit'
-              className='w-100 mt-3'> Sign Up </Button>
+              <Button disabled={loading} type='submit' className='w-100 mt-3 border-0' style={{backgroundColor: '#699897'}}>Sign Up</Button>
           </Form>
         </Card.Body>
         <div className='w-100 text-center mt-2 mb-4'>
-          Already have an account? <Link to='/login'> Log In </Link>
+          Already have an account? <Link to='/login' className='text-decoration-none' style={{color: '#699897'}}> Log In </Link>
         </div>
       </Card>
     </div>

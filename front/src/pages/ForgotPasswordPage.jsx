@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ForgotPassword from '../components/forms/ForgetPassword';
+import ForgotPassword from '../components/forms/ForgotPassword';
 import GraphicCard from '../components/GraphicCard';
 
 export default function ForgotPasswordPage() {

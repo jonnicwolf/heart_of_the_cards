@@ -39,13 +39,13 @@ const Login = () => {
             <Form.Group id="password" className='mb-3'>
               <Form.Control type='password' ref={passwordRef} required placeholder='Password' />
             </Form.Group>
-            <Button disabled={loading} type='submit' className='w-100 mt-3'>Log In</Button>
+            <Button disabled={loading} type='submit' className='w-100 mt-3 border-0' style={{backgroundColor: '#699897'}}>Log In</Button>
           </Form>
           <div className='w-100 text-center mt-3'>
-            Forgot your password? <Link className='text-decoration-none' to='/forgot-password'>Click here</Link>
+            Forgot your password? <Link className='text-decoration-none' to='/forgot-password' style={{color: '#699897'}}>Click here</Link>
           </div>
           <div className='w-100 text-center mt-2 mb-4'>
-            Need an account? <Link className='text-decoration-none' to='/signup'> Sign Up now </Link>
+            Need an account? <Link className='text-decoration-none' to='/signup' style={{color: '#699897'}}> Sign Up now </Link>
           </div>
         </Card.Body>
       </Card>

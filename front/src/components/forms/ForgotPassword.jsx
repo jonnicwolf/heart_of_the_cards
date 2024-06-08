@@ -39,11 +39,11 @@ const ForgotPassword = () => {
             <Form.Group id="email">
               <Form.Control type='email' ref={emailRef} required placeholder='Email'/>
             </Form.Group>
-            <Button disabled={loading} type='submit' className='w-100 mt-3'>Reset Password</Button>
+            <Button disabled={loading} type='submit' className='w-100 mt-3 border-0' style={{backgroundColor: '#699897'}}>Reset Password</Button>
           </Form>
 
           <div className='w-100 text-center mt-3'>
-            Need an account? <Link className='text-decoration-none' to='/login'>Sign Up</Link> or <Link className='text-decoration-none' to='/login'>Retry Log In</Link>
+            Need an account? <Link className='text-decoration-none' to='/login' style={{color: '#699897'}}>Sign Up</Link> or <Link className='text-decoration-none' to='/login' style={{color: '#699897'}}>Retry Log In</Link>
           </div>
         </Card.Body>
       </Card>
