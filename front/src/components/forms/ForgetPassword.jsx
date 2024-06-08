@@ -7,22 +7,24 @@ import { useAuth } from '../contexts/AuthContext'
 const ForgotPassword = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
 
   const emailRef = useRef();
-  const passwordRef = useRef();
 
-  const { login } = useAuth();
-  const navigate = useNavigate()
+  const { resetPassword } = useAuth();
+  const navigate = useNavigate();
 
   async function handleSubmit (e) {
     e.preventDefault()
     try {
-      setError('')
-      setLoading(false)
+      setMessage('');
+      setError('');
+      setLoading(false);
 
-      await login(emailRef.current.value, passwordRef.current.value)
-      navigate('/')
-    } catch (error) { setError('Failed to sign in.') }
+      await resetPassword(emailRef.current.value);
+      setMessage('Check your inbox for further instructions');
+      navigate('/');
+    } catch (error) { setError('Failed to reset password.') }
     setLoading(false);
   };
 
@@ -32,6 +34,7 @@ const ForgotPassword = () => {
         <Card.Body>
           <h2 className='w-100 text-center mb-4'>Reset Password</h2>
           {error && <Alert variant='danger'>{error}</Alert> }
+          {message && <Alert variant='success'>{error}</Alert> }
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
