@@ -12,7 +12,7 @@ const Signup = () => {
   const passwordConfirmRef = useRef();
 
   const { signup } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   async function handleSubmit (e) {
     e.preventDefault()

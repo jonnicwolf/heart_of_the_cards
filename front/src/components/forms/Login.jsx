@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 import { Form, Card, Button, Alert } from 'react-bootstrap';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -33,23 +32,22 @@ const Login = () => {
           <h2 className='w-100 text-center mb-4'>Log In</h2>
           {error && <Alert variant='danger'>{error}</Alert> }
           <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
+            <Form.Group id="email" className='mb-3'>
               <Form.Control type='email' ref={emailRef} required placeholder='Email' />
             </Form.Group>
-            <Form.Group id="password">
-              
+            <Form.Group id="password" className='mb-3'>
               <Form.Control type='password' ref={passwordRef} required placeholder='Password' />
             </Form.Group>
             <Button disabled={loading} type='submit' className='w-100 mt-3'>Log In</Button>
           </Form>
           <div className='w-100 text-center mt-3'>
-            <Link to='/forget-password'>Forgot Password?</Link>
+            Forgot your password? <Link to='/forget-password'>Click here.</Link>
+          </div>
+          <div className='w-100 text-center mt-2 mb-4'>
+            Need an account? <Link to='/signup'> Sign Up now </Link>
           </div>
         </Card.Body>
       </Card>
-      <div className='w-100 text-center mt-2 mb-4'>
-        Need an account? <Link to='/signup'> Sign Up </Link>
-      </div>
     </>
   );
 };
