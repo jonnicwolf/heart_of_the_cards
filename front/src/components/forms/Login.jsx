@@ -22,11 +22,9 @@ const Login = () => {
 
       await login(emailRef.current.value, passwordRef.current.value)
       navigate('/')
-    } catch (error) {
-      setError('Failed to sign in.')
-    }
-    setLoading(false)
-  }
+    } catch (error) { setError('Failed to sign in.') }
+    setLoading(false);
+  };
 
   return (
     <Container>
@@ -51,12 +49,11 @@ const Login = () => {
         Need an account? <Link to='/signup'> Sign Up </Link>
       </div>
     </Container>
-  )
-}
+  );
+};
 
 const Container = styled.div`
   border: 1px solid black;
 `;
-
 
 export default Login;

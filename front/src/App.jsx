@@ -3,10 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import '../styles/global.css';
 
+import PrivateRoute from './components/PrivateRoute';
 import Home from './pages/Home';
 import Signup from './components/forms/Signup';
 import Login from './components/forms/Login';
 import Test from './pages/Test';
+
 
 import Nav from './components/navigation/Nav';
 import { AuthProvider } from './components/contexts/AuthContext';
@@ -18,7 +20,9 @@ function App() {
       <Container>
         <RoutesContainer>
           <Routes>
-            <Route exact path='/' element={<Home />} />
+            <Route exact path='/' element={<PrivateRoute />}>
+              <Route index element={<Home />} />
+            </Route>
             <Route path='/signup' element={<Signup />} />
             <Route path='/login' element={<Login />} />
             <Route path='/test' element={<Test />} />
