@@ -41,7 +41,7 @@ const Login = () => {
             <Button disabled={loading} type='submit' className='w-100 mt-3'>Log In</Button>
           </Form>
           <div className='w-100 text-center mt-3'>
-            Forgot your password? <Link to='/forget-password'>Click here.</Link>
+            Forgot your password? <Link to='/forgot-password'>Click here.</Link>
           </div>
           <div className='w-100 text-center mt-2 mb-4'>
             Need an account? <Link to='/signup'> Sign Up now </Link>

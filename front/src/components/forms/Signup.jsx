@@ -37,13 +37,13 @@ const Signup = () => {
           <h2 className='w-100 text-center mb-4'>Sign Up</h2>
           {error && <Alert variant='danger'>{error}</Alert> }
           <Form onSubmit={handleSubmit}>
-            <Form.Group id="email">
+            <Form.Group id="email" className='mb-3'>
               <Form.Control type='email' ref={emailRef} required placeholder='Email' />
             </Form.Group>
-            <Form.Group id="password">
+            <Form.Group id="password" className='mb-3'>
               <Form.Control type='password' ref={passwordRef} required placeholder='Password' />
             </Form.Group>
-            <Form.Group id="password-confirm">
+            <Form.Group id="password-confirm" className='mb-3'>
               <Form.Control type='password' ref={passwordConfirmRef} required placeholder='Confirm Password' />
             </Form.Group>
             <Button 
