@@ -23,16 +23,16 @@ const Signup = () => {
     try {
       setError('')
       setLoading(true)
+
       await signup(emailRef.current.value, passwordRef.current.value)
       navigate('/')
     } 
     catch (error) {setError('Failed to create account.')}
-
     setLoading(false)
   }
 
   return (
-    <Container>
+    <>
       <Card>
         <Card.Body>
           <h2 className='w-100 text-center mb-4'>Sign Up</h2>
@@ -53,20 +53,18 @@ const Signup = () => {
             <Button 
               disabled={loading}
               type='submit'
-              className='w-100'> Sign Up </Button>
+              className='w-100 mt-3'> Sign Up </Button>
           </Form>
         </Card.Body>
-        <div className='w-100 text-center mt-2'>
+        <div className='w-100 text-center mt-2 mb-4'>
           Already have an account? <Link to='/login'> Log In </Link>
         </div>
       </Card>
-    </Container>
+    </>
   )
 }
 
-const Container = styled.div`
-  border: 1px solid black;
-`;
+
 
 
 export default Signup;

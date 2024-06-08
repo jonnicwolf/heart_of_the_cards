@@ -43,11 +43,11 @@ const Login = () => {
               <Form.Label>Password</Form.Label>
               <Form.Control type='password' ref={passwordRef} required />
             </Form.Group>
-            <Button disabled={loading} type='submit'>Log In</Button>
+            <Button disabled={loading} type='submit' className='w-100 mt-3'>Log In</Button>
           </Form>
         </Card.Body>
       </Card>
-      <div>
+      <div className='w-100 text-center mt-2 mb-4'>
         Need an account? <Link to='/signup'> Sign Up </Link>
       </div>
     </Container>
