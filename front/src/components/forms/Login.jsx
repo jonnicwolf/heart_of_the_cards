@@ -29,7 +29,7 @@ const Login = () => {
     <>
       <Card>
         <Card.Body>
-          <h2 className='w-100 text-center mb-4'>Log In</h2>
+          <h2 className='w-100 text-center mb-4'>Login to your account </h2>
           {error && <Alert variant='danger'>{error}</Alert> }
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email" className='mb-3'>
