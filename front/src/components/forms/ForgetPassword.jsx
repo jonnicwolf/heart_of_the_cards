@@ -29,9 +29,9 @@ const ForgotPassword = () => {
   };
 
   return (
-    <>
-      <Card>
-        <Card.Body>
+    <div className='h-100 p-4 bg-white'>
+      <Card className='h-100 d-flex align-items-center'>
+        <Card.Body className='d-flex flex-column justify-content-center'>
           <h2 className='w-100 text-center mb-4'>Reset Password</h2>
           {error && <Alert variant='danger'>{error}</Alert> }
           {message && <Alert variant='success'>{error}</Alert> }
@@ -47,7 +47,7 @@ const ForgotPassword = () => {
           </div>
         </Card.Body>
       </Card>
-    </>
+    </div>
   );
 };
 

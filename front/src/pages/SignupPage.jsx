@@ -6,9 +6,9 @@ export default function SignupPage() {
   return (
     <Container>
       <GraphicCard />
-      <LoginCard>
+      <SignupCard>
         <Signup />
-      </LoginCard>
+      </SignupCard>
     </Container>
   );
 };
@@ -16,7 +16,7 @@ export default function SignupPage() {
 const Container = styled.div`
   display: flex;
 `;
-const LoginCard = styled.div`
+const SignupCard = styled.div`
   width: 50vw;
   height: 100vh;
 `;
