@@ -5,7 +5,7 @@ import '../styles/global.css';
 
 import PrivateRoute from './components/PrivateRoute';
 import Home from './pages/Home';
-import Signup from './components/forms/Signup';
+import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import Test from './pages/Test';
@@ -31,7 +31,7 @@ function App() {
               <Route index element={<Home />} />
             </Route>
             <Route path='/login' element={<LoginPage />} />
-            <Route path='/signup' element={<Signup />} />
+            <Route path='/signup' element={<SignupPage />} />
             <Route path='/forgot-password' element={<ForgotPasswordPage />} />
             <Route path='/test' element={<Test />} />
 
