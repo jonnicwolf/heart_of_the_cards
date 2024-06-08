@@ -37,8 +37,7 @@ const ForgotPassword = () => {
           {message && <Alert variant='success'>{error}</Alert> }
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
-              <Form.Label>Email</Form.Label>
-              <Form.Control type='email' ref={emailRef} required />
+              <Form.Control type='email' ref={emailRef} required placeholder='Email'/>
             </Form.Group>
             <Button disabled={loading} type='submit' className='w-100 mt-3'>Reset Password</Button>
           </Form>
