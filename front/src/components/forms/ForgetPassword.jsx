@@ -1,12 +1,3 @@
-import React, { Component } from 'react';
-
-export default class ForgetPassword extends Component {
-  render() {
-    return (
-      <div>ForgetPassword</div>
-    );
-  };
-};
 import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -39,20 +30,17 @@ const ForgotPassword = () => {
     <Container>
       <Card>
         <Card.Body>
-          <h2 className='w-100 text-center mb-4'>Log In</h2>
+          <h2 className='w-100 text-center mb-4'>Reset Password</h2>
           {error && <Alert variant='danger'>{error}</Alert> }
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control type='email' ref={emailRef} required />
             </Form.Group>
-            <Button disabled={loading} type='submit' className='w-100 mt-3'>Log In</Button>
+            <Button disabled={loading} type='submit' className='w-100 mt-3'>Reset Password</Button>
           </Form>
         </Card.Body>
       </Card>
-      <div className='w-100 text-center mt-2 mb-4'>
-        Need an account? <Link to='/signup'> Sign Up </Link>
-      </div>
     </Container>
   );
 };
