@@ -15,13 +15,13 @@ const Login = () => {
   const navigate = useNavigate()
 
   async function handleSubmit (e) {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      setError('')
-      setLoading(false)
+      setError('');
+      setLoading(false);
 
-      await login(emailRef.current.value, passwordRef.current.value)
-      navigate('/')
+      await login(emailRef.current.value, passwordRef.current.value);
+      navigate('/');
     } catch (error) { setError('Failed to sign in.') }
     setLoading(false);
   };

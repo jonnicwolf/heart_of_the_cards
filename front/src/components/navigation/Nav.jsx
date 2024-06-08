@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Alert } from 'react-bootstrap';
 import styled from 'styled-components';
 import { useAuth } from '../contexts/AuthContext'
 
@@ -9,17 +8,15 @@ import { useNavigate } from 'react-router-dom';
 const Nav = () => {
   const [error, setError] = useState('');
   const { logout } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   async function handleLogout () {
-    setError('')
+    setError('');
     try {
-      await logout()
-      navigate('/login')
-    } catch (error) {
-      setError('Failed to log out.')
-    }
-  }
+      await logout();
+      navigate('/login');
+    } catch (error) { setError('Failed to log out.') };
+  };
 
   return (
     <Container>
@@ -32,7 +29,8 @@ const Nav = () => {
         </MiddleSpan>
         CARDS
       </Bump>
-      <MenuSwitch>
+      <MenuSwitch onClick={handleLogout}>
+        {error && <Alert variant='danger'>{error}</Alert>}
         <Logout_Btn />
       </MenuSwitch>
     </Container>

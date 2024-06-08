@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Form, Card, Button, Alert } from 'react-bootstrap';
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../contexts/AuthContext';
 
 const ForgotPassword = () => {
   const [error, setError] = useState('');
@@ -15,7 +15,7 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
 
   async function handleSubmit (e) {
-    e.preventDefault()
+    e.preventDefault();
     try {
       setMessage('');
       setError('');
@@ -29,7 +29,7 @@ const ForgotPassword = () => {
   };
 
   return (
-    <Container>
+    <>
       <Card>
         <Card.Body>
           <h2 className='w-100 text-center mb-4'>Reset Password</h2>
@@ -42,20 +42,14 @@ const ForgotPassword = () => {
             </Form.Group>
             <Button disabled={loading} type='submit' className='w-100 mt-3'>Reset Password</Button>
           </Form>
+
           <div className='w-100 text-center mt-3'>
-            <Link to='/login'>Login</Link>
+            Need an account? <Link className='text-decoration-none' to='/login'>Sign Up</Link> or <Link className='text-decoration-none' to='/login'>Retry Log In</Link>
           </div>
         </Card.Body>
       </Card>
-      <div className='w-100 text-center mt-3'>
-        Need an account? <Link to='/login'>Sign Up</Link>
-      </div>
-    </Container>
+    </>
   );
 };
-
-const Container = styled.div`
-  border: 1px solid black;
-`;
 
 export default ForgotPassword;
