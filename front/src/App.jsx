@@ -24,7 +24,6 @@ function App() {
             <Route exact path='/' element={<PrivateRoute />}>
               <Route index element={<Home />} />
             </Route>
-            <Route path='/signup' element={<Signup />} />
             <Route path='/login' element={<Login />} />
             <Route path='/forgot-password' element={<ForgetPassword />} />
             <Route path='/test' element={<Test />} />

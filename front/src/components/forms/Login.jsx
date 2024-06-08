@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Form, Card, Button, Alert } from 'react-bootstrap';
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../contexts/AuthContext';
 
 const Login = () => {
   const [error, setError] = useState('');
@@ -12,7 +12,7 @@ const Login = () => {
   const passwordRef = useRef();
 
   const { login } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   async function handleSubmit (e) {
     e.preventDefault();
@@ -22,12 +22,12 @@ const Login = () => {
 
       await login(emailRef.current.value, passwordRef.current.value);
       navigate('/');
-    } catch (error) { setError('Failed to sign in.') }
+    } catch (error) { setError('Failed to sign in.') };
     setLoading(false);
   };
 
   return (
-    <Container>
+    <>
       <Card>
         <Card.Body>
           <h2 className='w-100 text-center mb-4'>Log In</h2>
@@ -51,12 +51,8 @@ const Login = () => {
       <div className='w-100 text-center mt-2 mb-4'>
         Need an account? <Link to='/signup'> Sign Up </Link>
       </div>
-    </Container>
+    </>
   );
 };
-
-const Container = styled.div`
-  border: 1px solid black;
-`;
 
 export default Login;
