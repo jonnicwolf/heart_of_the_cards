@@ -1,10 +1,19 @@
+import React, { Component } from 'react';
+
+export default class ForgetPassword extends Component {
+  render() {
+    return (
+      <div>ForgetPassword</div>
+    );
+  };
+};
 import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Form, Card, Button, Alert } from 'react-bootstrap';
 import { useAuth } from '../contexts/AuthContext'
 
-const Login = () => {
+const ForgotPassword = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -37,15 +46,8 @@ const Login = () => {
               <Form.Label>Email</Form.Label>
               <Form.Control type='email' ref={emailRef} required />
             </Form.Group>
-            <Form.Group id="password">
-              <Form.Label>Password</Form.Label>
-              <Form.Control type='password' ref={passwordRef} required />
-            </Form.Group>
             <Button disabled={loading} type='submit' className='w-100 mt-3'>Log In</Button>
           </Form>
-          <div className='w-100 text-center mt-3'>
-            <Link to='/forget-password'>Forgot Password?</Link>
-          </div>
         </Card.Body>
       </Card>
       <div className='w-100 text-center mt-2 mb-4'>
@@ -59,4 +61,4 @@ const Container = styled.div`
   border: 1px solid black;
 `;
 
-export default Login;
+export default ForgotPassword;
