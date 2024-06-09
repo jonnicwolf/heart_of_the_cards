@@ -1,5 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { auth } from '../../../firebase.js';
+import {
+  auth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  onAuthStateChanged ,} from '../../../firebase.js';
 
 const AuthContext = React.createContext();
 export const useAuth = () => useContext(AuthContext);
@@ -8,13 +13,24 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  const signup = (email,password) => auth.createUserWithEmailAndPassword(email,password);
-  const login = (email,password) => auth.signInWithEmailAndPassword(email, password);
-  const logout = () => auth.signOut();
-  const resetPassword = (email) => auth.sendPasswordResetEmail(email);
+  const signup = async (email,password) => {
+    try {
+      return await createUserWithEmailAndPassword(auth, email, password)
+    } catch (error) { console.error('Error creating user. Please try again.') }
+  }
+  const login = async (email, password) => {
+    try {
+      return await signInWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      console.error("Error signing in with password and email", error);
+      alert(error);
+    }
+  };
+  const logout = () => signOut();
+  const resetPassword = (email) => sendPasswordResetEmail(email);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
+    const unsubscribe = onAuthStateChanged(auth, user => {
       setCurrentUser(user);
       setLoading(false);
     });
