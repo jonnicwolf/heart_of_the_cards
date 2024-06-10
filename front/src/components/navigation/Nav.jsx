@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useAuth } from '../contexts/AuthContext'
+
+import Logout_Btn from './Logout_Btn';
+import { useNavigate } from 'react-router-dom';
 
 const Nav = () => {
+  const [error, setError] = useState('');
+  const {  logout } = useAuth();
+  const navigate = useNavigate();
+
+  async function handleLogout () {
+    setError('');
+    try {
+      await logout();
+      navigate('/login');
+    } catch (error) { setError('Failed to log out.') };
+  };
+
   return (
     <Container>
       <Dummy />
@@ -13,7 +29,10 @@ const Nav = () => {
         </MiddleSpan>
         CARDS
       </Bump>
-      <MenuSwitch />
+      <MenuSwitch onClick={handleLogout}>
+        {error && <Alert variant='danger'>{error}</Alert>}
+        <Logout_Btn />
+      </MenuSwitch>
     </Container>
   );
 };

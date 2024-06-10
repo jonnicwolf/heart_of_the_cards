@@ -1,26 +1,45 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import '../styles/global.css';
 
+import PrivateRoute from './components/PrivateRoute';
 import Home from './pages/Home';
+import SignupPage from './pages/SignupPage';
+import LoginPage from './pages/LoginPage';
+import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import Test from './pages/Test';
 
+
 import Nav from './components/navigation/Nav';
+import { AuthProvider } from './components/contexts/AuthContext';
 
 function App() {
+  const location = useLocation();
+  const no_nav_list = [
+    '/login',
+    '/signup',
+    '/forgot-password'
+  ];
 
   return (
-    <Container>
-      <RoutesContainer>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/test' element={<Test />} />
-        </Routes>
-      </RoutesContainer>
+    <AuthProvider>
+      <Container>
+        <RoutesContainer>
+          <Routes>
+            <Route path='/' element={<PrivateRoute />}>
+              <Route index element={<Home />} />
+            </Route>
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/signup' element={<SignupPage />} />
+            <Route path='/forgot-password' element={<ForgotPasswordPage />} />
+            <Route path='/test' element={<Test />} />
+          </Routes>
+        </RoutesContainer>
 
-      <Nav />
-    </Container>
+        {!no_nav_list.includes(location.pathname) && <Nav />}
+      </Container>
+    </AuthProvider>
   );
 };
 
