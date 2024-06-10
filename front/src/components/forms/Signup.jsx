@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Form, Card, Button, Alert } from 'react-bootstrap';
 import { useAuth } from '../contexts/AuthContext';
+import { signInAnonymously } from 'firebase/auth';
 
 const Signup = () => {
   const [error, setError] = useState('');
@@ -24,8 +25,8 @@ const Signup = () => {
       setLoading(true);
 
       const signupSucess = await signup(emailRef.current.value, passwordRef.current.value);
-      console.log(signupSucess)
       navigate('/');
+      return signupSucess;
     }
     catch (error) { setError('Failed to create account.') }
     setLoading(false);

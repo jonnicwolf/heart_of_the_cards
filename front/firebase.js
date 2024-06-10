@@ -15,8 +15,9 @@ const app = initializeApp({
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId:             import.meta.env.VITE_FIREBASE_APP_ID,
   measurementId:     import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
-})
+});
 
+console.log('api key: ', import.meta.env.VITE_FIREBASE_API_KEY)
 const auth = getAuth(app);
 
 export {

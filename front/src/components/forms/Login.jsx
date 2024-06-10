@@ -16,6 +16,7 @@ const Login = () => {
   function handleSubmit (e) {
     e.preventDefault();
     login(emailRef.current.value, passwordRef.current.value);
+    console.log(emailRef.current.value, passwordRef.current.value)
     navigate('/');
     setLoading(false);
   };
