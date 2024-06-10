@@ -1,10 +1,10 @@
 import { initializeApp } from 'firebase/app';
-import { 
+import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
-  onAuthStateChanged 
+  onAuthStateChanged
 } from 'firebase/auth';
 
 const app = initializeApp({
@@ -26,4 +26,3 @@ export {
   sendPasswordResetEmail,
   onAuthStateChanged,
 };
-

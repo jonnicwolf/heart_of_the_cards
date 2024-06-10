@@ -34,7 +34,6 @@ function App() {
             <Route path='/signup' element={<SignupPage />} />
             <Route path='/forgot-password' element={<ForgotPasswordPage />} />
             <Route path='/test' element={<Test />} />
-
           </Routes>
         </RoutesContainer>
 
