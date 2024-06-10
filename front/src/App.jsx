@@ -15,7 +15,7 @@ import Nav from './components/navigation/Nav';
 import { AuthProvider } from './components/contexts/AuthContext';
 
 function App() {
-  const location = useLocation()
+  const location = useLocation();
   const no_nav_list = [
     '/login',
     '/signup',
@@ -27,7 +27,7 @@ function App() {
       <Container>
         <RoutesContainer>
           <Routes>
-            <Route exact path='/' element={<PrivateRoute />}>
+            <Route path='/' element={<PrivateRoute />}>
               <Route index element={<Home />} />
             </Route>
             <Route path='/login' element={<LoginPage />} />
