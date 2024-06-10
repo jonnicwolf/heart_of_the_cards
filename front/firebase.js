@@ -17,7 +17,6 @@ const app = initializeApp({
   measurementId:     import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 });
 
-console.log('api key: ', import.meta.env.VITE_FIREBASE_API_KEY)
 const auth = getAuth(app);
 
 export {
