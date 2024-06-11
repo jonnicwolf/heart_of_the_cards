@@ -43,10 +43,9 @@ const Container = styled.footer`
   justify-content: space-between;
   align-items: flex-end;
   border-top: 0.5vh solid #db8aae;
-  height: 10%;
+  height: 200px;
   background: #699897;
   color: #e1c4ca;
-  position: relative;
   z-index: 2;
 `;
 const MenuSwitch = styled.button`
@@ -70,7 +69,7 @@ const Secrets = styled.div`
   width: 100%;
   gap: 5px;
   justify-content: center;
-`
+`;
 const OfThe_Vertical = styled.span`
   display: flex;
   font-size: 1rem;
