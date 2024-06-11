@@ -43,7 +43,7 @@ const Container = styled.footer`
   justify-content: space-between;
   align-items: flex-end;
   border-top: 0.5vh solid #db8aae;
-  height: 200px;
+  height: 10vh;
   background: #699897;
   color: #e1c4ca;
   z-index: 2;
