@@ -24,17 +24,22 @@ const Container = styled.div`
 `;
 const Button = styled.button`
   width: 200px;
-  border: 5px solid #e1c4ca;
-  background: rgba(65,50,63,0.9);
+  background: none;
+  border: none
   text-align: center;
   color: #e1c4ca;
   font-size: 3rem;
   font-family: 'Amatic SC';
   font-weight: bold;
-  transform: translateY(-4vw);
+  transform: translateY(-6vw);
   cursor: pointer;
+  transition: all 0.3s linear;
+  &: hover {
+    border: 2px solid #e1c4ca;
+    background: rgba(65,50,63,0.9);
+  }
   @media screen and (min-width: 1024px) {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 `;
 const Query = styled.input`
