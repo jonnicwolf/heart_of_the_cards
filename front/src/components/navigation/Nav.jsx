@@ -20,15 +20,16 @@ const Nav = () => {
 
   return (
     <Container>
-      <Dummy />
-      <Bump>
-        HEART
-        <MiddleSpan>
-          <div>of</div>
-          <div>the</div>
-        </MiddleSpan>
-        CARDS
-      </Bump>
+      <>&nbsp;</>
+      <LogoContainer>
+        <Secrets>
+          SECRETS
+          <OfThe_Vertical>
+            of <br /> the
+          </OfThe_Vertical>
+        </Secrets>
+        <div>CARTOMANCER</div>
+      </LogoContainer>
       <MenuSwitch onClick={handleLogout}>
         {error && <Alert variant='danger'>{error}</Alert>}
         <Logout_Btn />
@@ -42,58 +43,39 @@ const Container = styled.footer`
   justify-content: space-between;
   align-items: flex-end;
   border-top: 0.5vh solid #db8aae;
-  height: 5%;
+  height: 10vh;
   background: #699897;
   color: #e1c4ca;
-  position: relative;
   z-index: 2;
-  @media screen and (min-width: 1024px) {
-    height: 10%;
-  }
-`;
-const Dummy = styled.div`
-  width: 10%;
-  height: 100%;
 `;
 const MenuSwitch = styled.button`
   width: 10%;
   height: 100%;
+  color: #e1c4ca;
   background: none;
-  border: 1px solid red;
   border: none;
+  justify-self: flex-start;
 `;
-const Bump = styled.div`
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: white;
+const LogoContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  font-family: Bagnard;
-  gap: 1.5vw;
-  font-size: 6vw;
-  margin: 0;
-  background: #699897;
-  @media screen and (min-width: 1024px) {
-    font-size: 4rem;
-    gap: 10px;
-  }
-`;
-const MiddleSpan = styled.span`
-  display: flex;
-  justify-content: center;
   flex-direction: column;
+  font-size: 2rem;
+  font-family: Bagnard;
+  line-height: 20px;
+  transform: translate(5vw,-10px);
+`;
+const Secrets = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 5px;
+  justify-content: center;
+`;
+const OfThe_Vertical = styled.span`
+  display: flex;
+  font-size: 1rem;
   text-align: center;
-  font-size: 3.3vw;
-  padding-bottom: 1vw;
-  @media screen and (min-width: 1024px) {
-    font-size: 1.5rem;
-    padding: 0.5vw;
-  }
-  @media screen and (min-width: 1500px) {
-    padding: 0.5vw;
-  }
+  line-height: 15px;
+  transform: translateY(-5px);
 `;
 
 export default Nav;

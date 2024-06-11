@@ -25,7 +25,6 @@ function App() {
   return (
     <AuthProvider>
       <Container>
-        <RoutesContainer>
           <Routes>
             <Route path='/' element={<PrivateRoute />}>
               <Route index element={<Home />} />
@@ -35,8 +34,6 @@ function App() {
             <Route path='/forgot-password' element={<ForgotPasswordPage />} />
             <Route path='/test' element={<Test />} />
           </Routes>
-        </RoutesContainer>
-
         {!no_nav_list.includes(location.pathname) && <Nav />}
       </Container>
     </AuthProvider>
@@ -50,9 +47,6 @@ const Container = styled.div`
   flex-direction: column;
   background: black;
   overflow: clip;
-`;
-const RoutesContainer = styled.div`
-  height: 95%;
 `;
 
 export default App;
