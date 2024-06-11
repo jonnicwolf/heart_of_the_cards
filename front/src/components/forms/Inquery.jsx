@@ -23,14 +23,12 @@ const Container = styled.div`
   align-items: center;
 `;
 const Button = styled.button`
-  width: 15vw;
+  width: 200px;
   border: 5px solid #e1c4ca;
-  border-radius: 10px 30px;
-  padding: 1vw;
-  background: #a57fa0;
+  background: rgba(65,50,63,0.9);
   text-align: center;
   color: #e1c4ca;
-  font-size: 3vw;
+  font-size: 3rem;
   font-family: 'Amatic SC';
   font-weight: bold;
   transform: translateY(-4vw);
@@ -41,17 +39,16 @@ const Button = styled.button`
 `;
 const Query = styled.input`
   width: 70vw;
-  border: 10px groove #699897;
   height: 20vw;
+  border: none;
   max-height: 400px;
   max-width: 700px;
   background: rgb(0,0,0,0.4);
   text-align: center;
   color: #e1c4ca;
-  font-size: 4vw;
+  font-size: 2rem;
   font-family: 'Amatic SC';
   font-weight: bold;
-  outline: none;  
   &::placeholder {
     color: white;
   }
