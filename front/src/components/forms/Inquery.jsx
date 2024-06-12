@@ -31,15 +31,21 @@ const Button = styled.button`
   font-size: 3rem;
   font-family: 'Amatic SC';
   font-weight: bold;
-  transform: translateY(-6vw);
+  transform: translateY(-60px);
   cursor: pointer;
   transition: all 0.3s linear;
   &: hover {
     border: 2px solid #e1c4ca;
     background: rgba(65,50,63,0.9);
   }
-  @media screen and (min-width: 1024px) {
-    font-size: 2rem;
+  @media only screen and (max-width: 500px) {
+    width: 20vw;
+    font-size: 1rem;
+    transform: translateY(-40px)
+  }
+  @media only screen and (min-width: 701px) and (max-width: 1300px) {
+    font-size: 1.5rem;
+    width: 20vw;
   }
 `;
 const Query = styled.input`
@@ -57,8 +63,15 @@ const Query = styled.input`
   &::placeholder {
     color: white;
   }
-  @media screen and (min-width: 1024px) {
-    font-size: 3rem;
+  @media only screen and (max-width: 700px) {
+    font-size: 1.3rem;
+    width: 95vw;
+    height: 25vh;
+  }
+  @media only screen and (min-width: 701px) and (max-width: 1300px) {
+    font-size: 2rem;
+    width: 95vw;
+    height: 25vh;
   }
 `;
 
