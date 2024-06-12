@@ -31,7 +31,7 @@ const Button = styled.button`
   font-size: 3rem;
   font-family: 'Amatic SC';
   font-weight: bold;
-  transform: translateY(-6vw);
+  transform: translateY(-60px);
   cursor: pointer;
   transition: all 0.3s linear;
   &: hover {
@@ -41,9 +41,9 @@ const Button = styled.button`
   @media only screen and (max-width: 500px) {
     width: 20vw;
     font-size: 1rem;
-    transform: translateY(-10vw)
+    transform: translateY(-40px)
   }
-  @media only screen and (min-width: 701px) and (max-width: 1200px) {
+  @media only screen and (min-width: 701px) and (max-width: 1300px) {
     font-size: 1.5rem;
     width: 20vw;
   }
@@ -68,7 +68,7 @@ const Query = styled.input`
     width: 95vw;
     height: 25vh;
   }
-  @media only screen and (min-width: 701px) and (max-width: 1200px) {
+  @media only screen and (min-width: 701px) and (max-width: 1300px) {
     font-size: 2rem;
     width: 95vw;
     height: 25vh;

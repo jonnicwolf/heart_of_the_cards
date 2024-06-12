@@ -70,6 +70,10 @@ const LogoContainer = styled.div`
     line-height: 15px;
     transform: translate(30px,-5px);
   }
+  @media only screen and (min-width: 1000px) {
+    font-size: 2.1rem;
+    transform: translate(30px,-15px)
+  }
 `;
 const Secrets = styled.div`
   display: flex;
