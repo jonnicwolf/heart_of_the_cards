@@ -1,0 +1,8 @@
+[build]
+  publish = "front/dist"
+  command = "npm run build --prefix front"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
