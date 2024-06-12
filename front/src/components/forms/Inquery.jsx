@@ -38,8 +38,10 @@ const Button = styled.button`
     border: 2px solid #e1c4ca;
     background: rgba(65,50,63,0.9);
   }
-  @media screen and (min-width: 1024px) {
-    font-size: 2rem;
+  @media only screen and (max-width: 500px) {
+    width: 20vw;
+    font-size: 1rem;
+    transform: translateY(-10vw)
   }
 `;
 const Query = styled.input`
@@ -57,8 +59,10 @@ const Query = styled.input`
   &::placeholder {
     color: white;
   }
-  @media screen and (min-width: 1024px) {
-    font-size: 3rem;
+  @media only screen and (max-width: 500px) {
+    width: 80vw;
+    height: 20vh;
+    font-size: 1.3rem;
   }
 `;
 
