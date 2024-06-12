@@ -57,6 +57,6 @@ const Title = styled.h2`
   font-family: Bagnard;
   text-align: center;
   font-size: 2rem;
-`
+`;
 
 export default Login;
