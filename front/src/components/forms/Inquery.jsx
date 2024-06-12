@@ -43,6 +43,10 @@ const Button = styled.button`
     font-size: 1rem;
     transform: translateY(-10vw)
   }
+  @media only screen and (min-width: 701px) and (max-width: 1200px) {
+    font-size: 1.5rem;
+    width: 20vw;
+  }
 `;
 const Query = styled.input`
   width: 70vw;
@@ -59,10 +63,15 @@ const Query = styled.input`
   &::placeholder {
     color: white;
   }
-  @media only screen and (max-width: 500px) {
-    width: 80vw;
-    height: 20vh;
+  @media only screen and (max-width: 700px) {
     font-size: 1.3rem;
+    width: 95vw;
+    height: 25vh;
+  }
+  @media only screen and (min-width: 701px) and (max-width: 1200px) {
+    font-size: 2rem;
+    width: 95vw;
+    height: 25vh;
   }
 `;
 
