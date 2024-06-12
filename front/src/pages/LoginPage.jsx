@@ -7,7 +7,7 @@ export default function LoginPage() {
   const windowWidth = window.innerWidth < 850;
   return (
     <Container>
-      {windowWidth ? null : <GraphicCard />}
+      {!windowWidth && <GraphicCard />}
       <LoginCard windowWidth={windowWidth}>
         <Login />
       </LoginCard>
