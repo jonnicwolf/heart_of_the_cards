@@ -4,10 +4,10 @@ import ForgotPassword from '../components/forms/ForgotPassword';
 import GraphicCard from '../components/GraphicCard';
 
 export default function ForgotPasswordPage() {
-  const windowWidth = window.innerWidth;
+  const windowWidth = window.innerWidth < 850;
   return (
     <Container>
-      <GraphicCard />
+      {windowWidth ? null : <GraphicCard />}
       <SignupCard windowWidth={windowWidth}>
         <ForgotPassword />
       </SignupCard>
