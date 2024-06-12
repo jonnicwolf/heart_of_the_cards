@@ -5,6 +5,7 @@ import GraphicCard from '../components/GraphicCard';
 
 export default function LoginPage() {
   const windowWidth = window.innerWidth < 850;
+
   return (
     <Container>
       {!windowWidth && <GraphicCard />}

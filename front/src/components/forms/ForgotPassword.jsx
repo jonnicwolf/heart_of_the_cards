@@ -1,7 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { Form, Card, Button, Alert } from 'react-bootstrap';
+import {
+  Form,
+  Card,
+  Button,
+  Alert } from 'react-bootstrap';
 import { useAuth } from '../contexts/AuthContext';
 
 const ForgotPassword = () => {
@@ -29,12 +33,13 @@ const ForgotPassword = () => {
   };
 
   const windowWidth = window.innerWidth < 850;
+
   return (
     <div className='h-100 p-4 bg-white'>
       <Card className='h-100 d-flex align-items-center'>
         <Card.Body className='d-flex flex-column justify-content-center'>
-        {windowWidth && <Title>SECRETS <br /> of the  <br /> CARTOMANCER</Title>}
-        <br /><br />
+          {windowWidth && <Title>SECRETS <br /> of the  <br /> CARTOMANCER</Title>}
+          <br /><br />
           <h2 className='w-100 text-center mb-4'>Reset Password</h2>
           {error && <Alert variant='danger'>{error}</Alert> }
           {message && <Alert variant='success'>{error}</Alert> }

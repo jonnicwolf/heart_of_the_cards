@@ -5,6 +5,7 @@ import GraphicCard from '../components/GraphicCard';
 
 export default function SignupPage() {
   const windowWidth = window.innerWidth < 850;
+
   return (
     <Container>
       {windowWidth ? null : <GraphicCard />}
