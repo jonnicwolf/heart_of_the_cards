@@ -19,7 +19,6 @@ const Board = () => {
     console.log(lines)
     lines.forEach(line => {
         line = line.trim();
-        console.log('line:', line)
         // Check if the line starts with a number followed by a dot and a space
         if (!Number.isNaN(line[0]) && line[1] === '.' && line[2] === ' ') {
           const colonIndex = line.indexOf(':');
@@ -57,6 +56,8 @@ const Board = () => {
     ? readingParser(reading.choices[0].message.content)
     : '';
 
+  const windowWidth = window.innerWidth < 500;
+
   return (
     <Container>
 
@@ -70,7 +71,7 @@ const Board = () => {
         </EyeLashContainer>
 
         <EyeContainer>
-          <Eye width={100} height={300}/>
+          <Eye width={100} height={windowWidth ? 200 : 300}/>
         </EyeContainer>
       </EyeWrapper>
 
@@ -82,7 +83,7 @@ const Board = () => {
       {!cards && <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />}
       {cards && parsedReading && 
         <ReadingContainer>
-          {parsedReading.map((item, i) => (
+          {parsedReading.map(item => (
             <CardReading key={uuidv4()}>
               <CardHeader>{item[0]}</CardHeader>
               <CardP>{item[1]}</CardP>
