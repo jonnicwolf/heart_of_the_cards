@@ -1,6 +1,6 @@
 [build]
-  publish = "front/dist"
-  command = "npm run build --prefix front"
+  publish = "client/dist"
+  command = "npm run build --prefix client"
 
 [[redirects]]
   from = "/*"
