@@ -74,18 +74,22 @@ const Board = () => {
           <Eye width={100} height={windowWidth ? 200 : 300}/>
         </EyeContainer>
       </EyeWrapper>
-
-      {cards && 
+      
+      {cards && !windowWidth &&
         <CardContainer> 
           {cards.cards.map((card) => <Card key={uuidv4()} name_short={card.name_short} />)}
         </CardContainer>
       }
       {!cards && <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />}
       {cards && parsedReading && 
-        <ReadingContainer>
-          {parsedReading.map(item => (
+        <ReadingContainer windowWidth={windowWidth}>
+          {parsedReading.map((item, index) => (
             <CardReading key={uuidv4()}>
               <CardHeader>{item[0]}</CardHeader>
+              <MobileCardContainer>
+                {cards && windowWidth && <Card key={uuidv4()} name_short={cards.cards[index].name_short} />}
+              </MobileCardContainer>
+              <br />
               <CardP>{item[1]}</CardP>
             </CardReading>
           ))}
@@ -108,6 +112,11 @@ const CardContainer = styled.div`
   height: 410px;
   display: flex;
   gap: 10px;
+  overflow: hidden;
+`;
+const MobileCardContainer = styled.div`
+  width: 250px;
+  height: 400px;
   overflow: hidden;
 `;
 const blink = keyframes`
@@ -173,13 +182,12 @@ const Container = styled.div`
   z-index: 2;
 `;
 const ReadingContainer = styled.div`
-  height: 21vh;
+  height: ${props => props.windowWidth ? '40vh' : '21vh'}
   width: 80vw;
   max-width: 1200px;
   color: white;
   overflow: scroll;
   background: rgba(0,0,0,0.4);
-  border: 1px blur white;
   padding: 15px;
 `;
 const CardReading = styled.div`
@@ -187,14 +195,18 @@ const CardReading = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5vh;
 `;
 const CardHeader = styled.h2`
   font-family: Bagnard;
-  font-size: 3rem;
+  font-size: 7vw;
+  text-align: center;
 `;
 const CardP = styled.p`
-  font-family: Amatic SC;
-  font-size: 2rem;
+  font-family: Helvetica;
+  font-size: 4vw;
+  text-align: center;
+
 `;
 
 export default Board;
