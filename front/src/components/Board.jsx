@@ -73,21 +73,16 @@ const Board = () => {
           <Eye width={100} height={windowWidth ? 200 : 300}/>
         </EyeContainer>
       </EyeWrapper>
-      
-      {cards && !windowWidth &&
-        <CardContainer> 
-          {cards.cards.map((card) => <Card key={uuidv4()} name_short={card.name_short} />)}
-        </CardContainer>
-      }
+
       {!cards && <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />}
-      {cards && parsedReading && 
+      {cards && parsedReading &&
         <ReadingContainer windowWidth={windowWidth}>
           {parsedReading.map((item, index) => (
             <CardReading key={uuidv4()}>
               <CardHeader>{item[0]}</CardHeader>
-              <MobileCardContainer>
-                {cards && windowWidth && <Card key={uuidv4()} name_short={cards.cards[index].name_short} />}
-              </MobileCardContainer>
+              <CardContainer>
+                {cards && <Card key={uuidv4()} name_short={cards.cards[index].name_short} />}
+              </CardContainer>
               <br />
               <CardP>{item[1]}</CardP>
             </CardReading>
@@ -107,15 +102,8 @@ const EyeWrapper = styled.div`
   transform: translateX(-80px);
 `;
 const CardContainer = styled.div`
-  width: 775px;
-  height: 410px;
-  display: flex;
-  gap: 10px;
-  overflow: hidden;
-`;
-const MobileCardContainer = styled.div`
   width: 250px;
-  height: 400px;
+  height: 405px;
   overflow: hidden;
 `;
 const blink = keyframes`
@@ -202,7 +190,7 @@ const CardHeader = styled.h2`
   text-align: center;
 `;
 const CardP = styled.p`
-  font-family: Helvetica;
+  font-family: Bebas Neue;
   font-size: 4vw;
   text-align: center;
 
