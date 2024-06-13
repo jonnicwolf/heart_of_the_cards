@@ -9,11 +9,8 @@ const Card = ({ name_short }) => {
     let angle = 0;
     let img;
 
-    p.preload = () =>  {img = p.loadImage(`https://sacred-texts.com/tarot/pkt/img/${name_short}.jpg`)};
-
-    p.setup = () => {
-      p.createCanvas(240, 400, p.WEBGL);
-    };
+    p.preload = () =>  { img = p.loadImage(`https://sacred-texts.com/tarot/pkt/img/${name_short}.jpg`) };
+    p.setup = () => { p.createCanvas(240, 400, p.WEBGL) };
 
     p.draw = () => {
       p.rotateY(angle);
