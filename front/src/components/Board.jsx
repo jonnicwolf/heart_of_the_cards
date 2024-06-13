@@ -16,15 +16,14 @@ const Board = () => {
   function readingParser(tarotString) {
     const lines = tarotString.trim().split('\n');
     let matrix = [];
-    console.log(lines)
     lines.forEach(line => {
         line = line.trim();
+
         // Check if the line starts with a number followed by a dot and a space
         if (!Number.isNaN(line[0]) && line[1] === '.' && line[2] === ' ') {
           const colonIndex = line.indexOf(':');
           const title = line.substring(3, colonIndex).trim();
           const description = line.substring(colonIndex + 1).trim();
-
           matrix.push([title, description]);
         }
     });
@@ -75,17 +74,16 @@ const Board = () => {
         </EyeContainer>
       </EyeWrapper>
 
-      {cards && 
-        <CardContainer> 
-          {cards.cards.map((card) => <Card key={uuidv4()} name_short={card.name_short} />)}
-        </CardContainer>
-      }
       {!cards && <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />}
-      {cards && parsedReading && 
-        <ReadingContainer>
-          {parsedReading.map(item => (
+      {cards && parsedReading &&
+        <ReadingContainer windowWidth={windowWidth}>
+          {parsedReading.map((item, index) => (
             <CardReading key={uuidv4()}>
               <CardHeader>{item[0]}</CardHeader>
+              <CardContainer>
+                {cards && <Card key={uuidv4()} name_short={cards.cards[index].name_short} />}
+              </CardContainer>
+              <br />
               <CardP>{item[1]}</CardP>
             </CardReading>
           ))}
@@ -104,10 +102,8 @@ const EyeWrapper = styled.div`
   transform: translateX(-80px);
 `;
 const CardContainer = styled.div`
-  width: 775px;
-  height: 410px;
-  display: flex;
-  gap: 10px;
+  width: 250px;
+  height: 405px;
   overflow: hidden;
 `;
 const blink = keyframes`
@@ -173,13 +169,12 @@ const Container = styled.div`
   z-index: 2;
 `;
 const ReadingContainer = styled.div`
-  height: 21vh;
+  height: ${props => props.windowWidth ? '40vh' : '21vh'}
   width: 80vw;
   max-width: 1200px;
   color: white;
   overflow: scroll;
   background: rgba(0,0,0,0.4);
-  border: 1px blur white;
   padding: 15px;
 `;
 const CardReading = styled.div`
@@ -187,14 +182,18 @@ const CardReading = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5vh;
 `;
 const CardHeader = styled.h2`
   font-family: Bagnard;
-  font-size: 3rem;
+  font-size: 7vw;
+  text-align: center;
 `;
 const CardP = styled.p`
-  font-family: Amatic SC;
-  font-size: 2rem;
+  font-family: Bebas Neue;
+  font-size: 4vw;
+  text-align: center;
+
 `;
 
 export default Board;
