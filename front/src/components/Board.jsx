@@ -16,15 +16,14 @@ const Board = () => {
   function readingParser(tarotString) {
     const lines = tarotString.trim().split('\n');
     let matrix = [];
-    console.log(lines)
     lines.forEach(line => {
         line = line.trim();
+
         // Check if the line starts with a number followed by a dot and a space
         if (!Number.isNaN(line[0]) && line[1] === '.' && line[2] === ' ') {
           const colonIndex = line.indexOf(':');
           const title = line.substring(3, colonIndex).trim();
           const description = line.substring(colonIndex + 1).trim();
-
           matrix.push([title, description]);
         }
     });
