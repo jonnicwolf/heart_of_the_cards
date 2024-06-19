@@ -14,22 +14,22 @@ const Board = () => {
   const [runFetch, setRunFetch] = useState(false);
 
   function handleReload () {
-    return window.location.reload()
+    return window.location.reload();
+  };
 
-  }
-  function readingParser(tarotString) {
+  function readingParser (tarotString) {
     const lines = tarotString.trim().split('\n');
     let matrix = [];
     lines.forEach(line => {
-        line = line.trim();
+      line = line.trim();
 
-        // Check if the line starts with a number followed by a dot and a space
-        if (!Number.isNaN(line[0]) && line[1] === '.' && line[2] === ' ') {
-          const colonIndex = line.indexOf(':');
-          const title = line.substring(3, colonIndex).trim();
-          const description = line.substring(colonIndex + 1).trim();
-          matrix.push([title, description]);
-        }
+      // Check if the line starts with a number followed by a dot and a space
+      if (!Number.isNaN(line[0]) && line[1] === '.' && line[2] === ' ') {
+        const colonIndex = line.indexOf(':');
+        const title = line.substring(3, colonIndex).trim();
+        const description = line.substring(colonIndex + 1).trim();
+        matrix.push([title, description]);
+      }
     });
 
     return matrix;
@@ -104,20 +104,15 @@ const Board = () => {
   };
 
   function renderBoard() {
-    if (!runFetch) return (
+    if (!runFetch) return ( <> {renderInquiry()} </> )
+    else return (
       <>
-        {renderInquiry()}
+        {renderEye()}
+        {cards && reading && renderReading()}
       </>
-    )
-    else {
-      return (
-        <>
-          {renderEye()}
-          {cards && reading && renderReading()}
-        </>
-      )
-    }
-  }
+    );
+  };
+
   return (
     <Container>
       {renderBoard()}
