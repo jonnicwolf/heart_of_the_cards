@@ -13,6 +13,10 @@ const Board = () => {
   const [question, setQuestion] = useState('');
   const [runFetch, setRunFetch] = useState(false);
 
+  function handleReload () {
+    return window.location.reload()
+
+  }
   function readingParser(tarotString) {
     const lines = tarotString.trim().split('\n');
     let matrix = [];
@@ -87,6 +91,7 @@ const Board = () => {
               <CardP>{item[1]}</CardP>
             </CardReading>
           ))}
+          <Reload onClick={handleReload}>Ask Another</Reload>
         </ReadingContainer>
       }
     </Container>
@@ -176,6 +181,9 @@ const ReadingContainer = styled.div`
   overflow: scroll;
   background: rgba(0,0,0,0.4);
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 const CardReading = styled.div`
   display: flex;
@@ -195,5 +203,32 @@ const CardP = styled.p`
   text-align: center;
 
 `;
+const Reload = styled.button`
+  width: 300px;
+  background: none;
+  border: none
+  text-align: center;
+  align-self: center;
+  color: #e1c4ca;
+  font-size: 4rem;
+  font-family: 'Amatic SC';
+  font-weight: bold;
+  transform: translateY(-60px);
+  cursor: pointer;
+  transition: all 0.3s linear;
+  &: hover {
+    border: 2px solid #e1c4ca;
+    background: rgba(65,50,63,0.9);
+  }
+  @media only screen and (max-width: 500px) {
+    width: 20vw;
+    font-size: 1rem;
+    transform: translateY(-40px)
+  }
+  @media only screen and (min-width: 701px) and (max-width: 1300px) {
+    font-size: 1.5rem;
+    width: 20vw;
+  }
+`
 
 export default Board;
