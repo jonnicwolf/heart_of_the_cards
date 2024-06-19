@@ -61,9 +61,32 @@ const Board = () => {
 
   const windowWidth = window.innerWidth < 500;
 
-  return (
-    <Container>
+  function renderReading () {
+    return (
+      <ReadingContainer windowWidth={windowWidth}>
+        {parsedReading.map((item, index) => (
+          <CardReading key={uuidv4()}>
+            <CardHeader>{item[0]}</CardHeader>
+            <CardContainer>
+              {cards && <Card key={uuidv4()} name_short={cards.cards[index].name_short} />}
+            </CardContainer>
+            <br />
+            <CardP>{item[1]}</CardP>
+          </CardReading>
+        ))}
+        <Reload onClick={handleReload}>Ask Another</Reload>
+      </ReadingContainer>
+    );
+  };
 
+  function renderInquiry () {
+    return (
+      <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />
+    );
+  };
+
+  function renderEye () {
+    return (
       <EyeWrapper>
         <EyeLashContainer>
           <EyeLash_4 />
@@ -77,23 +100,27 @@ const Board = () => {
           <Eye width={100} height={windowWidth ? 200 : 300}/>
         </EyeContainer>
       </EyeWrapper>
+    );
+  };
 
-      {!cards && <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />}
-      {cards && parsedReading &&
-        <ReadingContainer windowWidth={windowWidth}>
-          {parsedReading.map((item, index) => (
-            <CardReading key={uuidv4()}>
-              <CardHeader>{item[0]}</CardHeader>
-              <CardContainer>
-                {cards && <Card key={uuidv4()} name_short={cards.cards[index].name_short} />}
-              </CardContainer>
-              <br />
-              <CardP>{item[1]}</CardP>
-            </CardReading>
-          ))}
-          <Reload onClick={handleReload}>Ask Another</Reload>
-        </ReadingContainer>
-      }
+  function renderBoard() {
+    if (!runFetch) return (
+      <>
+        {renderInquiry()}
+      </>
+    )
+    else {
+      return (
+        <>
+          {renderEye()}
+          {cards && reading && renderReading()}
+        </>
+      )
+    }
+  }
+  return (
+    <Container>
+      {renderBoard()}
     </Container>
   );
 };
