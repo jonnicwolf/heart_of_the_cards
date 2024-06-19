@@ -60,8 +60,12 @@ const Query = styled.input`
   font-size: 2rem;
   font-family: 'Amatic SC';
   font-weight: bold;
+  transition: all 0.3s linear;
   &::placeholder {
     color: white;
+  }
+  &:focus::placeholder {
+    color: transparent;
   }
   @media only screen and (max-width: 700px) {
     font-size: 1.3rem;
