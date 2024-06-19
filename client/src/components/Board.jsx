@@ -134,18 +134,10 @@ const CardContainer = styled.div`
   overflow: hidden;
 `;
 const blink = keyframes`
-  0% {
-    width: 100px;
-  }
-  1% {
-    width: 0;
-  }
-  4% {
-    width: 100px;
-  }
-  100% {
-    width: 100px;
-  }
+  0% { width: 100px; }
+  1% { width: 0; }
+  4% { width: 100px; }
+  100% { width: 100px; }
 `;
 const EyeContainer = styled.div`
   clip-path: polygon(50% 0%, 80% 50%, 50% 100%, 20% 50%);
