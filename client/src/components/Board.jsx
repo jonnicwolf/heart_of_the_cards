@@ -13,19 +13,23 @@ const Board = () => {
   const [question, setQuestion] = useState('');
   const [runFetch, setRunFetch] = useState(false);
 
-  function readingParser(tarotString) {
+  function handleReload () {
+    return window.location.reload();
+  };
+
+  function readingParser (tarotString) {
     const lines = tarotString.trim().split('\n');
     let matrix = [];
     lines.forEach(line => {
-        line = line.trim();
+      line = line.trim();
 
-        // Check if the line starts with a number followed by a dot and a space
-        if (!Number.isNaN(line[0]) && line[1] === '.' && line[2] === ' ') {
-          const colonIndex = line.indexOf(':');
-          const title = line.substring(3, colonIndex).trim();
-          const description = line.substring(colonIndex + 1).trim();
-          matrix.push([title, description]);
-        }
+      // Check if the line starts with a number followed by a dot and a space
+      if (!Number.isNaN(line[0]) && line[1] === '.' && line[2] === ' ') {
+        const colonIndex = line.indexOf(':');
+        const title = line.substring(3, colonIndex).trim();
+        const description = line.substring(colonIndex + 1).trim();
+        matrix.push([title, description]);
+      };
     });
 
     return matrix;
@@ -47,7 +51,7 @@ const Board = () => {
 
   const {data: reading} = useQuery({
     queryKey: ['reading'],
-    queryFn: ()=>get_tarot_reading(question, cards?.cards.map(item => item.name)),
+    queryFn: ()=> get_tarot_reading(question, cards?.cards.map(item => item.name)),
     enabled: !!question && !!cards,
   });
 
@@ -57,9 +61,32 @@ const Board = () => {
 
   const windowWidth = window.innerWidth < 500;
 
-  return (
-    <Container>
+  function renderReading () {
+    return (
+      <ReadingContainer windowWidth={windowWidth}>
+        {parsedReading.map((item, index) => (
+          <CardReading key={uuidv4()}>
+            <CardHeader>{item[0]}</CardHeader>
+            <CardContainer>
+              {cards && <Card key={uuidv4()} name_short={cards.cards[index].name_short} />}
+            </CardContainer>
+            <br />
+            <CardP>{item[1]}</CardP>
+          </CardReading>
+        ))}
+        <Reload onClick={handleReload}>Ask Another</Reload>
+      </ReadingContainer>
+    );
+  };
 
+  function renderInquiry () {
+    return (
+      <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />
+    );
+  };
+
+  function renderEye () {
+    return (
       <EyeWrapper>
         <EyeLashContainer>
           <EyeLash_4 />
@@ -73,22 +100,22 @@ const Board = () => {
           <Eye width={100} height={windowWidth ? 200 : 300}/>
         </EyeContainer>
       </EyeWrapper>
+    );
+  };
 
-      {!cards && <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />}
-      {cards && parsedReading &&
-        <ReadingContainer windowWidth={windowWidth}>
-          {parsedReading.map((item, index) => (
-            <CardReading key={uuidv4()}>
-              <CardHeader>{item[0]}</CardHeader>
-              <CardContainer>
-                {cards && <Card key={uuidv4()} name_short={cards.cards[index].name_short} />}
-              </CardContainer>
-              <br />
-              <CardP>{item[1]}</CardP>
-            </CardReading>
-          ))}
-        </ReadingContainer>
-      }
+  function renderBoard() {
+    if (!runFetch) return ( <> {renderInquiry()} </> )
+    else return (
+      <>
+        {renderEye()}
+        {cards && reading && renderReading()}
+      </>
+    );
+  };
+
+  return (
+    <Container>
+      {renderBoard()}
     </Container>
   );
 };
@@ -107,18 +134,10 @@ const CardContainer = styled.div`
   overflow: hidden;
 `;
 const blink = keyframes`
-  0% {
-    width: 100px;
-  }
-  1% {
-    width: 0;
-  }
-  4% {
-    width: 100px;
-  }
-  100% {
-    width: 100px;
-  }
+  0% { width: 100px; }
+  1% { width: 0; }
+  4% { width: 100px; }
+  100% { width: 100px; }
 `;
 const EyeContainer = styled.div`
   clip-path: polygon(50% 0%, 80% 50%, 50% 100%, 20% 50%);
@@ -176,6 +195,9 @@ const ReadingContainer = styled.div`
   overflow: scroll;
   background: rgba(0,0,0,0.4);
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 const CardReading = styled.div`
   display: flex;
@@ -195,5 +217,32 @@ const CardP = styled.p`
   text-align: center;
 
 `;
+const Reload = styled.button`
+  width: 300px;
+  background: none;
+  border: none
+  text-align: center;
+  align-self: center;
+  color: #e1c4ca;
+  font-size: 4rem;
+  font-family: 'Amatic SC';
+  font-weight: bold;
+  transform: translateY(-60px);
+  cursor: pointer;
+  transition: all 0.3s linear;
+  &: hover {
+    border: 2px solid #e1c4ca;
+    background: rgba(65,50,63,0.9);
+  }
+  @media only screen and (max-width: 500px) {
+    width: 20vw;
+    font-size: 1rem;
+    transform: translateY(-40px)
+  }
+  @media only screen and (min-width: 701px) and (max-width: 1300px) {
+    font-size: 1.5rem;
+    width: 20vw;
+  }
+`
 
 export default Board;
