@@ -29,7 +29,7 @@ const Board = () => {
         const title = line.substring(3, colonIndex).trim();
         const description = line.substring(colonIndex + 1).trim();
         matrix.push([title, description]);
-      }
+      };
     });
 
     return matrix;
@@ -51,7 +51,7 @@ const Board = () => {
 
   const {data: reading} = useQuery({
     queryKey: ['reading'],
-    queryFn: ()=>get_tarot_reading(question, cards?.cards.map(item => item.name)),
+    queryFn: ()=> get_tarot_reading(question, cards?.cards.map(item => item.name)),
     enabled: !!question && !!cards,
   });
 
