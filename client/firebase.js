@@ -4,7 +4,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
-  onAuthStateChanged
+  onAuthStateChanged,
+  GoogleAuthProvider,
+  signInAnonymously,
 } from 'firebase/auth';
 
 const app = initializeApp({
@@ -25,4 +27,6 @@ export {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   onAuthStateChanged,
+  GoogleAuthProvider,
+  signInAnonymously,
 };
