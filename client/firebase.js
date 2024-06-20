@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   onAuthStateChanged,
+  signInWithPopup,
   GoogleAuthProvider,
   signInAnonymously,
 } from 'firebase/auth';
@@ -27,6 +28,7 @@ export {
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
   onAuthStateChanged,
+  signInWithPopup,
   GoogleAuthProvider,
   signInAnonymously,
 };
