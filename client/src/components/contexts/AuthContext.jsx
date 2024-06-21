@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (email,password) => {
     try { return await createUserWithEmailAndPassword(auth, email, password) }
-    catch (error) { console.error('Error creating user. Please try again.') }
+    catch (error) { console.error('Error creating user. Please try again.') };
   };
 
   const login = async (email, password) => {
@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
 
   const signInAnon = async () => {
     try { await signInAnonymously(auth) }
-    catch (error) { console.error(`Error signing in anonymously: ${error}`) }
+    catch (error) { console.error(`Error signing in anonymously: ${error}`) };
   };
 
   useEffect(() => {
