@@ -10,6 +10,7 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signInAnonymously,
+  signOut
 } from 'firebase/auth';
 
 const app = initializeApp({
@@ -35,4 +36,5 @@ export {
   signInWithPopup,
   GoogleAuthProvider,
   signInAnonymously,
+  signOut,
 };
