@@ -7,7 +7,8 @@ import { useNavigate } from 'react-router-dom';
 
 const Nav = () => {
   const [error, setError] = useState('');
-  const {  logout } = useAuth();
+
+  const { logout } = useAuth();
   const navigate = useNavigate();
 
   async function handleLogout () {
@@ -15,12 +16,18 @@ const Nav = () => {
     try {
       await logout();
       navigate('/login');
-    } catch (error) { setError('Failed to log out.') };
+    } catch (error) {
+      setError('Failed to log out.');
+      return (
+        <Alert variant='danger'>{error}</Alert>
+      );
+    };
   };
 
   return (
     <Container>
       <>&nbsp;</>
+
       <LogoContainer>
         <Secrets>
           SECRETS
@@ -30,8 +37,8 @@ const Nav = () => {
         </Secrets>
         <div>CARTOMANCER</div>
       </LogoContainer>
+
       <MenuSwitch onClick={handleLogout}>
-        {error && <Alert variant='danger'>{error}</Alert>}
         <Logout_Btn />
       </MenuSwitch>
     </Container>
