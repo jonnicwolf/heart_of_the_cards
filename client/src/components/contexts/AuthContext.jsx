@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
 
   const signInAnon = async () => {
     try { await signInAnonymously(auth) }
-    catch (error) { console.error(error) }
+    catch (error) { console.error(`Error signing in anonymously: ${error}`) }
   };
 
   useEffect(() => {
