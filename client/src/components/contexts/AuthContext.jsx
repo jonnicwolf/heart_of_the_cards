@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { logEvent } from 'firebase/analytics';
 import {
   auth,
+  analytics,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   sendPasswordResetEmail,
@@ -19,12 +21,18 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const signup = async (email,password) => {
-    try { return await createUserWithEmailAndPassword(auth, email, password) }
+    try {
+      logEvent(analytics, 'sign_up');
+      return await createUserWithEmailAndPassword(auth, email, password);
+    }
     catch (error) { console.error('Error creating user. Please try again.') };
   };
 
   const login = async (email, password) => {
-    try { return await signInWithEmailAndPassword(auth, email, password) }
+    try {
+      logEvent(analytics, 'log_up');
+      return await signInWithEmailAndPassword(auth, email, password);
+    }
     catch (error) {
       console.error("Error signing in with password and email", error);
       alert(error);
@@ -35,12 +43,18 @@ export const AuthProvider = ({ children }) => {
   const resetPassword = (email) => sendPasswordResetEmail(email);
 
   const signInWithGoogle = async () => {
-    try { await signInWithPopup(auth, googleProvider) }
+    try {
+      logEvent(analytics, 'sign_in_with_google');
+      await signInWithPopup(auth, googleProvider);
+    }
     catch (err) { console.error(err) };
   };
 
   const signInAnon = async () => {
-    try { await signInAnonymously(auth) }
+    try {
+      logEvent(analytics, 'sign_in_anon');
+      await signInAnonymously(auth);
+    }
     catch (error) { console.error(`Error signing in anonymously: ${error}`) };
   };
 

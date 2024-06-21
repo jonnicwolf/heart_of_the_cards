@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { analytics } from '../../firebase';
+import { logEvent } from 'firebase/analytics';
 import { useQuery } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 import styled, { keyframes } from 'styled-components';
@@ -104,7 +106,10 @@ const Board = () => {
   };
 
   function renderBoard() {
-    if (!runFetch) return ( <> {renderInquiry()} </> )
+    if (!runFetch) {
+      logEvent(analytics, 'reading_initiated')
+      return ( <> {renderInquiry()} </> )
+    }
     else return (
       <>
         {renderEye()}
