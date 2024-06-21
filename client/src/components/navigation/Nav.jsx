@@ -9,16 +9,13 @@ import { useNavigate } from 'react-router-dom';
 const Nav = () => {
   const [error, setError] = useState('');
 
-  const { logout, currentUser } = useAuth();
+  const { logout } = useAuth();
   const navigate = useNavigate();
   async function handleLogout () {
     setError('');
     try {
       await logout();
       navigate('/login');
-      return (
-        <Alert variant='success'>{currentUser} Logged out successfully!</Alert>
-      )
     } catch (error) {
       setError('Failed to log out.');
       return (
