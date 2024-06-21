@@ -9,7 +9,8 @@ import {
   onAuthStateChanged,
   signInWithPopup,
   GoogleAuthProvider,
-  signInAnonymously
+  signInAnonymously,
+  signOut
 } from '../../../firebase.js';
 
 const AuthContext = React.createContext();
