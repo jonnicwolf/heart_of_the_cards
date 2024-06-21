@@ -12,13 +12,11 @@ import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import Test from './pages/Test';
 
 import Nav from './components/navigation/Nav';
-import { useAuth } from './components/contexts/AuthContext';
 import { AuthProvider } from './components/contexts/AuthContext';
 
 function App() {
   const [showAlert, setShowAlert] = useState(false);
-
-  const { currentUser } = useAuth();
+  console.log(showAlert)
   const location = useLocation();
   const no_nav_list = [
     '/login',
@@ -29,7 +27,6 @@ function App() {
   return (
     <AuthProvider>
       <Container>
-        {showAlert && <Alert variant='success'>{currentUser} logged out successfully!</Alert>}
         <Routes>
           <Route path='/' element={<PrivateRoute />}>
             <Route index element={<Home />} />
