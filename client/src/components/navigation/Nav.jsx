@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { Alert } from 'react-bootstrap';
 import { useAuth } from '../contexts/AuthContext'
 
 import Logout_Btn from './Logout_Btn';
@@ -10,7 +11,6 @@ const Nav = () => {
 
   const { logout } = useAuth();
   const navigate = useNavigate();
-
   async function handleLogout () {
     setError('');
     try {

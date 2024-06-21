@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { Alert } from 'react-bootstrap';
 import styled from 'styled-components';
 import '../styles/global.css';
 
@@ -10,11 +11,12 @@ import LoginPage from './pages/LoginPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import Test from './pages/Test';
 
-
 import Nav from './components/navigation/Nav';
 import { AuthProvider } from './components/contexts/AuthContext';
 
 function App() {
+  const [showAlert, setShowAlert] = useState(false);
+  console.log(showAlert)
   const location = useLocation();
   const no_nav_list = [
     '/login',
@@ -25,15 +27,15 @@ function App() {
   return (
     <AuthProvider>
       <Container>
-          <Routes>
-            <Route path='/' element={<PrivateRoute />}>
-              <Route index element={<Home />} />
-            </Route>
-            <Route path='/login' element={<LoginPage />} />
-            <Route path='/signup' element={<SignupPage />} />
-            <Route path='/forgot-password' element={<ForgotPasswordPage />} />
-            <Route path='/test' element={<Test />} />
-          </Routes>
+        <Routes>
+          <Route path='/' element={<PrivateRoute />}>
+            <Route index element={<Home />} />
+          </Route>
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/signup' element={<SignupPage />} />
+          <Route path='/forgot-password' element={<ForgotPasswordPage />} />
+          <Route path='/test' element={<Test />} />
+        </Routes>
         {!no_nav_list.includes(location.pathname) && <Nav />}
       </Container>
     </AuthProvider>
