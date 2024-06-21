@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      logEvent(analytics, 'log_up');
+      logEvent(analytics, 'log_in');
       return await signInWithEmailAndPassword(auth, email, password);
     }
     catch (error) {
