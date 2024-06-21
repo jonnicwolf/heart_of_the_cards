@@ -25,9 +25,9 @@ const Login = () => {
     setLoading(false);
   };
 
-  function handleGoogleLogin (e) {
+  async function handleGoogleLogin (e) {
     e.preventDefault();
-    signInWithGoogle();
+    await signInWithGoogle();
     navigate('/');
     setLoading(false);
   }
