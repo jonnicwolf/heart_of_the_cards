@@ -18,9 +18,9 @@ const Login = () => {
   } = useAuth();
   const navigate = useNavigate();
 
-  function handleSubmit (e) {
+  async function handleSubmit (e) {
     e.preventDefault();
-    login(emailRef.current.value, passwordRef.current.value);
+    await login(emailRef.current.value, passwordRef.current.value);
     navigate('/');
     setLoading(false);
   };

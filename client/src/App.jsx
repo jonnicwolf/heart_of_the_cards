@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
-import { Alert } from 'react-bootstrap';
 import styled from 'styled-components';
 import '../styles/global.css';
 
@@ -15,8 +14,6 @@ import Nav from './components/navigation/Nav';
 import { AuthProvider } from './components/contexts/AuthContext';
 
 function App() {
-  const [showAlert, setShowAlert] = useState(false);
-  console.log(showAlert)
   const location = useLocation();
   const no_nav_list = [
     '/login',
@@ -36,6 +33,7 @@ function App() {
           <Route path='/forgot-password' element={<ForgotPasswordPage />} />
           <Route path='/test' element={<Test />} />
         </Routes>
+
         {!no_nav_list.includes(location.pathname) && <Nav />}
       </Container>
     </AuthProvider>

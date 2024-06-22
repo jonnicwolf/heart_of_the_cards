@@ -1,17 +1,17 @@
 import { OpenAI } from 'openai';
 
 export async function get_tarot_reading (question, cards) {
-  if (cards && cards.length > 0 && question) {
+  if (cards.length > 0 && question) {
     try {
       const openai = new OpenAI({
         apiKey: import.meta.env.VITE_OPENAI_API_KEY,
         dangerouslyAllowBrowser: true
       });
-  
+
       let attempts = 0;
       const maxAttempts = 2;
       const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
-  
+
       while (attempts < maxAttempts) {
         try {
           const chatCompletion = await openai.chat.completions.create({
@@ -19,7 +19,7 @@ export async function get_tarot_reading (question, cards) {
             messages: [{ role: 'user', content: `Make a three card tarot reading using these cards: ${cards} and this question -> ${question}. Always send a reply in the same format as this string: '1. Page of Swords: This card suggests that there may be some skepticism or criticism towards the project from others. It could indicate that not everyone will immediately warm up to the idea or see its potential. However, it also encourages you to stay true to your vision and be open to constructive feedback.
 
   2. Queen of Pentacles: The Queen of Pentacles represents practicality, abundance, and nurturing energy. This card suggests that the project has the potential to be well-received by others, especially if you approach it with a grounded and nurturing mindset. People may appreciate the stability and tangible benefits that the project can bring.
-  
+
   3. Nine of Pentacles: This card signifies success, independence, and self-sufficiency. It suggests that the project has the potential to attract attention and admiration from others. People may be impressed by your hard work, dedication, and the high-quality results that the project can deliver. Overall, this card indicates a positive outcome in terms of how people will perceive the project.' Never deviate from this format` }],
           });
           return chatCompletion;
@@ -38,16 +38,10 @@ export async function get_tarot_reading (question, cards) {
           };
         };
       };
-  
-      if (attempts === maxAttempts) {
-        console.error('Max retry attempts reached. Exiting...');
-      };
+
+      if (attempts === maxAttempts) console.error('Max retry attempts reached. Exiting...');
     }
-    catch (error) {
-      console.error('Unexpected error:', error);
-    };
+    catch (error) { console.error('Unexpected error:', error); }
   }
-  else {
-    throw new Error('Missing card or question data. get_tarot_reading did not run.');
-  }
+  else throw new Error('Missing card or question data. get_tarot_reading did not run.');
 };
