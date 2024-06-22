@@ -11,6 +11,7 @@ const Nav = () => {
 
   const { logout } = useAuth();
   const navigate = useNavigate();
+
   async function handleLogout () {
     setError('');
     try {
