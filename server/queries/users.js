@@ -1,3 +1,6 @@
+import { generateKeyPair } from '../services/generateKeyPair.js';
+import { encryptPrivateKey } from '../services/encryption.js';
+
 const db = require('../db/dbConfig.js');
 
 const get_allUsers = async () => {
@@ -30,9 +33,13 @@ const get_userByEmail = async (email) => {
 
 const post_newUser = async (id, user) => {
   try {
-    const { username, email, password_hash} = user;
+    const { username, email, password} = user;
+    const { publicKey, privateKey } = await generateKeyPair();
+    const encryptedPrivateKey = await encryptPrivateKey(privateKey, password);
+    const newUser = await db.one(
+      "INSERT INTO users (username, email, public_key, private_key) VALUES ($1, $2, $3) RETURNING *",
+      [username, email, publicKey,encryptedPrivateKey]);
 
-    const newUser = await db.one("INSERT INTO users (username, email, password_hash) VALUES ($1, $2, $3) RETURNING *", [username, email, password_hash]);
     return newUser;
   } 
   catch (error) {
