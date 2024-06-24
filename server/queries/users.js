@@ -6,9 +6,11 @@ const db = require('../db/dbConfig.js');
 const get_allUsers = async () => {
   try {
     const users = await db.any('SELECT * FROM users');
-    return users }
+    return users 
+  }
   catch (error) {
-    console.error(error) };
+    console.error(error)
+  };
 };
 
 const get_userByID = async (id) => {

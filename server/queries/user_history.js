@@ -5,12 +5,8 @@ const db = require('../db/dbConfig.js');
 const get_allHistoryByUser = async (id, user) => {
   const { password, privateKey } = user;
   try {
-    try {
-      const decryptedPrivateKey = await decryptPrivateKey(privateKey, password);
-      
-
-    } catch (error) { console.error(error) }
-    const allHistory = await db.any(`SELECT * FROM user_history WHERE id=${id}`);
+    const decryptedPrivateKey = await decryptPrivateKey(privateKey, password);
+    const allHistory = await db.any(`SELECT * FROM user_history WHERE id=${id} AND private_key = $2`,[id, decryptedPrivateKey]);
 
     return allHistory;
   } catch (error) {
@@ -20,7 +16,8 @@ const get_allHistoryByUser = async (id, user) => {
 
 const get_last = async (id) => {
   try {
-    const last = await db.one(`SELECT * FROM user_history WHERE id=${id} ORDER BY created DESC LIMIT 1`);
+    const decryptedPrivateKey = await decryptPrivateKey(privateKey, password);
+    const last = await db.one(`SELECT * FROM user_history WHERE id = $1 AND private_key = $2 ORDER BY created DESC LIMIT 1`, [id, decryptedPrivateKey]);
 
     return last;
   } catch (error) {
