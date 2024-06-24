@@ -5,9 +5,9 @@ const encryptPrivateKey = (privateKey, password) => {
   .createcipher(
     'aes-256-cbc',
     crypto
-    .createHash('sha256')
-    .update(password)
-    .digest()
+      .createHash('sha256')
+      .update(password)
+      .digest()
   );
   let encrypted = cypto.update(privateKey, 'utf8', 'hex');
   encrypted += cipher.final('hex');
@@ -31,5 +31,4 @@ const decryptPrivateKey = (encryptedPrivateKey, password) => {
 };
 
 module.exports = { encryptPrivateKey, decryptPrivateKey };
-
 
