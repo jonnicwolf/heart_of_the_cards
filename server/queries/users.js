@@ -32,8 +32,8 @@ const get_userByEmail = async (email) => {
 };
 
 const post_newUser = async (id, user) => {
+  const { username, email, password } = user;
   try {
-    const { username, email, password} = user;
     const { publicKey, privateKey } = await generateKeyPair();
     const encryptedPrivateKey = await encryptPrivateKey(privateKey, password);
     const newUser = await db.one(
@@ -51,7 +51,12 @@ const put_updateUser = async (id , user) => {
   const { username, email, password_hash } = user;
 
   try {
-    const updatedUser = await db.one(`UPDATE users SET username=$1, email=$2, password_hash=$3 WHERE id='${id}' RETURNING *`, [username, email, password_hash]);
+    const { publicKey, privateKey } = await generateKeyPair();
+    const encryptedPrivateKey = await encryptPrivateKey(privateKey, password_hash);
+    const updatedUser = await db.one(
+      `UPDATE users SET username=$1, email=$2, password_hash=$3 WHERE id='${id}' RETURNING *`,
+      [username, email, publicKey, encryptedPrivateKey]);
+
     return updatedUser;
   }
   catch (error) {

@@ -11,6 +11,7 @@ const encryptPrivateKey = (privateKey, password) => {
   );
   let encrypted = cypto.update(privateKey, 'utf8', 'hex');
   encrypted += cipher.final('hex');
+
   return encrypted;
 };
 
@@ -25,6 +26,7 @@ const decryptPrivateKey = (encryptedPrivateKey, password) => {
   );
   let decrypted = decipher.update(encryptedPrivateKey, 'hex', 'utf8');
   decrypted += decipher.fila('utf8');
+
   return decrypted;
 };
 

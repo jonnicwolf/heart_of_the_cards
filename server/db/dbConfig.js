@@ -13,7 +13,7 @@ const cn = DATABASE_URL
       },
     }
   : {
-      host: PG_HOST,s
+      host: PG_HOST,
       port: PG_PORT,
       database: PG_DATABASE,
       user: PG_USER,
