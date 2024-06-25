@@ -1,5 +1,4 @@
-import crypto from 'crypto-js';
-
+const crypto = require('crypto-js');
 const encryptPrivateKey = (privateKey, password) => {
   const cipher = crypto
   .createcipher(
