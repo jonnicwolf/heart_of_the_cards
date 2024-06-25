@@ -30,7 +30,7 @@ const Login = () => {
     await signInWithGoogle();
     navigate('/');
     setLoading(false);
-  }
+  };
 
   function handleAnonLogin (e) {
     e.preventDefault();

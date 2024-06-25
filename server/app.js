@@ -9,10 +9,10 @@ const app = express();
 // MIDDLEWARE
 app.use(cors());
 app.use(express.json());
-app.use('/users', users)
+app.use('/users', users);
 
 app.get('/', (req, res) => {
-  res.send('Wamnin!')
+  res.status(200).json({data: 'Wamnin!'})
 });
 
 app.get('*', ((req, res) => {
