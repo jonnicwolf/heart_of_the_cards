@@ -1,5 +1,5 @@
-import { generateKeyPair } from '../services/generateKeyPair.js';
-import { encryptPrivateKey } from '../services/encryption.js';
+const { generateKeyPair }   = require('../services/generateKeyPair.js');
+const { encryptPrivateKey } = require('../services/encryption.js');
 
 const db = require('../db/dbConfig.js');
 

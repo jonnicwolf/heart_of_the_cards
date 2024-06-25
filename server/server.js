@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const PORT = process.env.PORT || 7777;
 
-const { authenticate } = require('./middleWares/authMiddleWare.js');
+const { authenticate } = require('./middleWare/auth.js');
 
 app.get('/api/secure-resource', authenticate, (req, res) => {
   res.json({ message: 'You are authorized to access this resource' });

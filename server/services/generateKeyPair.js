@@ -1,4 +1,4 @@
-import crypto from 'crypto-js';
+const crypto = require('crypto-js');
 
 function generateKeyPair () {
   return crypto.generateKeyPairSync('rsa',{
