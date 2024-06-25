@@ -31,4 +31,3 @@ const decryptPrivateKey = (encryptedPrivateKey, password) => {
 };
 
 module.exports = { encryptPrivateKey, decryptPrivateKey };
-
