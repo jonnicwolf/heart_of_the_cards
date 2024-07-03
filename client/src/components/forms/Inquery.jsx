@@ -69,16 +69,16 @@ const Query = styled.input`
   &:focus::placeholder {
     color: transparent;
   }
-  // @media only screen and (max-width: 700px) {
-  //   font-size: 1.3rem;
-  //   width: 95vw;
-  //   height: 25vh;
-  // }
-  // @media only screen and (min-width: 701px) and (max-width: 1300px) {
-  //   font-size: 2rem;
-  //   width: 95vw;
-  //   height: 25vh;
-  // }
+  @media only screen and (max-width: 700px) {
+    font-size: 1.3rem;
+    width: 95vw;
+    height: 25vh;
+  }
+  @media only screen and (min-width: 701px) and (max-width: 1300px) {
+    font-size: 2rem;
+    width: 95vw;
+    height: 25vh;
+  }
 `;
 
 export default Inquery;
