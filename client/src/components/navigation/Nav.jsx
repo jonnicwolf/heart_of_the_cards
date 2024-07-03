@@ -47,7 +47,7 @@ const Container = styled.footer`
   border-top: 0.5vh solid #db8aae;
   height: 10vh;
   background: #699897;
-  color: #e1c4ca;
+  color: white;
   z-index: 2;
   padding: 15px;
 `;
