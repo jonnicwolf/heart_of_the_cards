@@ -69,6 +69,7 @@ const Title = styled.h2`
   font-family: Bagnard;
   text-align: center;
   font-size: 4rem;
+  line-height: 3rem;
 `;
 
 export default Signup;

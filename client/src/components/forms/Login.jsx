@@ -102,7 +102,8 @@ const Login = () => {
 const Title = styled.h2`
   font-family: Bagnard;
   text-align: center;
-  font-size: 2rem;
+  font-size: 3rem;
+  line-height: 2.3rem;
 `;
 const Wrapper = styled.div`
   display: flex;
