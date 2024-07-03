@@ -38,7 +38,7 @@ const ForgotPassword = () => {
     <div className='h-100 p-4 bg-white'>
       <Card className='h-100 d-flex align-items-center'>
         <Card.Body className='d-flex flex-column justify-content-center'>
-          {windowWidth && <Title>SECRETS <br /> of the  <br /> CARTOMANCER</Title>}
+          {windowWidth && <Title>ESP<br />ERI</Title>}
           <br /><br />
           <h2 className='w-100 text-center mb-4'>Reset Password</h2>
           {error && <Alert variant='danger'>{error}</Alert> }
@@ -62,7 +62,8 @@ const ForgotPassword = () => {
 const Title = styled.h2`
   font-family: Bagnard;
   text-align: center;
-  font-size: 2rem;
+  font-size: 4rem;
+  line-height: 3rem;
 `;
 
 export default ForgotPassword;
