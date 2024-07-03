@@ -68,9 +68,10 @@ const Query = styled.input`
   }
   &:focus::placeholder {
     color: transparent;
+    text-wrap: pretty;
   }
   @media only screen and (max-width: 700px) {
-    font-size: 1.3rem;
+    font-size: 0.9rem;
     width: 95vw;
     height: 25vh;
   }
