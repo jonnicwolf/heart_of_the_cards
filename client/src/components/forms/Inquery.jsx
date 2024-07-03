@@ -9,18 +9,18 @@ const Inquery = ({ questionSetter, runFetchSetter }) => {
     'Pressing concern?',
     'Pour the tea.',
     'Critical matter?',
-    'Tell me more.',
+    'Tell me.',
     'Welcome, ask away.',
     'Ready when you are, ask away.',
     'What would you like to know?'
   ];
-  const randomQuestion = questions[0 + Math.floor(Math.random() * (questions.length - 0 + 1))];
+  const randomQuestion = questions[Math.floor(Math.random() * (questions.length + 1))];
   const [question, setQuestion] = useState(randomQuestion);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setQuestion(randomQuestion);
-    }, 60000);
+    }, 30000);
 
     return () => clearInterval(interval);
   }, [question]);
@@ -34,7 +34,7 @@ const Inquery = ({ questionSetter, runFetchSetter }) => {
 
   return (
     <Container>
-      <Query onChange={handleChange} placeholder={question}/>
+      <Query onChange={handleChange} placeholder={question} />
       <Button onClick={handleSubmit}>submit</Button>
     </Container>
   );
@@ -88,8 +88,6 @@ const Query = styled.input`
   font-weight: bold;
   &::placeholder {
     color: white;
-    opacity: ${props => props.inTransition ? 0 : 1};
-    transition: opacity 0.3s linear;
   }
   &:focus::placeholder {
     color: transparent;
