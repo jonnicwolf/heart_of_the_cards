@@ -57,7 +57,7 @@ const Query = styled.input`
   background: rgb(0,0,0,0.4);
   text-align: center;
   color: #e1c4ca;
-  font-size: 2rem;
+  font-size: 3rem;
   font-family: 'Amatic SC';
   font-weight: bold;
   transition: all 0.3s linear;
