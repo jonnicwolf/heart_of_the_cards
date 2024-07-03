@@ -27,16 +27,10 @@ const Nav = () => {
 
   return (
     <Container>
-      <>&nbsp;</>
 
       <LogoContainer>
-        <Secrets>
-          SECRETS
-          <OfThe_Vertical>
-            of <br /> the
-          </OfThe_Vertical>
-        </Secrets>
-        <div>CARTOMANCER</div>
+        <span>ESP</span>
+        <span>ERI</span>
       </LogoContainer>
 
       <MenuSwitch onClick={handleLogout}>
@@ -49,12 +43,13 @@ const Nav = () => {
 const Container = styled.footer`
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   border-top: 0.5vh solid #db8aae;
   height: 10vh;
   background: #699897;
   color: #e1c4ca;
   z-index: 2;
+  padding: 15px;
 `;
 const MenuSwitch = styled.button`
   height: 100%;
@@ -71,34 +66,14 @@ const LogoContainer = styled.div`
   flex-direction: column;
   font-size: 2rem;
   font-family: Bagnard;
-  line-height: 20px;
-  transform: translate(5vw,-10px);
+  line-height: 25px;
   @media only screen and (max-width: 500px) {
     font-size: 1rem;
     line-height: 15px;
-    transform: translate(30px,-5px);
+  //  transform: translate(30px,-5px);
   }
   @media only screen and (min-width: 1000px) {
     font-size: 2.1rem;
-    transform: translate(30px,-15px)
-  }
-`;
-const Secrets = styled.div`
-  display: flex;
-  width: 100%;
-  gap: 5px;
-  justify-content: center;
-`;
-const OfThe_Vertical = styled.span`
-  display: flex;
-  font-size: 1rem;
-  text-align: center;
-  line-height: 15px;
-  transform: translateY(-5px);
-  @media only screen and (max-width: 500px) {
-    font-size: 0.5rem;
-    line-height: 5px;
-    transform: none;
   }
 `;
 
