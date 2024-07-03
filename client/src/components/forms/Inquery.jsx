@@ -21,6 +21,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 const Button = styled.button`
   width: 200px;
@@ -31,12 +32,13 @@ const Button = styled.button`
   font-size: 3rem;
   font-family: 'Amatic SC';
   font-weight: bold;
-  transform: translateY(-60px);
+  transform: translateY(-80px);
   cursor: pointer;
   transition: all 0.3s linear;
   &: hover {
     border: 2px solid #e1c4ca;
     background: rgba(65,50,63,0.9);
+    color: white;
   }
   @media only screen and (max-width: 500px) {
     width: 20vw;
@@ -50,15 +52,15 @@ const Button = styled.button`
 `;
 const Query = styled.input`
   width: 70vw;
-  height: 20vw;
+  height: 30vh;
   border: none;
+  border-radius: 30px;
   max-height: 400px;
-  max-width: 700px;
-  background: rgb(0,0,0,0.4);
+  background: rgb(0,0,0,0.6);
   text-align: center;
   color: #e1c4ca;
   font-size: 3rem;
-  font-family: 'Amatic SC';
+  font-family: 'Lora';
   font-weight: bold;
   transition: all 0.3s linear;
   &::placeholder {
@@ -67,16 +69,16 @@ const Query = styled.input`
   &:focus::placeholder {
     color: transparent;
   }
-  @media only screen and (max-width: 700px) {
-    font-size: 1.3rem;
-    width: 95vw;
-    height: 25vh;
-  }
-  @media only screen and (min-width: 701px) and (max-width: 1300px) {
-    font-size: 2rem;
-    width: 95vw;
-    height: 25vh;
-  }
+  // @media only screen and (max-width: 700px) {
+  //   font-size: 1.3rem;
+  //   width: 95vw;
+  //   height: 25vh;
+  // }
+  // @media only screen and (min-width: 701px) and (max-width: 1300px) {
+  //   font-size: 2rem;
+  //   width: 95vw;
+  //   height: 25vh;
+  // }
 `;
 
 export default Inquery;
