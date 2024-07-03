@@ -1,14 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 const Inquery = ({ questionSetter, runFetchSetter }) => {
-  const handleChange = (e) => questionSetter(e.target.value);
-
-  function handleSubmit (e) {
-    e.preventDefault();
-    runFetchSetter(true);
-  };
-
   const questions = [
     'Burning question?',
     'Perhaps a major dilemma?',
@@ -19,16 +12,29 @@ const Inquery = ({ questionSetter, runFetchSetter }) => {
     'Tell me more.',
     'Welcome, ask away.',
     'Ready when you are, ask away.',
-    'What would you like to know'
+    'What would you like to know?'
   ];
+  const randomQuestion = questions[0 + Math.floor(Math.random() * (questions.length - 0 + 1))];
+  const [question, setQuestion] = useState(randomQuestion);
 
-  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setQuestion(randomQuestion);
+    }, 60000);
 
+    return () => clearInterval(interval);
+  }, [question]);
 
+  const handleChange = (e) => questionSetter(e.target.value);
+
+  function handleSubmit (e) {
+    e.preventDefault();
+    runFetchSetter(true);
+  };
 
   return (
     <Container>
-      <Query onChange={handleChange} placeholder='Burning question?'/>
+      <Query onChange={handleChange} placeholder={question}/>
       <Button onClick={handleSubmit}>submit</Button>
     </Container>
   );
@@ -51,7 +57,8 @@ const Button = styled.button`
   font-weight: bold;
   transform: translateY(-80px);
   cursor: pointer;
-  transition: all 0.3s linear;
+  
+  
   &: hover {
     border: 2px solid #e1c4ca;
     background: rgba(65,50,63,0.9);
@@ -79,9 +86,10 @@ const Query = styled.input`
   font-size: 3rem;
   font-family: 'Lora';
   font-weight: bold;
-  transition: all 0.3s linear;
   &::placeholder {
     color: white;
+    opacity: ${props => props.inTransition ? 0 : 1};
+    transition: opacity 0.3s linear;
   }
   &:focus::placeholder {
     color: transparent;
