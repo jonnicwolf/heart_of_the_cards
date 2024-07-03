@@ -9,9 +9,26 @@ const Inquery = ({ questionSetter, runFetchSetter }) => {
     runFetchSetter(true);
   };
 
+  const questions = [
+    'Burning question?',
+    'Perhaps a major dilemma?',
+    'Significant matter?',
+    'Pressing concern?',
+    'Pour the tea.',
+    'Critical matter?',
+    'Tell me more.',
+    'Welcome, ask away.',
+    'Ready when you are, ask away.',
+    'What would you like to know'
+  ];
+
+  
+
+
+
   return (
     <Container>
-      <Query onChange={handleChange} placeholder='What question burns brightest within your heart?'/>
+      <Query onChange={handleChange} placeholder='Burning question?'/>
       <Button onClick={handleSubmit}>submit</Button>
     </Container>
   );
