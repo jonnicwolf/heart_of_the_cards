@@ -7,6 +7,7 @@ import Logout_Btn from './Logout_Btn';
 import { useNavigate } from 'react-router-dom';
 
 const Nav = () => {
+  const [showMenu, setShowMenu] = useState(false);
   const [error, setError] = useState('');
 
   const { logout } = useAuth();
@@ -33,8 +34,10 @@ const Nav = () => {
         <span>ERI</span>
       </LogoContainer>
 
-      <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=FFFFFF' alt=''/>
-      <History src="https://img.icons8.com/?size=100&id=hZ5zdXjC6tJ3&format=png&color=FFFFFF" alt="" />
+      <SlideOutMenu showMenu={showMenu}>
+        <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=FFFFFF' alt=''/>
+        <History src="https://img.icons8.com/?size=100&id=hZ5zdXjC6tJ3&format=png&color=FFFFFF" alt="" />
+      </SlideOutMenu>
       <MenuSwitch onClick={handleLogout}>
         <Logout_Btn />
       </MenuSwitch>
@@ -72,17 +75,23 @@ const LogoContainer = styled.div`
   @media only screen and (max-width: 500px) {
     font-size: 1rem;
     line-height: 15px;
-  //  transform: translate(30px,-5px);
   }
   @media only screen and (min-width: 1000px) {
     font-size: 2.1rem;
   }
 `;
+const SlideOutMenu = styled.div`
+  display: flex;
+  gap: 2vw;
+  width: ${props => props.showMenu ? '20vw' : 0} ;
+  overflow: hidden;
+  transition: width 0.5s ease-in-out;
+`;
 const History = styled.img`
   height: 2.5rem;
-`
+`;
 const Home = styled.img`
   height: 2.8rem;
-`
+`;
 
 export default Nav;
