@@ -33,6 +33,8 @@ const Nav = () => {
         <span>ERI</span>
       </LogoContainer>
 
+      <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=FFFFFF' alt=''/>
+      <History src="https://img.icons8.com/?size=100&id=hZ5zdXjC6tJ3&format=png&color=FFFFFF" alt="" />
       <MenuSwitch onClick={handleLogout}>
         <Logout_Btn />
       </MenuSwitch>
@@ -52,7 +54,7 @@ const Container = styled.footer`
   padding: 15px;
 `;
 const MenuSwitch = styled.button`
-  height: 100%;
+  height: 1G00%;
   color: #e1c4ca;
   background: none;
   border: none;
@@ -76,5 +78,11 @@ const LogoContainer = styled.div`
     font-size: 2.1rem;
   }
 `;
+const History = styled.img`
+  height: 2.5rem;
+`
+const Home = styled.img`
+  height: 2.8rem;
+`
 
 export default Nav;
