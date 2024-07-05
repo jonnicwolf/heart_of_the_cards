@@ -26,18 +26,24 @@ const Nav = () => {
     };
   };
 
+  const handleClick = () => {
+    setShowMenu(!showMenu);
+  };
+
   return (
     <Container>
+      <MenuLogoWarp>
+        <LogoContainer onClick={handleClick}>
+          <span>ESP</span>
+          <span>ERI</span>
+        </LogoContainer>
 
-      <LogoContainer>
-        <span>ESP</span>
-        <span>ERI</span>
-      </LogoContainer>
+        <SlideOutMenu showMenu={showMenu}>
+          <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=FFFFFF' alt=''/>
+          <History src="https://img.icons8.com/?size=100&id=hZ5zdXjC6tJ3&format=png&color=FFFFFF" alt="" />
+        </SlideOutMenu>
+      </MenuLogoWarp>
 
-      <SlideOutMenu showMenu={showMenu}>
-        <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=FFFFFF' alt=''/>
-        <History src="https://img.icons8.com/?size=100&id=hZ5zdXjC6tJ3&format=png&color=FFFFFF" alt="" />
-      </SlideOutMenu>
       <MenuSwitch onClick={handleLogout}>
         <Logout_Btn />
       </MenuSwitch>
@@ -56,6 +62,13 @@ const Container = styled.footer`
   z-index: 2;
   padding: 15px;
 `;
+const MenuLogoWarp = styled.div`
+  display: flex;
+  gap: 2vw;
+  align-items: center;
+  padding: 5px;
+  width: 50%;
+`
 const MenuSwitch = styled.button`
   height: 1G00%;
   color: #e1c4ca;
