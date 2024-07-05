@@ -39,8 +39,12 @@ const Nav = () => {
         </LogoContainer>
 
         <SlideOutMenu showMenu={showMenu}>
-          <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=FFFFFF' alt=''/>
-          <History src="https://img.icons8.com/?size=100&id=hZ5zdXjC6tJ3&format=png&color=FFFFFF" alt="" />
+          <HomeButton>
+            <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=FFFFFF' alt=''/>
+          </HomeButton>
+          <HistoryButton>
+            <History src="https://img.icons8.com/?size=100&id=hZ5zdXjC6tJ3&format=png&color=FFFFFF" alt="" />
+          </HistoryButton>
         </SlideOutMenu>
       </MenuLogoWarp>
 
@@ -66,7 +70,7 @@ const MenuLogoWarp = styled.div`
   display: flex;
   gap: 2vw;
   align-items: center;
-  width: 20%;
+  width: 23%;
 `
 const MenuSwitch = styled.button`
   height: 1G00%;
@@ -95,18 +99,26 @@ const LogoContainer = styled.div`
 const SlideOutMenu = styled.div`
   display: flex;
   gap: 2vw;
-  padding: 5px;
+  padding: 5px 10px 5px 10px;
   opacity: ${props => props.showMenu ? '100%' : 0} ;
   width: ${props => props.showMenu ? '100%' : 0} ;
   border: ${props => props.showMenu ?  "1px solid white" : "none"};
   overflow: hidden;
   transition: all 0.5s ease-in-out;
 `;
+const Home = styled.img`
+  height: 2.8rem;
+`;
+const HomeButton = styled.button`
+  background: none;
+  border: none;
+`;
 const History = styled.img`
   height: 2.5rem;
 `;
-const Home = styled.img`
-  height: 2.8rem;
+const HistoryButton = styled.button`
+  background: none;
+  border: none;
 `;
 
 export default Nav;
