@@ -26,20 +26,23 @@ const Nav = () => {
     };
   };
 
-  const handleClick = () => {
+  const handleLogoClick = () => {
     setShowMenu(!showMenu);
   };
+  const handleHomeClick = () => {
+    navigate('/');
+  }
 
   return (
     <Container>
       <MenuLogoWarp>
-        <LogoContainer onClick={handleClick} showMenu={showMenu}>
+        <LogoContainer onClick={handleLogoClick} showMenu={showMenu}>
           <span>ESP</span>
           <span>ERI</span>
         </LogoContainer>
 
         <SlideOutMenu showMenu={showMenu}>
-          <HomeButton>
+          <HomeButton onClick={handleHomeClick}>
             <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=FFFFFF' alt=''/>
             <HomeText>Home</HomeText>
           </HomeButton>
@@ -73,7 +76,6 @@ const MenuLogoWarp = styled.div`
   display: flex;
   gap: 2vw;
   align-items: center;
-  // justify-content: space-between;
   width: 30%;
 `
 const MenuSwitch = styled.button`
