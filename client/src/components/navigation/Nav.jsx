@@ -66,8 +66,7 @@ const MenuLogoWarp = styled.div`
   display: flex;
   gap: 2vw;
   align-items: center;
-  padding: 5px;
-  width: 50%;
+  width: 20%;
 `
 const MenuSwitch = styled.button`
   height: 1G00%;
@@ -96,9 +95,12 @@ const LogoContainer = styled.div`
 const SlideOutMenu = styled.div`
   display: flex;
   gap: 2vw;
-  width: ${props => props.showMenu ? '20vw' : 0} ;
+  padding: 5px;
+  opacity: ${props => props.showMenu ? '100%' : 0} ;
+  width: ${props => props.showMenu ? '100%' : 0} ;
+  border: ${props => props.showMenu ?  "1px solid white" : "none"};
   overflow: hidden;
-  transition: width 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 `;
 const History = styled.img`
   height: 2.5rem;
