@@ -16,10 +16,10 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "firebase-admin": "^12.2.0",
+    "firebase-functions": "^5.0.1",
     "pg-promise": "^11.6.0",
     "react-scripts": "^5.0.1"
   },
-  "devDependencies": {},
   "keywords": [],
   "description": ""
 }
