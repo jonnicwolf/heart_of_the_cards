@@ -2,6 +2,7 @@
 const cors = require('cors');
 const express = require('express');
 const users = require('./controllers/users_controller');
+const historyR = require('./controllers/history')
 
 // CONFIGURATION
 const app = express();
@@ -9,7 +10,8 @@ const app = express();
 // MIDDLEWARE
 app.use(cors());
 app.use(express.json());
-app.use('/users', users);
+app.use('/users', usersR);
+app.use('/history', historyR);
 
 app.get('/', (req, res) => {
   res.status(200).json({data: 'Wamnin!'})

@@ -1,4 +1,4 @@
-import { decryptPrivateKey } from '../services/encryption';
+import { decryptPrivateKey } from '../services/encryption.js';
 
 const db = require('../db/dbConfig.js');
 

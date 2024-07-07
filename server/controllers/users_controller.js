@@ -13,7 +13,7 @@ const users = express.Router();
 users.get('/', async (req, res) =>{
   const query = await get_allUsers();
   if (query) res.status(200).json({ success: true, data: { payload: [...query] }})
-  else res.status(200).json({ success: false, data: { error: 'Server Error - Database is empty'}});
+  else res.status(200).json({ success: false, data: { error: 'Database is empty'}});
 });
 
 users.get('/:id', async (req, res) =>{

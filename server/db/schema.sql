@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS hotc_users_db;
+CREATE DATABASE IF NOT EXISTS esperi_db;
 
-\c hotc_users_db;
+\c esperi_db;
 
 CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS user_history (
+CREATE TABLE IF NOT EXISTS history (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
   question TEXT NOT NULL,

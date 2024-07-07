@@ -1,7 +1,6 @@
 {
   "name": "back-end",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -19,5 +18,8 @@
     "firebase-admin": "^12.2.0",
     "pg-promise": "^11.6.0",
     "react-scripts": "^5.0.1"
-  }
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "description": ""
 }
