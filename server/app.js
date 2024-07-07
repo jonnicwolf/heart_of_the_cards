@@ -1,8 +1,8 @@
 // DEPENDENCIES
 const cors = require('cors');
 const express = require('express');
-const users = require('./controllers/users_controller');
-const historyR = require('./controllers/history')
+const usersR = require('./controllers/users_controller');
+const historyR = require('./controllers/history_controller');
 
 // CONFIGURATION
 const app = express();

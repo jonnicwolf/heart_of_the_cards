@@ -26,3 +26,5 @@ history.get('/:id', async (req, res) => {
     console.error(error);
   }
 });
+
+module.exports = history;
