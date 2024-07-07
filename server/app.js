@@ -14,11 +14,11 @@ app.use('/users', usersR);
 app.use('/history', historyR);
 
 app.get('/', (req, res) => {
-  res.status(200).json({data: 'Wamnin!'})
+  res.status(200).json({data: 'Wamnin!'});
 });
 
 app.get('*', ((req, res) => {
-  res.status(404).send("404 Page Not Found")
+  res.status(404).send("404 Page Not Found");
 }));
 
 // EXPORT
