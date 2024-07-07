@@ -74,7 +74,7 @@ const Button = styled.button`
   }
 `;
 const Query = styled.input`
-  width: 70vw;
+  width: 60vw;
   height: 30vh;
   border: none;
   border-radius: 30px;
