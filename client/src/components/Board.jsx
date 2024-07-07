@@ -248,6 +248,6 @@ const Reload = styled.button`
     font-size: 1.5rem;
     width: 20vw;
   }
-`
+`;
 
 export default Board;
