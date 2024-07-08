@@ -31,7 +31,10 @@ const Nav = () => {
   };
   const handleHomeClick = () => {
     navigate('/');
-  }
+  };
+  const handleHistoryClick = () => {
+    navigate('/history');
+  };
 
   return (
     <Container>
@@ -46,7 +49,7 @@ const Nav = () => {
             <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=FFFFFF' alt=''/>
             <HomeText>Home</HomeText>
           </HomeButton>
-          <HistoryButton>
+          <HistoryButton onClick={handleHistoryClick}>
             <History src="https://img.icons8.com/?size=100&id=hZ5zdXjC6tJ3&format=png&color=FFFFFF" alt="" />
             <HistoryText>History</HistoryText>
           </HistoryButton>
