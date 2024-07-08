@@ -82,7 +82,7 @@ const MenuLogoWarp = styled.div`
   width: 30%;
 `
 const MenuSwitch = styled.button`
-  height: 1G00%;
+  height: 100%;
   color: #e1c4ca;
   background: none;
   border: none;
