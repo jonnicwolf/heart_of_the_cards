@@ -12,5 +12,5 @@ export default function Logout_Btn() {
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: inherit;
+  color: white;
 `;

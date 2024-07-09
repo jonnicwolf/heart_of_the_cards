@@ -32,6 +32,7 @@ const Nav = () => {
   const handleHomeClick = () => {
     navigate('/');
   };
+
   const handleHistoryClick = () => {
     navigate('/history');
   };
@@ -49,17 +50,18 @@ const Nav = () => {
             <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=FFFFFF' alt=''/>
             <HomeText>Home</HomeText>
           </HomeButton>
+
           <HistoryButton onClick={handleHistoryClick}>
             <History src="https://img.icons8.com/?size=100&id=hZ5zdXjC6tJ3&format=png&color=FFFFFF" alt="" />
             <HistoryText>History</HistoryText>
           </HistoryButton>
+
           <MenuSwitch onClick={handleLogout}>
             <Logout_Btn />
             <LogoutText>Logout</LogoutText>
           </MenuSwitch>
         </SlideOutMenu>
       </MenuLogoWarp>
-
     </Container>
   );
 };
@@ -82,7 +84,7 @@ const MenuLogoWarp = styled.div`
   width: 30%;
 `
 const MenuSwitch = styled.button`
-  height: 100%;
+  height: 1G00%;
   color: #e1c4ca;
   background: none;
   border: none;

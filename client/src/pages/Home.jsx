@@ -37,7 +37,6 @@ const Container = styled.div`
     100% { background-color: #699897 }
   }
   animation: colorShift 20s infinite;
-
   @media only screen and (max-width: 375px) and (pointer: coarse) and (hover: none) {
     height: 90vh;
   }
