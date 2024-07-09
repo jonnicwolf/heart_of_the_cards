@@ -57,12 +57,11 @@ const Button = styled.button`
   font-weight: bold;
   transform: translateY(-80px);
   cursor: pointer;
-  
-  
   &: hover {
     border: 2px solid #e1c4ca;
     background: rgba(65,50,63,0.9);
     color: white;
+    transition: all 0.3s linear;
   }
   @media only screen and (max-width: 500px) {
     width: 20vw;
@@ -75,7 +74,7 @@ const Button = styled.button`
   }
 `;
 const Query = styled.input`
-  width: 70vw;
+  width: 60vw;
   height: 30vh;
   border: none;
   border-radius: 30px;
