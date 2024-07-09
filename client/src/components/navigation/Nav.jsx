@@ -33,6 +33,10 @@ const Nav = () => {
     navigate('/');
   };
 
+  const handleHistoryClick = () => {
+    navigate('/history');
+  };
+
   return (
     <Container>
       <MenuLogoWarp>
@@ -47,7 +51,7 @@ const Nav = () => {
             <HomeText>Home</HomeText>
           </HomeButton>
 
-          <HistoryButton>
+          <HistoryButton onClick={handleHistoryClick}>
             <History src="https://img.icons8.com/?size=100&id=hZ5zdXjC6tJ3&format=png&color=FFFFFF" alt="" />
             <HistoryText>History</HistoryText>
           </HistoryButton>
