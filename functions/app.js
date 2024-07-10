@@ -1,6 +1,8 @@
 // DEPENDENCIES
 const cors = require('cors');
 const express = require('express');
+
+// CONTROLLERS
 const usersR = require('./controllers/users_controller');
 const historyR = require('./controllers/history_controller');
 
@@ -14,7 +16,7 @@ app.use('/users', usersR);
 app.use('/history', historyR);
 
 app.get('/', (req, res) => {
-  res.status(200).json({data: 'Wamnin!'});
+  res.status(200).send('Wamnin!');
 });
 
 app.get('*', ((req, res) => {
