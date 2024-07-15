@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Nav = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const [error, setError] = useState('');
 
   const { logout } = useAuth();
   const navigate = useNavigate();
@@ -19,7 +18,6 @@ const Nav = () => {
       await logout();
       navigate('/login');
     } catch (error) {
-      setError('Failed to log out.');
       return (
         <Alert variant='danger'>{error}</Alert>
       );
@@ -40,10 +38,10 @@ const Nav = () => {
   return (
     <Container>
       <MenuLogoWarp>
-        <LogoContainer onClick={handleLogoClick} showMenu={showMenu}>
+        <Logo onClick={handleLogoClick} showMenu={showMenu}>
           <span>ESP</span>
           <span>ERI</span>
-        </LogoContainer>
+        </Logo>
 
         <SlideOutMenu showMenu={showMenu}>
           <HomeButton onClick={handleHomeClick}>
@@ -56,11 +54,12 @@ const Nav = () => {
             <HistoryText>History</HistoryText>
           </HistoryButton>
 
-          <MenuSwitch onClick={handleLogout}>
+          <Logout onClick={handleLogout}>
             <Logout_Btn />
             <LogoutText>Logout</LogoutText>
-          </MenuSwitch>
+          </Logout>
         </SlideOutMenu>
+
       </MenuLogoWarp>
     </Container>
   );
@@ -68,32 +67,30 @@ const Nav = () => {
 
 const Container = styled.footer`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 0.5vh solid #db8aae;
+  justify-content: flex-start;
   height: 10vh;
   background: #699897;
   color: white;
   z-index: 2;
-  padding: 15px;
+  padding-left: 15px;
 `;
 const MenuLogoWarp = styled.div`
   display: flex;
   gap: 2vw;
   align-items: center;
-  width: 30%;
-`
-const MenuSwitch = styled.button`
-  height: 1G00%;
+`;
+const Logout = styled.button`
+  height: 100%;
   color: #e1c4ca;
   background: none;
   border: none;
-  justify-self: flex-start;
+  display: flex;
+  flex-direction: column;
   @media only screen and (max-width: 500px) {
     font-size: 10px;
   }
 `;
-const LogoContainer = styled.div`
+const Logo = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 2rem;
@@ -122,6 +119,8 @@ const Home = styled.img`
 const HomeButton = styled.button`
   background: none;
   border: none;
+  display: flex;
+  flex-direction: column;
 `;
 const HomeText = styled.span`
   color: white;
@@ -134,6 +133,8 @@ const History = styled.img`
 const HistoryButton = styled.button`
   background: none;
   border: none;
+  display: flex;
+  flex-direction: column;
 `;
 const HistoryText = styled.span`
   color: white;
@@ -148,6 +149,6 @@ const LogoutText = styled.span`
   font-family: Bagnard;
   padding: 0;
   margin: 0;
-`
+`;
 
 export default Nav;

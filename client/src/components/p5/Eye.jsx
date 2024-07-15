@@ -22,7 +22,7 @@ const Eye = ({ width, height }) => {
 
       p.push();
       p.noStroke();
-      p.fill('black')
+      p.fill('black');
       p.ellipse(0, 0, lid_w * 8, height, 4);
       p.pop();
 
