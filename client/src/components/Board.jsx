@@ -109,8 +109,8 @@ const Board = () => {
 
   function renderBoard() {
     if (!runFetch) {
-      logEvent(analytics, 'reading_initiated')
-      return ( <> {renderInquiry()} </> )
+      logEvent(analytics, 'reading_initiated');
+      return ( <> {renderInquiry()} </> );
     }
     else return (
       <>
@@ -189,13 +189,13 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 94vh;
+  height: 100%;
   width: 100%;
   gap: 5vh;
   z-index: 2;
 `;
 const ReadingContainer = styled.div`
-  height: ${props => props.windowWidth ? '40vh' : '21vh'}
+  height: ${props => props.windowWidth ? '40vh' : '21vh'};
   width: 80vw;
   max-width: 1200px;
   color: white;
