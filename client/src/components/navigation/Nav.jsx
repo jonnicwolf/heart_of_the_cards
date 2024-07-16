@@ -65,18 +65,22 @@ const Nav = () => {
   );
 };
 
-const Container = styled.footer`
+const Container = styled.header`
   display: flex;
-  justify-content: flex-start;
-  height: 10vh;
+  justify-content: center;
+  align-items: center;
+  height: 5.5vh;
+  width: 100%;
   background: #699897;
   color: white;
   z-index: 2;
   padding-left: 15px;
 `;
 const MenuLogoWarp = styled.div`
+  width: 90%;
   display: flex;
   gap: 2vw;
+  max-width: 1500px;
   align-items: center;
 `;
 const Logout = styled.button`
@@ -95,6 +99,7 @@ const Logo = styled.div`
   flex-direction: column;
   font-size: 2rem;
   font-family: Bagnard;
+  transform: translateY(3px);
   line-height: ${props => props.showMenu ? '35px' : '25px'};
   transition: line-height 0.3s ease-in-out;
   cursor: pointer;
@@ -107,11 +112,12 @@ const SlideOutMenu = styled.div`
   display: flex;
   gap: 2vw;
   padding: 5px 10px 5px 10px;
-  opacity: ${props => props.showMenu ? '100%' : 0} ;
-  width: ${props => props.showMenu ? '100%' : 0} ;
+  opacity: ${props => props.showMenu ? '100%' : 0};
+  width: ${props => props.showMenu ? '100%' : 0};
   border: ${props => props.showMenu ?  "1px solid white" : "none"};
   overflow: hidden;
   transition: all 0.5s ease-in-out;
+  width: 16%;
 `;
 const Home = styled.img`
   height: 2rem;
