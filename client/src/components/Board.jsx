@@ -109,8 +109,8 @@ const Board = () => {
 
   function renderBoard() {
     if (!runFetch) {
-      logEvent(analytics, 'reading_initiated')
-      return ( <> {renderInquiry()} </> )
+      logEvent(analytics, 'reading_initiated');
+      return ( <> {renderInquiry()} </> );
     }
     else return (
       <>
