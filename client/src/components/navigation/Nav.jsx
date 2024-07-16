@@ -44,19 +44,19 @@ const Nav = () => {
         </Logo>
 
         <SlideOutMenu showMenu={showMenu}>
-          <HomeButton onClick={handleHomeClick}>
+          <Button onClick={handleHomeClick}>
             <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=FFFFFF' alt=''/>
-            <HomeText>Home</HomeText>
-          </HomeButton>
+            <Text>Home</Text>
+          </Button>
 
-          <HistoryButton onClick={handleHistoryClick}>
+          <Button onClick={handleHistoryClick}>
             <History src="https://img.icons8.com/?size=100&id=hZ5zdXjC6tJ3&format=png&color=FFFFFF" alt="" />
-            <HistoryText>History</HistoryText>
-          </HistoryButton>
+            <Text>History</Text>
+          </Button>
 
           <Logout onClick={handleLogout}>
             <Logout_Btn />
-            <LogoutText>Logout</LogoutText>
+            <Text>Logout</Text>
           </Logout>
         </SlideOutMenu>
 
@@ -98,6 +98,7 @@ const Logout = styled.button`
   background: none;
   border: none;
   display: flex;
+  align-items: center;
   flex-direction: column;
   @media only screen and (max-width: 500px) {
     font-size: 10px;
@@ -123,47 +124,29 @@ const SlideOutMenu = styled.div`
   padding: 5px 10px 5px 10px;
   opacity: ${props => props.showMenu ? '100%' : 0};
   width: ${props => props.showMenu ? '100%' : 0};
-  border: ${props => props.showMenu ?  "1px solid white" : "none"};
+  border: ${props => props.showMenu ?  "1.5px solid white" : "none"};
   overflow: hidden;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
   width: 16%;
 `;
 const Home = styled.img`
   height: 2rem;
 `;
-const HomeButton = styled.button`
+const Button = styled.button`
   background: none;
   border: none;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
-const HomeText = styled.span`
+const Text = styled.span`
   color: white;
   font-size: 0.7rem;
   font-family: Bagnard;
 `;
+
 const History = styled.img`
   height: 2rem;
-`;
-const HistoryButton = styled.button`
-  background: none;
-  border: none;
-  display: flex;
-  flex-direction: column;
-`;
-const HistoryText = styled.span`
-  color: white;
-  font-size: 0.7rem;
-  font-family: Bagnard;
-  padding: 0;
-  margin: 0;
-`;
-const LogoutText = styled.span`
-  color: white;
-  font-size: 0.7rem;
-  font-family: Bagnard;
-  padding: 0;
-  margin: 0;
 `;
 
 export default Nav;
