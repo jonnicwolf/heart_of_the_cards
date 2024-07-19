@@ -1,7 +1,18 @@
-CREATE DATABASE IF NOT EXISTS esperi_db;
+CREATE EXTENSION dblink;
 
-\c esperi_db;
+-- Step 1: Use dblink to create the database if it does not exist
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_database WHERE datname = 'esperi_db') THEN
+        PERFORM dblink_exec('dbname=postgres', 'CREATE DATABASE esperi_db');
+    END IF;
+END
+$$;
 
+-- Step 2: Connect to the newly created database
+\c esperi_db
+
+-- Step 3: Create the users table if it does not exist
 CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255) NOT NULL UNIQUE,
@@ -11,6 +22,7 @@ CREATE TABLE IF NOT EXISTS users (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Step 4: Create the history table if it does not exist
 CREATE TABLE IF NOT EXISTS history (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255) NOT NULL,
