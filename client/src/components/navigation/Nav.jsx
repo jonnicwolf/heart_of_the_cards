@@ -122,12 +122,14 @@ const SlideOutMenu = styled.div`
   display: flex;
   gap: 2vw;
   padding: 5px 10px 5px 10px;
+  background-color: 'none';
   opacity: ${props => props.showMenu ? '100%' : 0};
   width: ${props => props.showMenu ? '100%' : 0};
   border: ${props => props.showMenu ?  "1.5px solid white" : "none"};
   overflow: hidden;
   transition: all 0.3s ease-in-out;
   width: 16%;
+  animation: colorShift 20s infinite;
 `;
 const Home = styled.img`
   height: 2rem;
