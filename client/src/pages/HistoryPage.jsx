@@ -6,10 +6,10 @@ export default function HistoryPage() {
   return (
     <Container>
       <ContentWrap>
-        <PageTitle>Past Readings</PageTitle>
-        <div>
-          HistoryPage
-        </div>
+        <TitleContainer>
+          <Title>Past Readings</Title>
+          <Month>July</Month>
+        </TitleContainer>
       </ContentWrap>
     </Container>
   );
@@ -31,7 +31,12 @@ const ContentWrap = styled.div`
   align-items: center;
   padding-top: 1vh;
 `;
-const PageTitle = styled.h1`
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const Title = styled.h1`
   font-size: 2rem;
   font-family: Bagnard;
   --s: 5px;
@@ -40,4 +45,9 @@ const PageTitle = styled.h1`
   outline: 1px solid #000;
   outline-offset: calc(-3*var(--s));
   background: conic-gradient(from 90deg at 1px 1px,#0000 25%,#000 0);
+`;
+const Month = styled.h2`
+  text-align: center;
+  font-size: 2vw;
+  font-family: Bagnard;
 `;
