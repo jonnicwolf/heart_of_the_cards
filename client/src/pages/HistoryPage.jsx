@@ -62,5 +62,5 @@ const ContentContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  gap: 3vw;
+  gap: vw;
 `;
