@@ -1,16 +1,22 @@
-import { Page } from 'openai/pagination.mjs';
 import React from 'react';
 import styled from 'styled-components';
+
+import HistoryCard from '../components/HistoryCard';
 
 export default function HistoryPage() {
   return (
     <Container>
-      <ContentWrap>
+      <Wrap>
         <TitleContainer>
           <Title>Past Readings</Title>
           <Month>July</Month>
         </TitleContainer>
-      </ContentWrap>
+        <ContentContainer>
+          <HistoryCard />
+          <HistoryCard />
+          <HistoryCard />
+        </ContentContainer>
+      </Wrap>
     </Container>
   );
 };
@@ -22,7 +28,7 @@ const Container = styled.div`
   justify-content: center;
   background-color: #fce6c5;
 `;
-const ContentWrap = styled.div`
+const Wrap = styled.div`
   width: 90%;
   gap: 2vw;
   max-width: 1500px;
@@ -50,4 +56,11 @@ const Month = styled.h2`
   text-align: center;
   font-size: 2vw;
   font-family: Bagnard;
+`;
+const ContentContainer = styled.div`
+  max-width: 1500px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 3vw;
 `;
