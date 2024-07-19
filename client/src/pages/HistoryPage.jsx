@@ -1,4 +1,5 @@
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
 import styled from 'styled-components';
 
 import HistoryCard from '../components/HistoryCard';
