@@ -12,9 +12,7 @@ export default function HistoryPage() {
           <Month>July</Month>
         </TitleContainer>
         <ContentContainer>
-          <HistoryCard />
-          <HistoryCard />
-          <HistoryCard />
+          {}
         </ContentContainer>
       </Wrap>
     </Container>
@@ -62,5 +60,6 @@ const ContentContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-evenly;
-  gap: vw;
+  flex-wrap: wrap;
+  gap: 4vw;
 `;
