@@ -27,7 +27,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-apart;
-  border: 1px solid #f7c765;
+  border: 10px double #c99c40;
 `;
 const Date = styled.h1`
   height: 30%;
