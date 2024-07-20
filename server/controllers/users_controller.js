@@ -24,7 +24,7 @@ users.get('/:id', async (req, res) =>{
   else res.status(200).json({ success: false, data: { error: 'User not found. '}});
 });
 
-users.get('/:email', async (req, res) =>{
+users.get('email/:email', async (req, res) =>{
   const { email } = req.params;
   const user = await get_userByEmail(email);
 
@@ -63,7 +63,7 @@ users.delete('/:id', async (req, res) => {
   };
 });
 
-users.delete('/:email', async (req, res) => {
+users.delete('email/:email', async (req, res) => {
   const { email } = req.params;
   try {
     const user = await delete_userByEmail(email);

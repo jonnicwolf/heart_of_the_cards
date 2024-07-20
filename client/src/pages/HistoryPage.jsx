@@ -3,8 +3,25 @@ import { useQuery } from '@tanstack/react-query';
 import styled from 'styled-components';
 
 import HistoryCard from '../components/HistoryCard';
+import Card from '../components/p5/Card';
+
+
 
 export default function HistoryPage() {
+  const getHistory = async () => {
+    try {
+      const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
+      return response.json();
+    }
+    catch (error) { throw new Error('getCard error: ', error) };
+  };
+
+  // const {data: history} = useQuery({
+  //   queryKey: ['history'],
+    
+  //   enabled: !!question && !!cards,
+  // });
+
   return (
     <Container>
       <Wrap>

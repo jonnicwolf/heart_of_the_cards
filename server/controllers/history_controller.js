@@ -16,7 +16,7 @@ history.get('/:id', async(req,res) => {
   };
 });
 
-history.get('/:id', async (req, res) => {
+history.get('/last/:id', async (req, res) => {
   const { id } = req.params;
   try {
     const result = await get_last(id);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { analytics } from '../../firebase';
 import { logEvent } from 'firebase/analytics';
 import { useQuery } from '@tanstack/react-query';
@@ -9,13 +9,11 @@ import Eye from '../components/p5/Eye';
 import Card from '../components/p5/Card';
 import Inquery from './forms/Inquery';
 
-import { useCards } from '../context/CardsContext';
 import { get_tarot_reading } from '../openai_scripts/get_tarot_reading';
 
 const Board = () => {
   const [question, setQuestion] = useState('');
   const [runFetch, setRunFetch] = useState(false);
-  const { cards, setCards } = useCards();
 
   function handleReload () {
     return window.location.reload();
@@ -58,12 +56,6 @@ const Board = () => {
     queryFn: ()=> get_tarot_reading(question, cards?.cards.map(item => item.name)),
     enabled: !!question && !!cards,
   });
-
-  useEffect(() => {
-    if (cardsData && !cards ) {
-      setCards(cardsData.cards)
-    }
-  })
 
   const parsedReading = reading
     ? readingParser(reading.choices[0].message.content)
