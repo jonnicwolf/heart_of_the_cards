@@ -12,6 +12,7 @@ const users = express.Router();
 
 users.get('/', async (req, res) =>{
   const query = await get_allUsers();
+  console.log(query, 'query')
   if (query) res.status(200).json({ success: true, data: { payload: [...query] }})
   else res.status(200).json({ success: false, data: { error: 'Database is empty'}});
 });
@@ -34,7 +35,8 @@ users.get('email/:email', async (req, res) =>{
 
 users.post('/', async (req, res) => {
   try {
-    post_newUser(req.body);
+    const newUser = await post_newUser(req.body);
+    res.status(201).json({ success: true, data: { payload: newUser }});
   }
   catch (error) {
     res.status(400).json({ error: 'New User not created.' });
