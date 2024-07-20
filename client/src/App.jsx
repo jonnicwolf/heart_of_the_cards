@@ -5,6 +5,7 @@ import '../styles/global.css';
 
 import PrivateRoute from './components/PrivateRoute';
 import Home from './pages/Home';
+import HistoryPage from './pages/HistoryPage';
 import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
@@ -29,6 +30,7 @@ function App() {
           <Route path='/' element={<PrivateRoute />}>
             <Route index element={<Home />} />
           </Route>
+          <Route path='/history' element={<HistoryPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SignupPage />} />
           <Route path='/forgot-password' element={<ForgotPasswordPage />} />

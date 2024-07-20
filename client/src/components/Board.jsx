@@ -57,8 +57,6 @@ const Board = () => {
     enabled: !!question && !!cards,
   });
 
-  
-
   const parsedReading = reading
     ? readingParser(reading.choices[0].message.content)
     : '';
