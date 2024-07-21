@@ -31,8 +31,8 @@ const Nav = () => {
     navigate('/');
   };
 
-  const handleHistoryClick = () => {
-    navigate('/history');
+  const handleHistoryClick = (allowHistory) => {
+    allowHistory ? navigate('/history') : alert('History is currently under maintenance');
   };
 
   return (
@@ -49,7 +49,7 @@ const Nav = () => {
             <Text>Home</Text>
           </Button>
 
-          <Button onClick={handleHistoryClick}>
+          <Button onClick={() => handleHistoryClick(false)}>
             <History src="https://img.icons8.com/?size=100&id=hZ5zdXjC6tJ3&format=png&color=FFFFFF" alt="" />
             <Text>History</Text>
           </Button>
