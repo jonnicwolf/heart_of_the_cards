@@ -102,7 +102,7 @@ const Logout = styled.button`
     font-size: 10px;
   }
 `;
-const Logo = styled.div`
+export const Logo = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 2rem;
