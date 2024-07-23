@@ -7,7 +7,7 @@ export default function Card() {
 
   return (
     <Container>
-      <Eye width={20} height={40}/>
+      <Eye width={80} height={160}/>
       <Welcome>
         Welcome to <br />Esperi
       </Welcome>
