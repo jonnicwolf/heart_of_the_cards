@@ -1,13 +1,14 @@
 import React from 'react'
 import styled from 'styled-components';
 
-import Carousel from '../components/modals/Carousel';
+import Modal from '../components/modals/Modal';
 
 const Test = () => {
   return (
     <>
-      
+      <Modal />
     </>
   )
 }
-export default Test
+
+export default Test;
