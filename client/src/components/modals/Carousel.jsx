@@ -18,7 +18,7 @@ export default function Carousel({ cards }) {
     <Container>
       {cards[currentCard]}
       <Pagination>
-        {cards.map(_,i => <PageCircleButton onClick={() => goTo(i)}/> )}
+        {cards.map((_,i) => <PageCircleButton onClick={() => goTo(i)}/> )}
       </Pagination>
     </Container>
   );
@@ -36,7 +36,7 @@ const Pagination = styled.div`
   gap: 2vw;
 `;
 const PageCircleButton = styled.button`
-  height: 1vw;
-  width: 1vw;
+  height: 1vh;
+  width: 1vh;
   border-radius: 50%;
 `;

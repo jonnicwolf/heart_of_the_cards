@@ -2,12 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Carousel from './Carousel';
+import Card from './Card';
 
 export default function Modal() {
-
+  const cards = [
+    <Card />
+  ]
   return (
     <Container>
-      <Carousel />
+      <Carousel cards={cards} />
     </Container>
   );
 };
