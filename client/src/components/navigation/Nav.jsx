@@ -67,7 +67,6 @@ const Nav = () => {
 
 const Container = styled.header`
   display: flex;
-  // justify-content: center;
   align-items: center;
   height: 5.5vh;
   width: 100%;
@@ -86,7 +85,6 @@ const Container = styled.header`
   animation: colorShift 20s infinite;
 `;
 const MenuLogoWarp = styled.div`
-  // width: 90%;
   display: flex;
   gap: 2vw;
   max-width: 1500px;
