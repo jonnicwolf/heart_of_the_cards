@@ -39,4 +39,5 @@ const PageCircleButton = styled.button`
   height: 1vh;
   width: 1vh;
   border-radius: 50%;
+  border: 2px solid grey;
 `;
