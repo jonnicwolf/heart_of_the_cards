@@ -12,7 +12,7 @@ export default function Carousel({ cards }) {
   };
   function goTo (cardNumber) {
     setCurrentCard(cardNumber);
-  }
+  };
 
   return (
     <Container>
