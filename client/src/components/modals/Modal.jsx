@@ -11,7 +11,8 @@ export default function Modal() {
     <WelcomeCard />,
     <HIWCard />,
     <GetStartedCard />,
-  ]
+  ];
+
   return (
     <Container>
       <Carousel cards={cards} />

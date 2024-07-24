@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function GetStartedCard() {
   const navigate = useNavigate();
   function handleClick () {
-    navigate('/home');
+    navigate('/');
   }
   return (
     <Container>
@@ -13,7 +13,7 @@ export default function GetStartedCard() {
       <Message>
         Ready to embark on your tarot journey? Click the button below to start your adventure with Esperi.
       </Message>
-      <Button>Lets Go!</Button>
+      <Button onClick={handleClick}>Lets Go!</Button>
     </Container>
   );
 };
