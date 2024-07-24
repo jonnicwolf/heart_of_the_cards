@@ -8,9 +8,9 @@ import GetStartedCard from './GetStartedCard';
 
 export default function Modal() {
   const cards = [
-    <GetStartedCard />,
-    <HIWCard />,
     <WelcomeCard />,
+    <HIWCard />,
+    <GetStartedCard />,
   ]
   return (
     <Container>
