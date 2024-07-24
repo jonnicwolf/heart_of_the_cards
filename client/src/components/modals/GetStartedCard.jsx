@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 export default function GetStartedCard() {
+  const navigate = useNavigate();
+  function handleClick () {
+    navigate('/home');
+  }
   return (
     <Container>
       <Title>Get Started</Title>
