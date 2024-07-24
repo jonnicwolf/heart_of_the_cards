@@ -49,6 +49,7 @@ const Message = styled.p`
   font-family: Bagnard;
   text-align: center;
   padding: 30px;
+  font-size: 1.5rem;
 `;
 
 const blink = keyframes`

@@ -33,10 +33,10 @@ export default function Carousel({ cards, setter }) {
         <SlideButton onClick={handleNext}>▶</SlideButton>
       </Pagination>
 
-      <Checkbox>
+      {/* <Checkbox>
         <input type="checkbox" id='checkbox' />
         <label htmlFor='checkbox' onClick={handleExit}>I don't want to see this again.</label>
-      </Checkbox>
+      </Checkbox> */}
 
     </Container>
   );
