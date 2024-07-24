@@ -26,7 +26,7 @@ export default function Carousel({ cards }) {
 
 const Container = styled.div`
   width: 50%;
-  height: 70%;
+  height: 80%;
   border: 1px solid red;
   display: flex;
   flex-direction: column;

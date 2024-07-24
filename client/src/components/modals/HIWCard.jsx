@@ -1,14 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import example from '../../assets/example.mp4'
+
 export default function HIWCard() {
+  
   return (
     <Container>
       <Title>How it works</Title>
-      <Example></Example>
+      <Example autoPlay loop muted>
+        <source src={example} type='video/mp4' />
+      </Example>
       <Message>
-        
-Enter your question into the provided box, and you'll receive a meticulously detailed tarot reading. This reading will include a thorough breakdown of each card drawn, along with in-depth interpretations to help you gain a deeper understanding of the insights and guidance they offer.
+        Enter your question into the provided box, and you'll receive a meticulously detailed tarot reading. This reading will include a thorough breakdown of each card drawn, along with in-depth interpretations to help you gain a deeper understanding of the insights and guidance they offer.
       </Message>
     </Container>
   );
@@ -30,8 +34,7 @@ const Title = styled.h1`
 `;
 const Example = styled.video`
   width: 80%;
-  border: 1px solid red;
-`
+`;
 const Message = styled.p`
   font-family: Bagnard;
   text-align: center;
