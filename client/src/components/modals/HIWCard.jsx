@@ -24,7 +24,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-top: 30px;
-  gap: 30px;
+  gap: 10px;
   font-family: Bagnard;
 `;
 const Title = styled.h1`

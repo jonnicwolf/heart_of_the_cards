@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function Carousel({ cards }) {
+  const navigate = useNavigate();
   const [currentCard, setCurrentCard] = useState(0);
 
   function handleNext () {
@@ -13,9 +15,13 @@ export default function Carousel({ cards }) {
   function goTo (cardNumber) {
     setCurrentCard(cardNumber);
   };
+  function handleExit () {
+    navigate('/');
+  }
 
   return (
     <Container>
+      <Exit onClick={handleExit}>X</Exit>
       {cards[currentCard]}
       <Pagination>
         <SlideButton onClick={handlePrev}>◀</SlideButton>
@@ -29,11 +35,10 @@ export default function Carousel({ cards }) {
 const Container = styled.div`
   width: 50%;
   height: 80%;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
+
   --s: 5px;
   padding: var(--s);
   border: calc(5*var(--s)) solid #0000;
@@ -42,6 +47,33 @@ const Container = styled.div`
   background: conic-gradient(from 90deg at 1px 1px,#0000 25%,#000 0);
   background-color: #fce6c5;
 `;
+const Exit = styled.button`
+  background: none;
+  width: 10%;
+  align-self: flex-end;
+  margin: 5px;
+  background: none;
+  border: none
+  text-align: center;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  &: hover {
+    border: 2px solid #e1c4ca;
+    background: rgba(65,50,63,0.9);
+    color: white;
+    transition: all 0.3s linear;
+  }
+  @media only screen and (max-width: 500px) {
+    font-size: 1rem;
+    transform: translateY(-40px);
+  }
+  @media only screen and (min-width: 701px) and (max-width: 1300px) {
+    font-size: 1rem;
+  }
+`;
+
 const Pagination = styled.div`
   display: flex;
   justify-content: center;
