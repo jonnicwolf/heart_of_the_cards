@@ -26,12 +26,18 @@ export default function Carousel({ cards, setter }) {
       <Exit onClick={handleExit}>X</Exit>
 
       {cards[currentCard]}
-
+      
       <Pagination>
         <SlideButton onClick={handlePrev}>◀</SlideButton>
         {cards.map((_,i) => <PageCircleButton id={id+i} onClick={() => goTo(i)}b/> )}
         <SlideButton onClick={handleNext}>▶</SlideButton>
       </Pagination>
+
+      <Checkbox>
+        <input type="checkbox" id='checkbox' />
+        <label htmlFor='checkbox' onClick={handleExit}>I don't want to see this again.</label>
+      </Checkbox>
+
     </Container>
   );
 };
@@ -90,6 +96,13 @@ const SlideButton = styled.button`
   &:hover {
     scale: 1.1;
   }
+`;
+const Checkbox = styled.div`
+  background-color: none;
+  color: none;
+  display: flex;
+  gap: 10px;
+  align-self: center;
 `;
 const PageCircleButton = styled.button`
   height: 20px;

@@ -11,9 +11,11 @@ export default function GetStartedCard({ setter }) {
   return (
     <Container>
       <Title>Get Started</Title>
+
       <Message>
         Ready to embark on your tarot journey? Click the button below to start your adventure with Esperi.
       </Message>
+
       <Button onClick={handleClick}>Lets Go!</Button>
     </Container>
   );
@@ -26,7 +28,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-top: 30px;
-  gap: 40px;
+  gap: 10px;
   font-family: Bagnard;
 `;
 const Title = styled.h1`
@@ -49,7 +51,8 @@ const Button = styled.button`
   font-size: 3rem;
   font-family: 'Amatic SC';
   font-weight: bold;
-  cursor: pointer;
+  transform: translateY(-20px);
+
   &: hover {
     border: 2px solid #e1c4ca;
     background: rgba(65,50,63,0.9);
@@ -59,7 +62,6 @@ const Button = styled.button`
   @media only screen and (max-width: 500px) {
     width: 20vw;
     font-size: 1rem;
-    transform: translateY(-40px)
   }
   @media only screen and (min-width: 701px) and (max-width: 1300px) {
     font-size: 1.5rem;
