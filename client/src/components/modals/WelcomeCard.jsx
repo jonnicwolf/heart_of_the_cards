@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 
 import Eye from '../p5/Eye'
 
-export default function WelcomeCard() {
+export default function WelcomeCard () {
 
   return (
     <Container>
@@ -26,7 +26,7 @@ export default function WelcomeCard() {
       </Welcome>
 
       <Message>
-      At Esperi, we merge ancient tarot wisdom with modern technology to offer you a unique and insightful reading experience. Our app provides personalized tarot readings that illuminate your path and guide you through life's mysteries.
+        At Esperi, we merge ancient tarot wisdom with modern technology to offer you a unique and insightful reading experience. Our app provides personalized tarot readings that illuminate your path and guide you through life's mysteries.
       </Message>
     </Container>
   );

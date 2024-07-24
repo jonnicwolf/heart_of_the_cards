@@ -6,7 +6,7 @@ import WelcomeCard from './WelcomeCard';
 import HIWCard from './HIWCard';
 import GetStartedCard from './GetStartedCard';
 
-export default function Modal() {
+export default function Modal ({ setter }) {
   const cards = [
     <WelcomeCard />,
     <HIWCard />,
@@ -15,16 +15,17 @@ export default function Modal() {
 
   return (
     <Container>
-      <Carousel cards={cards} />
+      <Carousel cards={cards} setter={setter}/>
     </Container>
   );
 };
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0,0,0,0.2);
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: center;
   padding-top: 10vh;
+  z-index: 3;
 `;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-export default function Carousel({ cards }) {
+export default function Carousel({ cards, setter }) {
   const navigate = useNavigate();
   const [currentCard, setCurrentCard] = useState(0);
 
@@ -16,13 +16,16 @@ export default function Carousel({ cards }) {
     setCurrentCard(cardNumber);
   };
   function handleExit () {
+    setter(false);
     navigate('/');
-  }
+  };
 
   return (
     <Container>
       <Exit onClick={handleExit}>X</Exit>
+
       {cards[currentCard]}
+
       <Pagination>
         <SlideButton onClick={handlePrev}>◀</SlideButton>
         {cards.map((_,i) => <PageCircleButton onClick={() => goTo(i)}/> )}
@@ -34,7 +37,7 @@ export default function Carousel({ cards }) {
 
 const Container = styled.div`
   width: 50%;
-  height: 80%;
+  height: 90%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

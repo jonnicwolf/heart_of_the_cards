@@ -23,9 +23,8 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding-top: 30px;
-  gap: 10px;
   font-family: Bagnard;
+  gap: 30px
 `;
 const Title = styled.h1`
   font-family: Bagnard;
@@ -33,7 +32,8 @@ const Title = styled.h1`
   text-align: center;
 `;
 const Example = styled.video`
-  width: 80%;
+  width: 30vw;
+  border: 1px solid red;
 `;
 const Message = styled.p`
   font-family: Bagnard;
