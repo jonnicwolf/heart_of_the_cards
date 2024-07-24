@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Carousel from './Carousel';
-import Card from './WelcomeCard';
+import WelcomeCard from './WelcomeCard';
+import HIWCard from './HIWCard';
 
 export default function Modal() {
   const cards = [
-    <Card />
+    <HIWCard />,
+    <WelcomeCard />,
   ]
   return (
     <Container>

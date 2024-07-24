@@ -28,6 +28,9 @@ const Container = styled.div`
   width: 50%;
   height: 70%;
   border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   
   --s: 5px;
   padding: var(--s);
@@ -39,12 +42,12 @@ const Container = styled.div`
 `;
 const Pagination = styled.div`
   display: flex;
-  justify-content: space-between;
-  gap: 2vw;
+  justify-content: center;
+  gap: 0.5vw;
 `;
 const PageCircleButton = styled.button`
-  height: 1vh;
-  width: 1vh;
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
   border: 2px solid grey;
 `;
