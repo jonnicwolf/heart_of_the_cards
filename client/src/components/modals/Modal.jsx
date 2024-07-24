@@ -4,9 +4,11 @@ import styled from 'styled-components';
 import Carousel from './Carousel';
 import WelcomeCard from './WelcomeCard';
 import HIWCard from './HIWCard';
+import GetStartedCard from './GetStartedCard';
 
 export default function Modal() {
   const cards = [
+    <GetStartedCard />,
     <HIWCard />,
     <WelcomeCard />,
   ]
