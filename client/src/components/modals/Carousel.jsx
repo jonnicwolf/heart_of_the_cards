@@ -18,7 +18,9 @@ export default function Carousel({ cards }) {
     <Container>
       {cards[currentCard]}
       <Pagination>
+        <SlideButton onClick={handlePrev}>◀</SlideButton>
         {cards.map((_,i) => <PageCircleButton onClick={() => goTo(i)}/> )}
+        <SlideButton onClick={handleNext}>▶</SlideButton>
       </Pagination>
     </Container>
   );
@@ -44,10 +46,22 @@ const Pagination = styled.div`
   display: flex;
   justify-content: center;
   gap: 0.5vw;
+  align-items: center;
+`;
+const SlideButton = styled.button`
+  background: none;
+
+  &:hover {
+    scale: 1.1;
+  }
 `;
 const PageCircleButton = styled.button`
   height: 20px;
   width: 20px;
   border-radius: 50%;
   border: 2px solid grey;
+
+  &:hover {
+    scale: 1.1;
+  }
 `;
