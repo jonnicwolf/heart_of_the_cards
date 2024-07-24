@@ -22,10 +22,12 @@ export default function Card() {
       </EyeWrapper>
       
       <Welcome>
-        Welcome <br />
-        to <br/>
-        Esperi
+        Welcome to Esperi
       </Welcome>
+
+      <Message>
+      At Esperi, we merge ancient tarot wisdom with modern technology to offer you a unique and insightful reading experience. Our app provides personalized tarot readings that illuminate your path and guide you through life's mysteries.
+      </Message>
     </Container>
   );
 };
@@ -33,13 +35,20 @@ export default function Card() {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   padding-top: 30px;
+  gap: 40px;
 `;
 const Welcome = styled.div`
   font-family: Bagnard;
   font-size: 3rem;
   text-align: center;
+`;
+const Message = styled.p`
+  font-family: Bagnard;
+  text-align: center;
+  padding: 30px;
 `;
 
 const blink = keyframes`
@@ -54,7 +63,7 @@ const EyeWrapper = styled.div`
   align-items: center;
   margin: 0;
   padding: 0;
-  transform: translateX(-80px);
+  transform: translateX(-60px);
 `;
 const EyeContainer = styled.div`
   clip-path: polygon(50% 0%, 80% 50%, 50% 100%, 20% 50%);
