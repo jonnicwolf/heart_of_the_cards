@@ -24,7 +24,7 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   font-family: Bagnard;
-  gap: 30px
+  gap: 30px;
 `;
 const Title = styled.h1`
   font-family: Bagnard;
@@ -33,7 +33,6 @@ const Title = styled.h1`
 `;
 const Example = styled.video`
   width: 30vw;
-  border: 1px solid red;
 `;
 const Message = styled.p`
   font-family: Bagnard;

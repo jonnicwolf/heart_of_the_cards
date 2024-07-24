@@ -191,7 +191,6 @@ const Container = styled.div`
   width: 100%;
   gap: 5vh;
   z-index: 2;
-  border: 1px solid red;
 `;
 const ReadingContainer = styled.div`
   height: ${props => props.windowWidth ? '40vh' : '21vh'};

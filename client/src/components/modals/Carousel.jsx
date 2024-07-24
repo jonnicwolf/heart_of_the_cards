@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useId } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function Carousel({ cards, setter }) {
   const navigate = useNavigate();
+  const id = useId();
   const [currentCard, setCurrentCard] = useState(0);
 
   function handleNext () {
@@ -28,7 +29,7 @@ export default function Carousel({ cards, setter }) {
 
       <Pagination>
         <SlideButton onClick={handlePrev}>◀</SlideButton>
-        {cards.map((_,i) => <PageCircleButton onClick={() => goTo(i)}/> )}
+        {cards.map((_,i) => <PageCircleButton id={id+i} onClick={() => goTo(i)}b/> )}
         <SlideButton onClick={handleNext}>▶</SlideButton>
       </Pagination>
     </Container>
