@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Board from '../components/Board';
+import Modal from '../components/modals/Modal'
 import forest2 from '../assets/forest02.jpeg'
 
 const Home = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(true);
+  console.log(modalIsOpen)
   return (
     <Container>
       <Background src={forest2} />
-      <Board />
+      {modalIsOpen ? <Modal setter={setModalIsOpen} /> : <Board />}
     </Container>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import p5 from 'p5';
 
-const Eye = ({ width, height }) => {
+const Eye = ({ width, height, tracksMouse }) => {
   const sketch_ref = useRef();
 
   const sketch = useCallback((p) => {
@@ -16,8 +16,8 @@ const Eye = ({ width, height }) => {
     };
 
     p.draw = () => {
-      const irisX = p.map(p.mouseX, 0, p.width, (p.width / 60)*-1, p.width / 60);
-      const irisY = p.map(p.mouseY, 0, p.height, (p.width / 24)*-1, p.height / 36);
+      const irisX = p.map(tracksMouse ? p.mouseX : 50, 0, width, (width / 60)*-1, p.width / 60);
+      const irisY = p.map(tracksMouse ? p.mouseY : 60, 0, height, (width / 24)*-1, p.height / 36);
       p.background(0, 0.9);
 
       p.push();
@@ -28,11 +28,11 @@ const Eye = ({ width, height }) => {
 
       p.push();
       p.fill('#b25385');
-      p.ellipse(irisX, irisY, (p.width/12)*8, (p.width/12)*8, 6); // Hexagon
+      p.ellipse(irisX, irisY, (width/12)*8, (width/12)*8, 6); // Hexagon
       p.fill('#699897');
-      p.circle(irisX, irisY, (p.width/12)*6);
+      p.circle(irisX, irisY, (width/12)*6);
       p.fill('gold');
-      p.circle(irisX, irisY, (p.width/12)*2);
+      p.circle(irisX, irisY, (width/12)*2);
       p.pop();
 
       p.push();
