@@ -25,6 +25,7 @@ const Container = styled.div`
   align-items: center;
   font-family: Bagnard;
   gap: 30px;
+  overflow: hidden;
 `;
 const Title = styled.h1`
   font-family: Bagnard;
