@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import Carousel from './Carousel';
-import Card from './Card';
+import Card from './WelcomeCard';
 
 export default function Modal() {
   const cards = [

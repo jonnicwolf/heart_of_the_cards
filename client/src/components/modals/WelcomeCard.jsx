@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 
 import Eye from '../p5/Eye'
 
-export default function Card() {
+export default function WelcomeCard() {
 
   return (
     <Container>
