@@ -2,9 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-export default function GetStartedCard() {
+export default function GetStartedCard({ setter }) {
   const navigate = useNavigate();
   function handleClick () {
+    setter(false);
     navigate('/');
   }
   return (
