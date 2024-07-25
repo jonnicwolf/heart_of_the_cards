@@ -127,9 +127,10 @@ const SlideOutMenu = styled.div`
   overflow: hidden;
   transition: all 0.3s ease-in-out;
   animation: colorShift 20s infinite;
-`;
-const Home = styled.img`
-  height: 2rem;
+  @media only screen and (max-width: 720px) {
+    padding: 0;
+    height: 5vh;
+  }
 `;
 const Button = styled.button`
   background: none;
@@ -138,14 +139,25 @@ const Button = styled.button`
   flex-direction: column;
   align-items: center;
 `;
+const Home = styled.img`
+  height: 2rem;
+  @media only screen and (max-width: 720px) {
+    height: 1.3rem;
+  }
+`;
+const History = styled.img`
+  height: 2rem;
+  @media only screen and (max-width: 720px) {
+    height: 1.3rem;
+  }
+`;
 const Text = styled.span`
   color: white;
   font-size: 0.7rem;
   font-family: Bagnard;
-`;
-
-const History = styled.img`
-  height: 2rem;
+  @media only screen and (max-width: 720px) {
+    font-size: 0.5rem;
+  }
 `;
 
 export default Nav;

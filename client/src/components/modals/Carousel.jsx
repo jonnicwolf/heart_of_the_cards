@@ -32,12 +32,6 @@ export default function Carousel({ cards, setter }) {
         {cards.map((_,i) => <PageCircleButton id={id+i} onClick={() => goTo(i)}b/> )}
         <SlideButton onClick={handleNext}>▶</SlideButton>
       </Pagination>
-
-      {/* <Checkbox>
-        <input type="checkbox" id='checkbox' />
-        <label htmlFor='checkbox' onClick={handleExit}>I don't want to see this again.</label>
-      </Checkbox> */}
-
     </Container>
   );
 };
@@ -57,6 +51,10 @@ const Container = styled.div`
   outline-offset: calc(-3*var(--s));
   background: conic-gradient(from 90deg at 1px 1px,#0000 25%,#000 0);
   background-color: #fce6c5;
+
+  @media only screen and (max-width: 720px) {
+    width: 90%;
+  }
 `;
 const Exit = styled.button`
   background: none;
@@ -76,13 +74,6 @@ const Exit = styled.button`
     color: white;
     transition: all 0.3s linear;
   }
-  @media only screen and (max-width: 500px) {
-    font-size: 1rem;
-    transform: translateY(-40px);
-  }
-  @media only screen and (min-width: 701px) and (max-width: 1300px) {
-    font-size: 1rem;
-  }
 `;
 
 const Pagination = styled.div`
@@ -97,13 +88,6 @@ const SlideButton = styled.button`
   &:hover {
     scale: 1.1;
   }
-`;
-const Checkbox = styled.div`
-  background-color: none;
-  color: none;
-  display: flex;
-  gap: 10px;
-  align-self: center;
 `;
 const PageCircleButton = styled.button`
   height: 20px;

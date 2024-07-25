@@ -193,12 +193,12 @@ const Container = styled.div`
   z-index: 2;
 `;
 const ReadingContainer = styled.div`
-  height: ${props => props.windowWidth ? '40vh' : '21vh'};
+  height: 60vh;
   width: 80vw;
   max-width: 1200px;
   color: white;
   overflow: scroll;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.7);
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -213,14 +213,19 @@ const CardReading = styled.div`
 `;
 const CardHeader = styled.h2`
   font-family: Bagnard;
-  font-size: 7vw;
+  font-size: 6rem;
   text-align: center;
+  @media only screen and (max-width: 720px) {
+    font-size: 2rem;
+  }
 `;
 const CardP = styled.p`
   font-family: Bebas Neue;
-  font-size: 4vw;
+  font-size: 2rem;
   text-align: center;
-
+  @media only screen and (max-width: 720px) {
+    font-size: 1rem;
+  }
 `;
 const Reload = styled.button`
   width: 300px;

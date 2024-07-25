@@ -31,9 +31,15 @@ const Title = styled.h1`
   font-size: 3rem;
   text-decoration: underline;
   text-align: center;
+  @media only screen and (max-width: 720px) {
+    font-size: 2rem;
+  }
 `;
 const Example = styled.video`
   width: 30vw;
+  @media only screen and (max-width: 720px) {
+    width: 90%;
+  }
 `;
 const Message = styled.p`
   font-family: Bagnard;
