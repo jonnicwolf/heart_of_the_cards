@@ -44,6 +44,7 @@ const Welcome = styled.div`
   font-family: Bagnard;
   font-size: 3rem;
   text-align: center;
+  text-decoration: underline;
 `;
 const Message = styled.p`
   font-family: Bagnard;

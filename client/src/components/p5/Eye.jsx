@@ -7,7 +7,7 @@ const Eye = ({ width, height, tracksMouse }) => {
   const sketch = useCallback((p) => {
     let angleA = 0;
     let angleB = 0;
-    let angleC= 0;
+    let angleC = 0;
     let reverse = 0;
     const lid_w = width / 12;
 

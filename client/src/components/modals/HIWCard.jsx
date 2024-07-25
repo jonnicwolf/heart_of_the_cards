@@ -29,6 +29,7 @@ const Container = styled.div`
 const Title = styled.h1`
   font-family: Bagnard;
   font-size: 3rem;
+  text-decoration: underline;
   text-align: center;
 `;
 const Example = styled.video`
