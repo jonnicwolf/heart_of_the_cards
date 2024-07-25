@@ -67,6 +67,7 @@ const Nav = () => {
 
 const Container = styled.header`
   display: flex;
+  justify-content: center;
   align-items: center;
   height: 5.5vh;
   width: 100%;
@@ -78,15 +79,16 @@ const Container = styled.header`
 
   @keyframes colorShift {
     0% { background-color: #699897 }
-    40% { background-color: #b8e2d4 }
-    80% { background-color: #db8aae }
+    50% { background-color: #db8aae }
     100% { background-color: #699897 }
   }
   animation: colorShift 20s infinite;
 `;
 const MenuLogoWarp = styled.div`
+  align-self: center;
   display: flex;
   gap: 2vw;
+  width: 100%;
   max-width: 1500px;
   align-items: center;
 `;
@@ -118,11 +120,12 @@ export const Logo = styled.div`
 `;
 const SlideOutMenu = styled.div`
   display: flex;
+  justify-content: center;
   gap: 2vw;
   padding: 5px 10px 5px 10px;
   background-color: 'none';
   opacity: ${props => props.showMenu ? '100%' : 0};
-  width: ${props => props.showMenu ? '100%' : 0};
+  width: ${props => props.showMenu ? '20%' : 0};
   border: 1.5px solid white;
   overflow: hidden;
   transition: all 0.3s ease-in-out;
