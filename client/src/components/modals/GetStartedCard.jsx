@@ -30,19 +30,24 @@ const Container = styled.div`
   padding-top: 30px;
   gap: 10px;
   font-family: Bagnard;
-  
 `;
 const Title = styled.h1`
   font-family: Bagnard;
   font-size: 3rem;
   text-decoration: underline;
   text-align: center;
+  @media only screen and (max-width: 720px) {
+    font-size: 2rem;
+  }
 `;
 const Message = styled.p`
   font-family: Bagnard;
   text-align: center;
   font-size: 1.5rem;
   padding: 30px;
+  @media only screen and (max-width: 720px) {
+    font-size: 1rem;
+  }
 `;
 const Button = styled.button`
   width: 200px;
