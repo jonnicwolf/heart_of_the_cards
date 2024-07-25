@@ -30,10 +30,12 @@ const Container = styled.div`
   padding-top: 30px;
   gap: 10px;
   font-family: Bagnard;
+  
 `;
 const Title = styled.h1`
   font-family: Bagnard;
   font-size: 3rem;
+  text-decoration: underline;
   text-align: center;
 `;
 const Message = styled.p`
