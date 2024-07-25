@@ -1,9 +1,9 @@
-# heart_of_the_cards
+# Esperi
 
-#### [Live Site](https://cartomancerssecrets.netlify.app)
+Heart of the Cards is a tarot reading app that offers users the ability to select up to five cards. These cards are sourced from an API and presented alongside a personalized reading.
 
 # Client
-Heart of the Cards is a tarot reading app that offers users the ability to select up to five cards. These cards are sourced from an API and presented alongside a personalized reading.
+#### [Live Site](https://cartomancerssecrets.netlify.app)
 
 ## API Reference
 ### Cards
