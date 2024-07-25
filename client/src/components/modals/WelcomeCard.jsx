@@ -44,13 +44,19 @@ const Welcome = styled.div`
   font-family: Bagnard;
   font-size: 3rem;
   text-align: center;
-  text-decoration: underline;
+  
+  @media only screen and (max-width: 720px) {
+    font-size: 1.5rem;
+  }
 `;
 const Message = styled.p`
   font-family: Bagnard;
   text-align: center;
   padding: 30px;
   font-size: 1.5rem;
+  @media only screen and (max-width: 720px) {
+    font-size: 1rem;
+  }
 `;
 
 const blink = keyframes`
