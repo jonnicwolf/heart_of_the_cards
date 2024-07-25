@@ -194,15 +194,17 @@ const Container = styled.div`
 `;
 const ReadingContainer = styled.div`
   height: ${props => props.windowWidth ? '40vh' : '21vh'};
+  height: 60vh;
   width: 80vw;
   max-width: 1200px;
   color: white;
   overflow: scroll;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.7);
   padding: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 5px solid red;
 `;
 const CardReading = styled.div`
   display: flex;
