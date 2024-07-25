@@ -204,7 +204,6 @@ const ReadingContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 5px solid red;
 `;
 const CardReading = styled.div`
   display: flex;
@@ -215,12 +214,12 @@ const CardReading = styled.div`
 `;
 const CardHeader = styled.h2`
   font-family: Bagnard;
-  font-size: 7vw;
+  font-size: 6rem;
   text-align: center;
 `;
 const CardP = styled.p`
   font-family: Bebas Neue;
-  font-size: 4vw;
+  font-size: 2rem;
   text-align: center;
 
 `;
