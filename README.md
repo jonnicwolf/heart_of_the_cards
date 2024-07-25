@@ -41,13 +41,14 @@ Heart of the Cards is a tarot reading app that offers users the ability to selec
 
 ## Color Reference
 
-| Color             | Hex                                                                |
-| ----------------- | ------------------------------------------------------------------ |
-| <span style="color:#e1c4ca">Example Color</span> | `#e1c4ca` |
-| <span style="color:#a57fa0">Example Color</span> | `#a57fa0` |
-| <span style="color:#db8aae">Example Color</span> | `#db8aae` |
-| <span style="color:#b25385">Example Color</span> | `#b25385` |
-| <span style="color:#699897">Example Color</span> | `#699897` |
+| Color             | Hex      |
+| ----------------- | -------- |
+| <span style="background-color:#e1c4ca; padding:5px; color:#000;">Example Color</span> | `#e1c4ca` |
+| <span style="background-color:#a57fa0; padding:5px; color:#fff;">Example Color</span> | `#a57fa0` |
+| <span style="background-color:#db8aae; padding:5px; color:#000;">Example Color</span> | `#db8aae` |
+| <span style="background-color:#b25385; padding:5px; color:#fff;">Example Color</span> | `#b25385` |
+| <span style="background-color:#699897; padding:5px; color:#000;">Example Color</span> | `#699897` |
+
 
 
 
@@ -86,6 +87,6 @@ Heart of the Cards is a tarot reading app that offers users the ability to selec
 
 ## Tech Stack
 
-**Client:** React, Styled-Components, React Motion, p5.js, OpenAI, Firebase Auth
+**Client:** React, Styled-Components, React Motion, p5.js, OpenAI, Firebase Auth, TanStack Query
 
-**Server:** Node, Express, Axios, Firebase Store
+**Server:** Node, Express, Vercel
