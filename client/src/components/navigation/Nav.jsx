@@ -69,7 +69,7 @@ const Container = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 5.5vh;
+  height: 15%;
   width: 100%;
   background: #699897;
   color: white;
