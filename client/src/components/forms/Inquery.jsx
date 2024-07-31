@@ -92,16 +92,14 @@ const Query = styled.input`
     color: transparent;
     text-wrap: pretty;
   }
-  @media only screen and (max-width: 700px) {
+  @media only screen and (max-width: 1200px) {
     font-size: 0.9rem;
     width: 95vw;
-    height: 25vh;
+    height: 55vh;
   }
-  @media only screen and (min-width: 701px) and (max-width: 1300px) {
-    font-size: 2rem;
-    width: 95vw;
-    height: 25vh;
-  }
+    @media only screen and (max-height: 1400px) {
+      height: 50vh;
+    }
 `;
 
 export default Inquery;

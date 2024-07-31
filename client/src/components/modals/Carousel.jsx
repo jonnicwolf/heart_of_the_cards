@@ -2,6 +2,8 @@ import React, { useState, useId } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+import ScrollToTop from '../ScrollToTop';
+
 export default function Carousel({ cards, setter }) {
   const navigate = useNavigate();
   const id = useId();
@@ -26,7 +28,8 @@ export default function Carousel({ cards, setter }) {
       <Exit onClick={handleExit}>X</Exit>
 
       {cards[currentCard]}
-      
+      <ScrollToTop />
+
       <Pagination>
         <SlideButton onClick={handlePrev}>◀</SlideButton>
         {cards.map((_,i) => <PageCircleButton id={id+i} onClick={() => goTo(i)}b/> )}
