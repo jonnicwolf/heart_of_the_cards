@@ -3,8 +3,7 @@ import styled from 'styled-components';
 
 import Board from '../components/Board';
 import Modal from '../components/modals/Modal';
-import ScrollToTop from '../components/ScrollToTop';
-import forest2 from '../assets/forest02.jpeg'
+import forest2 from '../assets/forest02.jpeg';
 
 const Home = () => {
   const [modalIsOpen, setModalIsOpen] = useState(true);

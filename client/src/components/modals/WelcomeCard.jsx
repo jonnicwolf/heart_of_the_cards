@@ -22,7 +22,7 @@ export default function WelcomeCard () {
       </EyeWrapper>
       
       <Welcome>
-        Welcome to Esperi
+        Esperi
       </Welcome>
 
       <Message>
