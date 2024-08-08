@@ -4,7 +4,7 @@ export async function get_tarot_reading (question, cards) {
   if (cards.length > 0 && question) {
     try {
       const openai = new OpenAI({
-        apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+        apiKey: import.meta.env.VITE_OPENAI_API,
         dangerouslyAllowBrowser: true
       });
 
