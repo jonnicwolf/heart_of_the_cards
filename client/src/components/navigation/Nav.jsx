@@ -38,7 +38,7 @@ const Nav = () => {
   return (
     <Container>
       <MenuLogoWarp>
-        <Logo onClick={handleLogoClick} showMenu={showMenu}>
+        <Logo onClick={handleLogoClick} showmenu={showMenu}>
           <span>ESP</span>
           <span>ERI</span>
         </Logo>
@@ -110,7 +110,7 @@ export const Logo = styled.div`
   font-size: 2rem;
   font-family: Bagnard;
   transform: translateY(3px);
-  line-height: ${props => props.showMenu ? '35px' : '25px'};
+  line-height: ${props => props.showmenu ? '35px' : '25px'};
   transition: line-height 0.3s ease-in-out;
   cursor: pointer;
   @media only screen and (max-width: 500px) {
