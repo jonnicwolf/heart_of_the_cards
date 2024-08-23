@@ -2,10 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import { Canvas } from '@react-three/fiber';
 import {
-  CameraControls,
   useGLTF,
+  OrbitControls,
 } from '@react-three/drei';
 
+export default function Forest () {
+  return (
+    <Container>
+      <Canvas>
+        <Light />
+        <Model />
+        <OrbitControls />
+      </Canvas>
+    </Container>
+  );
+};
 
 function Model () {
   const { scene } = useGLTF('/forest.glb');
@@ -26,17 +37,6 @@ function Light() {
       intensity={1.5}
       color='#3490FF'
     />
-  );
-}
-
-export default function Forest() {
-  return (
-    <Container>
-      <Canvas>
-        <Light />
-        <Model />
-      </Canvas>
-    </Container>
   );
 };
 
