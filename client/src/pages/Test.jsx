@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components';
 
-import Modal from '../components/modals/Modal';
+import Forest from '../components/threeJs/Forest'
 
 const Test = () => {
   return (
     <Container>
-      <Modal />
+      <Forest />
     </Container>
   )
 }
