@@ -10,8 +10,10 @@ export default function Forest () {
   return (
     <Container>
       <Canvas>
-        <Light />
+        <Light position={[5, 4, -6]} color='#a6e391'/>
+        <Light position={[10, 15, -6]} color='#e3e391'/>
         <Model />
+        <ambientLight intensity={2} />
         <OrbitControls />
       </Canvas>
     </Container>
@@ -30,12 +32,12 @@ function Model () {
   );
 };
 
-function Light() {
+function Light({position, color}) {
   return (
     <directionalLight
-      position={[5, 4, -6]}
-      intensity={1.5}
-      color='#3490FF'
+      position={position}
+      intensity={10.5}
+      color={color}
     />
   );
 };
@@ -43,5 +45,6 @@ function Light() {
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background: #12043b;
+  // background: #12043b;
+  background: #73ddfa;
 `;
