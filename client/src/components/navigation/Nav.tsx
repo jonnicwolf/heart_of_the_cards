@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import React, { useState, FC } from 'react';
+import styled from 'styled-components';
 import { Alert } from 'react-bootstrap';
 import { useAuth } from '../contexts/AuthContext'
 
 import Logout_Btn from './Logout_Btn';
 import { useNavigate } from 'react-router-dom';
 
-const Nav = () => {
-  const [showMenu, setShowMenu] = useState(false);
+const Nav: FC = () => {
+  const [showMenu, setShowMenu] = useState<boolean>(false);
 
   const { logout } = useAuth();
   const navigate = useNavigate();
 
   async function handleLogout () {
-    setError('');
     try {
       await logout();
       navigate('/login');
@@ -31,7 +30,7 @@ const Nav = () => {
     navigate('/');
   };
 
-  const handleHistoryClick = (allowHistory) => {
+  const handleHistoryClick = (allowHistory: boolean) => {
     allowHistory ? navigate('/history') : alert('History is currently under maintenance');
   };
 
@@ -43,7 +42,7 @@ const Nav = () => {
           <span>ERI</span>
         </Logo>
 
-        <SlideOutMenu showMenu={showMenu}>
+        <SlideOutMenu showmenu={showMenu}>
           <Button onClick={handleHomeClick}>
             <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=FFFFFF' alt=''/>
             <Text>Home</Text>
@@ -124,8 +123,8 @@ const SlideOutMenu = styled.div`
   gap: 2vw;
   padding: 5px 10px 5px 10px;
   background-color: 'none';
-  opacity: ${props => props.showMenu ? '100%' : 0};
-  width: ${props => props.showMenu ? '20%' : 0};
+  opacity: ${props => props.showmenu ? '100%' : 0};
+  width: ${props => props.showmenu ? '20%' : 0};
   border: 1.5px solid white;
   overflow: hidden;
   transition: all 0.3s ease-in-out;

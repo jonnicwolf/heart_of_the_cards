@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import '../styles/global.css';
@@ -14,7 +14,7 @@ import Test from './pages/Test';
 import Nav from './components/navigation/Nav';
 import { AuthProvider } from './components/contexts/AuthContext';
 
-const App: React.FC = () => {
+const App: FC = () => {
   const location = useLocation();
   const no_nav_list: string[] = [
     '/login',
