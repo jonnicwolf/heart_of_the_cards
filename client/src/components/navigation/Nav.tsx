@@ -1,24 +1,29 @@
 import React, { useState, FC } from 'react';
 import styled from 'styled-components';
-import { Alert } from 'react-bootstrap';
 import { useAuth } from '../contexts/AuthContext'
 
 import Logout_Btn from './Logout_Btn';
 import { useNavigate } from 'react-router-dom';
 
+interface ShowMenuProps {
+  showmenu: boolean;
+}
+
 const Nav: FC = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const { logout } = useAuth();
   const navigate = useNavigate();
 
-  async function handleLogout () {
+  const handleLogout = async (): Promise<void> => {
     try {
       await logout();
+      setError(null);
       navigate('/login');
-    } catch (error) {
+    } catch (error: any) {
       return (
-        <Alert variant='danger'>{error}</Alert>
+        setError(error.message || 'Logout Failed')
       );
     };
   };
@@ -103,7 +108,7 @@ const Logout = styled.button`
     font-size: 10px;
   }
 `;
-export const Logo = styled.div`
+export const Logo = styled.div<ShowMenuProps>`
   display: flex;
   flex-direction: column;
   font-size: 2rem;
@@ -117,7 +122,7 @@ export const Logo = styled.div`
     line-height: 15px;
   }
 `;
-const SlideOutMenu = styled.div`
+const SlideOutMenu = styled.div<ShowMenuProps>`
   display: flex;
   justify-content: center;
   gap: 2vw;
