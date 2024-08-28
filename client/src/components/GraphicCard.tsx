@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
-export default function GraphicCard() {
+const GraphicCard: FC = () => {
   return (
     <Container>
       ESP<br />ERI
@@ -29,3 +29,5 @@ const Container = styled.div`
     transform: none;
   }
 `;
+
+export default GraphicCard;
