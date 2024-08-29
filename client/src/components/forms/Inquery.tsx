@@ -1,7 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-const Inquery = ({ questionSetter, runFetchSetter }) => {
+interface Props {
+  questionSetter: (question: string) => void,
+  runFetchSetter: (fetch: boolean) => void,
+};
+
+const Inquery: FC<Props> = ({ questionSetter, runFetchSetter }) => {
   const questions = [
     'Burning question?',
     'Perhaps a major dilemma?',
@@ -14,8 +19,9 @@ const Inquery = ({ questionSetter, runFetchSetter }) => {
     'Ready when you are, ask away.',
     'What would you like to know?'
   ];
-  const randomQuestion = questions[Math.floor(Math.random() * (questions.length + 1))];
-  const [question, setQuestion] = useState(randomQuestion);
+
+  const randomQuestion: string = questions[Math.floor(Math.random() * (questions.length + 1))];
+  const [question, setQuestion] = useState<string>(randomQuestion);
 
   useEffect(() => {
     const interval = setInterval(() => {
