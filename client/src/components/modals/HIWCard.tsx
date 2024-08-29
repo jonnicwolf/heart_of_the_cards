@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
+// @ts-ignore
 import example from '../../assets/example.mp4'
 
-export default function HIWCard() {
-  
+const HIWCard: FC = () => {
   return (
     <Container>
       <Title>How it works</Title>
@@ -46,3 +46,5 @@ const Message = styled.p`
   text-align: center;
   padding: 30px;
 `;
+
+export default HIWCard;
