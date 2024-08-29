@@ -33,3 +33,5 @@ const Container = styled.div`
   padding-top: 10vh;
   z-index: 3;
 `;
+
+export default Modal;
