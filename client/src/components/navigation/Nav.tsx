@@ -1,25 +1,29 @@
-import React, { useState } from 'react';
-import styled, { keyframes } from 'styled-components';
-import { Alert } from 'react-bootstrap';
+import React, { useState, FC } from 'react';
+import styled from 'styled-components';
 import { useAuth } from '../contexts/AuthContext'
 
 import Logout_Btn from './Logout_Btn';
 import { useNavigate } from 'react-router-dom';
 
-const Nav = () => {
-  const [showMenu, setShowMenu] = useState(false);
+interface ShowMenuProps {
+  showmenu: boolean;
+}
+
+const Nav: FC = () => {
+  const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const { logout } = useAuth();
   const navigate = useNavigate();
 
-  async function handleLogout () {
-    setError('');
+  const handleLogout = async (): Promise<void> => {
     try {
       await logout();
+      setError(null);
       navigate('/login');
-    } catch (error) {
+    } catch (error: any) {
       return (
-        <Alert variant='danger'>{error}</Alert>
+        setError(error.message || 'Logout Failed')
       );
     };
   };
@@ -31,7 +35,7 @@ const Nav = () => {
     navigate('/');
   };
 
-  const handleHistoryClick = (allowHistory) => {
+  const handleHistoryClick = (allowHistory: boolean) => {
     allowHistory ? navigate('/history') : alert('History is currently under maintenance');
   };
 
@@ -43,7 +47,7 @@ const Nav = () => {
           <span>ERI</span>
         </Logo>
 
-        <SlideOutMenu showMenu={showMenu}>
+        <SlideOutMenu showmenu={showMenu}>
           <Button onClick={handleHomeClick}>
             <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=FFFFFF' alt=''/>
             <Text>Home</Text>
@@ -104,7 +108,7 @@ const Logout = styled.button`
     font-size: 10px;
   }
 `;
-export const Logo = styled.div`
+export const Logo = styled.div<ShowMenuProps>`
   display: flex;
   flex-direction: column;
   font-size: 2rem;
@@ -118,14 +122,14 @@ export const Logo = styled.div`
     line-height: 15px;
   }
 `;
-const SlideOutMenu = styled.div`
+const SlideOutMenu = styled.div<ShowMenuProps>`
   display: flex;
   justify-content: center;
   gap: 2vw;
   padding: 5px 10px 5px 10px;
   background-color: 'none';
-  opacity: ${props => props.showMenu ? '100%' : 0};
-  width: ${props => props.showMenu ? '20%' : 0};
+  opacity: ${props => props.showmenu ? '100%' : 0};
+  width: ${props => props.showmenu ? '20%' : 0};
   border: 1.5px solid white;
   overflow: hidden;
   transition: all 0.3s ease-in-out;

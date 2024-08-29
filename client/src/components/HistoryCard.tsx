@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
-export default function HistoryCard({ day, reading, cards }) {
+
+interface Props {
+  day: string,
+  reading: string,
+  cards: string[],
+};
+
+const HistoryCard: FC<Props> = ({ day, reading, cards }) => {
   return (
     <Container>
       <Date>{day}</Date>
       <Preview>
         <Reading>{reading}</Reading>
         <Cards>
-          {/* {cards.map( card => <Card src={card} />)} */}
+          {cards.map( card => <Card src={card} />)}
         </Cards>
       </Preview>
     </Container>
@@ -55,3 +62,5 @@ const Card = styled.img`
   border: 1px solid black;
   text-align: center;
 `;
+
+export default HistoryCard;

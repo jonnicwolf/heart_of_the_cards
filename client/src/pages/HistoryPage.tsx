@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import styled from 'styled-components';
 
@@ -7,13 +7,13 @@ import Card from '../components/p5/Card';
 
 
 
-export default function HistoryPage() {
-  const getHistory = async () => {
+const HistoryPage: FC = () => {
+  const getHistory = async(): Promise<void> => {
     try {
       const response = await fetch('https://esperi-db.vercel.app');
       return response.json();
     }
-    catch (error) { throw new Error('getCard error: ', error) };
+    catch (error: any) { throw new Error(`getCard error:  ${error}`) }; 
   };
 
   // const {data: history} = useQuery({
@@ -81,3 +81,5 @@ const ContentContainer = styled.div`
   flex-wrap: wrap;
   gap: 4vw;
 `;
+
+export default HistoryPage;

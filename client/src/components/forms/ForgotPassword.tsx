@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { FC, useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import {
@@ -8,10 +8,10 @@ import {
   Alert } from 'react-bootstrap';
 import { useAuth } from '../contexts/AuthContext';
 
-const ForgotPassword = () => {
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+const ForgotPassword: FC = () => {
+  const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
+  const [message, setMessage] = useState<string>('');
 
   const emailRef = useRef();
 
@@ -25,6 +25,7 @@ const ForgotPassword = () => {
       setError('');
       setLoading(false);
 
+      // @ts-ignore
       await resetPassword(emailRef.current.value);
       setMessage('Check your inbox for further instructions');
       navigate('/');
@@ -32,7 +33,7 @@ const ForgotPassword = () => {
     setLoading(false);
   };
 
-  const windowWidth = window.innerWidth < 850;
+  const windowWidth: boolean = window.innerWidth < 850;
 
   return (
     <div className='h-100 p-4 bg-white'>
@@ -45,6 +46,7 @@ const ForgotPassword = () => {
           {message && <Alert variant='success'>{error}</Alert> }
           <Form onSubmit={handleSubmit}>
             <Form.Group id="email">
+              {/* @ts-ignore */}
               <Form.Control type='email' ref={emailRef} required placeholder='Email'/>
             </Form.Group>
             <Button disabled={loading} type='submit' className='w-100 mt-3 border-0' style={{backgroundColor: '#699897'}}>Reset Password</Button>

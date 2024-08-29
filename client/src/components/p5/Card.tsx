@@ -1,13 +1,18 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { FC, useEffect, useRef, useCallback } from 'react';
 import styled from 'styled-components';
 import p5 from 'p5';
 
-const Card = ({ name_short }) => {
+interface Props {
+  name_short: string
+}
+
+const Card: FC<Props> = ({ name_short }) => {
   const sketch_ref = useRef();
 
+  // @ts-ignore
   const sketch = useCallback ((p) => {
-    let angle = 0;
-    let img;
+    let angle: number = 0;
+    let img: string;
 
     p.preload = () =>  { img = p.loadImage(`https://sacred-texts.com/tarot/pkt/img/${name_short}.jpg`) };
     p.setup = () => { p.createCanvas(240, 400, p.WEBGL) };
@@ -30,6 +35,7 @@ const Card = ({ name_short }) => {
 
   return (
     <Wrapper>
+      {/* @ts-ignore */}
       <div ref={sketch_ref} />
     </Wrapper>
   );

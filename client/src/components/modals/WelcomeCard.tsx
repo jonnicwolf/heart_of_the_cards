@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import Eye from '../p5/Eye'
 
-export default function WelcomeCard () {
-
+const WelcomeCard: FC = () => {
   return (
     <Container>
       <EyeWrapper>
@@ -17,7 +16,7 @@ export default function WelcomeCard () {
         </EyeLashContainer>
 
         <EyeContainer>
-          <Eye width={80} height={160}/>
+          <Eye width={80} height={160} tracksMouse />
         </EyeContainer>
       </EyeWrapper>
       
@@ -110,3 +109,5 @@ const EyeLash_5 = styled(EyeLash)`
   transform: rotate(-50deg) translateX(-7px);
   width: 18px;
 `;
+
+export default WelcomeCard;

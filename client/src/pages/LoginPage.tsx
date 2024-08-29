@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import Login from '../components/forms/Login';
 import GraphicCard from '../components/GraphicCard';
 
-export default function LoginPage() {
-  const windowWidth = window.innerWidth < 850;
+interface Props {
+  windowWidth: boolean
+}
+
+const LoginPage: FC = () => {
+  const windowWidth: boolean = window.innerWidth < 850;
 
   return (
     <Container>
@@ -19,7 +23,9 @@ export default function LoginPage() {
 const Container = styled.div`
   display: flex;
 `;
-const LoginCard = styled.div`
+const LoginCard = styled.div<Props>`
   width: ${props => props.windowWidth ? '100vw' : '50vw'};
   height: 100vh;
 `;
+
+export default LoginPage;
