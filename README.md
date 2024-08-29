@@ -61,6 +61,10 @@ Heart of the Cards is a tarot reading app that offers users the ability to selec
 ```bash
     cd heart_of_the_cards/
 ```
+#### then
+```bash
+    cd client/
+```
 #### Start localhost
 ```bash
   npm run dev
