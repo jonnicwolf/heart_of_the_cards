@@ -82,7 +82,7 @@ const Board: FC = () => {
   });
 
   const parsedReading: [string, string][] | '' = reading
-  // @ts-ignore
+    // @ts-ignore
     ? readingParser(reading.choices[0].message.content)
     : '';
 
