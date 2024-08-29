@@ -1,9 +1,16 @@
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { FC, useEffect, useRef, useCallback } from 'react';
 import p5 from 'p5';
 
-const Eye = ({ width, height, tracksMouse }) => {
+interface Props {
+  width: number,
+  height: number,
+  tracksMouse: boolean | undefined
+}
+
+const Eye: FC<Props> = ({ width, height, tracksMouse }) => {
   const sketch_ref = useRef();
 
+  // @ts-ignore
   const sketch = useCallback((p) => {
     let angleA = 0;
     let angleB = 0;
@@ -84,6 +91,7 @@ const Eye = ({ width, height, tracksMouse }) => {
     return () => p5Canvas.remove();
   }, [sketch]);
 
+  // @ts-ignore
   return <div ref={sketch_ref} />;
 };
 

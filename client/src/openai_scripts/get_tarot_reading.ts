@@ -1,20 +1,25 @@
 import { OpenAI } from 'openai';
+import { ChatCompletion, ErrorObject } from 'openai/resources/index.mjs';
 
-export async function get_tarot_reading (question, cards) {
+export async function get_tarot_reading (
+  question: string,
+  cards: string[]
+): Promise<ChatCompletion | undefined> {
   if (cards.length > 0 && question) {
     try {
       const openai = new OpenAI({
-        apiKey: import.meta.env.VITE_OPENAI_API,
+        // @ts-ignore
+        apiKey: import.meta.env.VITE_OPENAI_API as string,
         dangerouslyAllowBrowser: true
       });
 
-      let attempts = 0;
-      const maxAttempts = 2;
-      const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+      let attempts: number = 0;
+      const maxAttempts: number = 2;
+      const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
       while (attempts < maxAttempts) {
         try {
-          const chatCompletion = await openai.chat.completions.create({
+          const chatCompletion: ChatCompletion = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [{ role: 'user', content: `Make a three card tarot reading using these cards: ${cards} and this question -> ${question}. Always send a reply in the same format as this string: '1. Page of Swords: This card suggests that there may be some skepticism or criticism towards the project from others. It could indicate that not everyone will immediately warm up to the idea or see its potential. However, it also encourages you to stay true to your vision and be open to constructive feedback.
 
@@ -24,10 +29,11 @@ export async function get_tarot_reading (question, cards) {
           });
           return chatCompletion;
         }
-        catch (error) {
+        catch (error: any) {
           if (error instanceof OpenAI.APIError && error.status === 429) {
-            const retryAfter = error.response?.headers?.get('Retry-After');
-            const waitTime = retryAfter ? parseInt(retryAfter, 10) * 1000 : Math.pow(2, attempts) * 1000;
+            // @ts-ignore
+            const retryAfter: any = error.response?.headers?.get('Retry-After');
+            const waitTime: number = retryAfter ? parseInt(retryAfter, 10) * 1000 : Math.pow(2, attempts) * 1000;
   
             console.error(`Rate-limited. Retrying after ${waitTime / 1000} seconds...`);
             await delay(waitTime);
