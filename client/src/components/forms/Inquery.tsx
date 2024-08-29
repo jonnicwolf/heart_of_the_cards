@@ -103,9 +103,9 @@ const Query = styled.input`
     width: 95vw;
     height: 55vh;
   }
-    @media only screen and (max-height: 1400px) {
-      height: 50vh;
-    }
+  @media only screen and (max-height: 1400px) {
+    height: 50vh;
+  }
 `;
 
 export default Inquery;
