@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC }from 'react';
 import styled from 'styled-components';
 
 import Carousel from './Carousel';
@@ -6,7 +6,11 @@ import WelcomeCard from './WelcomeCard';
 import HIWCard from './HIWCard';
 import GetStartedCard from './GetStartedCard';
 
-export default function Modal ({ setter }) {
+interface Props {
+  setter: (isOpen: boolean) => void;
+};
+
+const Modal: FC<Props> = ({ setter }) => {
   const cards = [
     <WelcomeCard />,
     <HIWCard />,

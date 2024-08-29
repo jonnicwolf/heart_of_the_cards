@@ -1,11 +1,11 @@
-import React, { useState, FC } from 'react';
+import React, { FC, useState, } from 'react';
 import styled from 'styled-components';
 
 import Board from '../components/Board';
+// @ts-ignore
 import Modal from '../components/modals/Modal';
+// @ts-ignore
 import forest2 from '../assets/forest02.jpeg';
-
-
 
 const Home: FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(true);

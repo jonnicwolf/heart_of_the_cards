@@ -1,24 +1,29 @@
-import React, { useState, useId } from 'react';
+import React, { FC, useState, useId } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import ScrollToTop from '../ScrollToTop';
 
-export default function Carousel({ cards, setter }) {
+interface Props {
+  cards: JSX.Element[],
+  setter: (isOpen: boolean) => void,
+};
+
+const Carousel: FC<Props> = ({ cards, setter }) => {
   const navigate = useNavigate();
   const id = useId();
-  const [currentCard, setCurrentCard] = useState(0);
+  const [currentCard, setCurrentCard] = useState<number>(0);
 
-  function handleNext () {
+  function handleNext (): void {
     currentCard >= cards.length-1 ? setCurrentCard(0) : setCurrentCard(currentCard + 1);
   };
-  function handlePrev () {
+  function handlePrev (): void {
     currentCard <= 0 ? setCurrentCard(cards.length-1) : setCurrentCard(currentCard - 1);
   };
-  function goTo (cardNumber) {
+  function goTo (cardNumber: number): void {
     setCurrentCard(cardNumber);
   };
-  function handleExit () {
+  function handleExit (): void {
     setter(false);
     navigate('/');
   };
@@ -32,7 +37,7 @@ export default function Carousel({ cards, setter }) {
 
       <Pagination>
         <SlideButton onClick={handlePrev}>◀</SlideButton>
-        {cards.map((_,i) => <PageCircleButton id={id+i} onClick={() => goTo(i)}b/> )}
+        {cards.map((_,i) => <PageCircleButton id={id+i} onClick={() => goTo(i)}/> )}
         <SlideButton onClick={handleNext}>▶</SlideButton>
       </Pagination>
     </Container>
@@ -102,3 +107,5 @@ const PageCircleButton = styled.button`
     scale: 1.1;
   }
 `;
+
+export default Carousel;

@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-export default function GetStartedCard({ setter }) {
+interface Props {
+  setter: (isOpen: boolean) => void
+};
+
+const GetStartedCard: FC<Props> = ({ setter }) => {
   const navigate = useNavigate();
   function handleClick () {
     setter(false);
     navigate('/');
-  }
+  };
+
   return (
     <Container>
       <Title>Get Started</Title>
@@ -75,3 +80,5 @@ const Button = styled.button`
     width: 20vw;
   }
 `;
+
+export default GetStartedCard;
