@@ -22,7 +22,7 @@ interface TarotCard {
   type: string;
   value: string;
   value_int: number;
-}
+};
 
 interface CardsResponse {
   cards: TarotCard[];
