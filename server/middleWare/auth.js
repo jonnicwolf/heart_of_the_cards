@@ -1,4 +1,4 @@
-const admin = require('firebase-admin');
+import admin from 'firebase-admin';
 
 const authenticate = async (req, res, next) => {
   const token = req.headers.authorization;
@@ -13,4 +13,4 @@ const authenticate = async (req, res, next) => {
   };
 };
 
-module.exports = { authenticate };
+export { authenticate };
