@@ -1,11 +1,23 @@
 {
   "version": 2,
-  "functions": {
-    "api/index.js": {
-      "runtime": "@vercel/node@20.x"
+  "builds": [
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node",
+      "config": {
+        "nodeVersion": "20.x"
+      }
     }
-  },
+  ],
   "routes": [
+    {
+      "src": "/api/users",
+      "dest": "/api/users.js"
+    },
+    {
+      "src": "/api/history",
+      "dest": "/api/history.js"
+    },
     {
       "src": "/api/(.*)",
       "dest": "/api/index.js"
