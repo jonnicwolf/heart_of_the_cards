@@ -1,1 +1,1 @@
-export default (req, res) => {res.status(200).send('Wamnin🌴')};
+module.exports = (req, res) => {res.status(200).send('Wamnin🌴')};

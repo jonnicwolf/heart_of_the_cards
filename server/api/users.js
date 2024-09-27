@@ -1,2 +1,2 @@
 import usersController from '../controllers/users_controller';
-export default handler = (req, res) => {usersController(req,res)};
+module.exports = (req, res) => {usersController(req,res)};
