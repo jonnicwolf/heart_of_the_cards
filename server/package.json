@@ -1,10 +1,10 @@
 {
   "name": "back-end",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
+    "start": "node api/index.js",
     "db:seed": "psql -U postgres -p 5432 -f db/seed.sql",
     "db:init": "psql -U postgres -p 5432 -f db/schema.sql"
   },
@@ -18,7 +18,7 @@
     "firebase-admin": "^12.2.0",
     "firebase-functions": "^5.0.1",
     "pg-promise": "^11.6.0",
-    "react-scripts": "^5.0.1"
+    "vercel": "^37.6.0"
   },
   "keywords": [],
   "description": ""
