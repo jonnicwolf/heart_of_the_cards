@@ -1,7 +1,26 @@
 {
   "version": 2,
+  "builds": [
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node",
+      "config": {
+        "nodeVersion": "20.x"
+      }
+    }
+  ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" },
-    { "src": "/(.*)", "dest": "/api/index.js" }
+    {
+      "src": "/",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/users",
+      "dest": "/api/users.js"
+    },
+    {
+      "src": "/history",
+      "dest": "/api/history.js"
+    }
   ]
 }
