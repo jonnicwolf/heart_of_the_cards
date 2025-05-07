@@ -14,7 +14,7 @@ const Card: FC<Props> = ({ name_short }) => {
     let angle: number = 0;
     let img: string;
 
-    p.preload = () =>  { img = p.loadImage(`https://sacred-texts.com/tarot/pkt/img/${name_short}.jpg`) };
+    p.preload = () =>  { img = p.loadImage(`/tarot_cards/${name_short}.jpg`) };
     p.setup = () => { p.createCanvas(240, 400, p.WEBGL) };
 
     p.draw = () => {
