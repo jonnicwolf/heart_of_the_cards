@@ -12,7 +12,7 @@ const Card: FC<Props> = ({ name_short }) => {
   // @ts-ignore
   const sketch = useCallback ((p) => {
     let angle: number = 0;
-    let img: string;
+    let img: string; 
 
     p.preload = () =>  { img = p.loadImage(`https://sacred-texts.com/tarot/pkt/img/${name_short}.jpg`) };
     p.setup = () => { p.createCanvas(240, 400, p.WEBGL) };
