@@ -3,8 +3,10 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from './contexts/AuthContext';
 
 const PrivateRoute: FC = () => {
-  const { currentUser } = useAuth();
+  const { currentUser, loading } = useAuth();
   const location = useLocation();
+
+  if (loading) return <div>loading</div>;
 
   return currentUser
   ? <Outlet />

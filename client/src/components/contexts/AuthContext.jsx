@@ -40,7 +40,7 @@ export const AuthProvider = ({ children }) => {
     };
   };
 
-  const logout = () => signOut();
+  const logout = () => signOut(auth);
   const resetPassword = (email) => sendPasswordResetEmail(email);
 
   const signInWithGoogle = async () => {
@@ -70,6 +70,7 @@ export const AuthProvider = ({ children }) => {
 
   const value = {
     currentUser,
+    loading,
     login,
     logout,
     signup,
