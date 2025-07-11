@@ -23,8 +23,8 @@ const App: FC = () => {
   ];
 
   return (
-    <AuthProvider>
-      <Container>
+    <Container>
+      <AuthProvider>
         {!no_nav_list.includes(location.pathname) && <Nav />}
         <Routes>
           <Route path='/' element={<PrivateRoute />}>
@@ -36,17 +36,16 @@ const App: FC = () => {
           <Route path='/forgot-password' element={<ForgotPasswordPage />} />
           <Route path='/test' element={<Test />} />
         </Routes>
-      </Container>
-    </AuthProvider>
+      </AuthProvider>
+    </Container>
   );
 };
 
 const Container = styled.div`
   max-height: 100%;
-  width: 100vw;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  background-color: #fce6c5;
 `;
 
 export default App;

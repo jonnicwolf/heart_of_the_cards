@@ -29,7 +29,7 @@ const Carousel: FC<Props> = ({ cards, setter }) => {
   };
 
   return (
-    <Container>
+    <BorderContainer>
       <Exit onClick={handleExit}>X</Exit>
 
       {cards[currentCard]}
@@ -40,11 +40,11 @@ const Carousel: FC<Props> = ({ cards, setter }) => {
         {cards.map((_,i) => <PageCircleButton id={id+i} onClick={() => goTo(i)}/> )}
         <SlideButton onClick={handleNext}>▶</SlideButton>
       </Pagination>
-    </Container>
+    </BorderContainer>
   );
 };
 
-const Container = styled.div`
+export const BorderContainer = styled.div`
   width: 50%;
   height: 90%;
   display: flex;
