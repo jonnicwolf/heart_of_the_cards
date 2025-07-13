@@ -49,12 +49,12 @@ const Nav: FC = () => {
 
         <SlideOutMenu showmenu={showMenu}>
           <Button onClick={handleHomeClick}>
-            <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=FFFFFF' alt=''/>
+            <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=#000' alt=''/>
             <Text>Home</Text>
           </Button>
 
           <Button onClick={() => handleHistoryClick(false)}>
-            <History src="https://img.icons8.com/?size=100&id=hZ5zdXjC6tJ3&format=png&color=FFFFFF" alt="" />
+            <History src="https://img.icons8.com/?size=100&id=hZ5zdXjC6tJ3&format=png&color=#000" alt="" />
             <Text>History</Text>
           </Button>
 
@@ -73,7 +73,7 @@ const Container = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 5rem;
+  height: 6rem;
   width: 100vh;
   align-self: center;
   background-color: #fce6c5;
@@ -87,18 +87,22 @@ const MenuLogoWarp = styled.div`
   width: 100%;
   max-width: 1500px;
   align-items: center;
+  justify-content: space-between;
+
   @media only screen and (max-width: 1400px) {
     width: 1200px;
   }
 `;
 const Logout = styled.button`
   height: 100%;
-  color: #e1c4ca;
   background: none;
   border: none;
   display: flex;
   align-items: center;
   flex-direction: column;
+  gap: 10px;
+  padding: 5px;
+
   @media only screen and (max-width: 500px) {
     font-size: 10px;
   }
@@ -120,14 +124,15 @@ export const Logo = styled.div<ShowMenuProps>`
 const SlideOutMenu = styled.div<ShowMenuProps>`
   display: flex;
   justify-content: center;
-  gap: 2vw;
-  padding: 5px 10px 5px 10px;
-  background-color: black;
-  opacity: ${props => props.showmenu ? '100%' : 0};
-  width: ${props => props.showmenu ? '20%' : 0};
-  border: 1.5px solid white;
+  align-items: center;
+  gap: 1rem;
+  color: black;
   overflow: hidden;
-  transition: all 0.3s ease-in-out;
+
+  &:hover > button > span{
+    height: 1rem;
+    opacity: 1;
+  }
   @media only screen and (max-width: 720px) {
     padding: 0;
     height: 5vh;
@@ -140,26 +145,26 @@ const Button = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 10px;
 `;
 const Home = styled.img`
-  height: 2rem;
+  height: 2.5rem;
   @media only screen and (max-width: 720px) {
     height: 1.3rem;
   }
 `;
 const History = styled.img`
-  height: 2rem;
+  height: 2.5rem;
   @media only screen and (max-width: 720px) {
     height: 1.3rem;
   }
 `;
 const Text = styled.span`
-  color: white;
-  font-size: 0.7rem;
   font-family: Bagnard;
-  @media only screen and (max-width: 720px) {
-    font-size: 0.5rem;
-  }
+  font-size: 1rem;
+  height: 0;
+  opacity: 0;
+  transition: height 0.3s ease-in-out;
 `;
 
 export default Nav;
