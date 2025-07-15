@@ -8,15 +8,14 @@ interface Props {
 
 const Inquery: FC<Props> = ({ questionSetter, runFetchSetter }) => {
   const questions = [
-    'Burning question?',
-    'Perhaps a major dilemma?',
-    'Significant matter?',
-    'Pressing concern?',
-    'Pour the tea.',
-    'Critical matter?',
-    'Tell me.',
-    'Welcome, ask away.',
-    'Ready when you are, ask away.',
+    // 'Burning question?',
+    // 'Perhaps a major dilemma?',
+    // 'Pressing concern?',
+    // 'Pour the tea.',
+    // 'Critical matter?',
+    // 'Tell me!',
+    // 'Welcome, ask away!',
+    'Ready when you are, ask away!',
     'What would you like to know?'
   ];
 
@@ -47,17 +46,31 @@ const Inquery: FC<Props> = ({ questionSetter, runFetchSetter }) => {
 };
 
 const Container = styled.div`
+  height: 50rem;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  // overflow: scroll;
+  width: 80%;
+
+  --s: 10px;
+  padding: var(--s);
+  border: calc(5*var(--s)) solid #0000;
+  outline: 1px solid #000;
+  outline-offset: calc(-3*var(--s));
+  background: conic-gradient(from 90deg at 1px 1px,#0000 25%,#000 0);
+  background-color: #fce6c5;
+
+  @media only screen and (max-width: 720px) {
+    width: 80%;
+  }
 `;
 const Button = styled.button`
   width: 200px;
   background: none;
   border: none
   text-align: center;
-  color: #e1c4ca;
   font-size: 3rem;
   font-family: 'Amatic SC';
   font-weight: bold;
@@ -80,19 +93,25 @@ const Button = styled.button`
   }
 `;
 const Query = styled.input`
-  width: 60vw;
   height: 30vh;
-  border: none;
-  border-radius: 30px;
   max-height: 400px;
-  background: rgb(0,0,0,0.6);
+  width: 100%;
+  background-color: #fce6c5;
   text-align: center;
-  color: #e1c4ca;
   font-size: 3rem;
   font-family: 'Lora';
   font-weight: bold;
+  border: none;
+  text-wrap: wrap;
+
   &::placeholder {
-    color: white;
+    color: #4a4a4a;
+    font-style: italic;
+    animation: blink 1.2s infinite;
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1 }
+    50% { opacity: 0.3 }
   }
   &:focus::placeholder {
     color: transparent;
