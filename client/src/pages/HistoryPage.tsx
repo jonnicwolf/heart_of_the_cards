@@ -1,27 +1,7 @@
-import React, { FC } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { FC } from 'react';
 import styled from 'styled-components';
 
-import HistoryCard from '../components/HistoryCard';
-import Card from '../components/p5/Card';
-
-
-
 const HistoryPage: FC = () => {
-  const getHistory = async(): Promise<void> => {
-    try {
-      const response = await fetch('https://esperi-db.vercel.app');
-      return response.json();
-    }
-    catch (error: any) { throw new Error(`getCard error:  ${error}`) }; 
-  };
-
-  // const {data: history} = useQuery({
-  //   queryKey: ['history'],
-    
-  //   enabled: !!question && !!cards,
-  // });
-
   return (
     <Container>
       <Wrap>
