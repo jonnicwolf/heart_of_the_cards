@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { postnewUserHistory } from '../util/postnewUserHistory';
+import { getUserHistory } from '../util/getUserHistory';
 
 const HistoryPage: FC = () => {
   const [history, setHistory] = useState({});
@@ -30,7 +30,7 @@ const HistoryPage: FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await postnewUserHistory(exampleData);
+      const data = await getUserHistory();
       setHistory(data || {});
       console.log(data);
     };
