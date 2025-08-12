@@ -1,7 +1,44 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { postnewUserHistory } from '../util/postnewUserHistory';
+
 const HistoryPage: FC = () => {
+  const [history, setHistory] = useState({});
+  const exampleData = {
+      reading_text:
+        [
+          {
+            name: `The Fool`,
+            card_number: `fo01`,
+            reading: `test reading for the fool`,
+          },
+          {
+            name: `Ace of Cups`,
+            card_number: `cu01`,
+            reading: `test reading for the ace of cups`,
+          },
+          {
+            name: `Six of Swords`,
+            card_number: `sw06`,
+            reading: `test reading for the six of swords`,
+          },
+        ],
+      spread_type: "three_card",
+      tags: ["love"],
+    }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await postnewUserHistory(exampleData);
+      setHistory(data || {});
+      console.log(data);
+    };
+
+    fetchData();
+  },[])
+
+  
   return (
     <Container>
       <Wrap>
