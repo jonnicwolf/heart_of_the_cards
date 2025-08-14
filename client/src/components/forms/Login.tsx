@@ -1,4 +1,4 @@
-import React, {
+import {
   FC,
   MouseEvent,
   useState,
@@ -6,6 +6,7 @@ import React, {
  } from 'react';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
+
 import {
   Form,
   Card,

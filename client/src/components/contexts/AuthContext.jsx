@@ -1,20 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { logEvent } from 'firebase/analytics';
-import {
-  auth,
-  analytics,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  sendPasswordResetEmail,
-  onAuthStateChanged,
-  signInWithPopup,
-  GoogleAuthProvider,
-  signInAnonymously,
-  signOut
-} from '../../../firebase.js';
+import { supabase } from "../../supabaseClient";
 
 const AuthContext = React.createContext();
-const googleProvider = new GoogleAuthProvider();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
@@ -23,10 +10,16 @@ export const AuthProvider = ({ children }) => {
 
   const signup = async (email,password) => {
     try {
-      logEvent(analytics, 'sign_up');
-      return await createUserWithEmailAndPassword(auth, email, password);
-    }
-    catch (error) { console.error('Error creating user. Please try again.') };
+      const {data,error} = await supabase.auth.signUp({
+        email,
+        password,
+      });
+      if (error) throw error;
+
+      return data;
+    } catch (error) {
+      console.error(`Error creating user. ${ error.message }`)
+    };
   };
 
   const login = async (email, password) => {
