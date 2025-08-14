@@ -3,12 +3,6 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseURL =     import.meta.env.VITE_SUPABASE_URL || '';
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
 
-console.log('Supabase URL:', supabaseURL);
-console.log('Supabase Anon Key:', supabaseAnonKey);
-
-if (!supabaseURL || !supabaseAnonKey) throw new Error('Missing Supabase environment variables')
-else console.log('Supabase environment variables loaded');
-
 const supabase = createClient(supabaseURL, supabaseAnonKey);
 
 export const getUserHistory = async () => {
@@ -24,5 +18,5 @@ export const getUserHistory = async () => {
     .order('created_at', { ascending: false });
 
   if (error) throw error
-  return data || [];
+  return data || `No history found for user`;
 };

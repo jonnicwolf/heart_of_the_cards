@@ -26,7 +26,7 @@ const HistoryPage: FC = () => {
         ],
       spread_type: "three_card",
       tags: ["love"],
-    }
+    };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,7 +38,7 @@ const HistoryPage: FC = () => {
     fetchData();
   },[])
 
-  
+  console.log(`history: `,history);
   return (
     <Container>
       <Wrap>
@@ -47,7 +47,7 @@ const HistoryPage: FC = () => {
           <Month>July</Month>
         </TitleContainer>
         <ContentContainer>
-          {}
+          
         </ContentContainer>
       </Wrap>
     </Container>

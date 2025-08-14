@@ -1,7 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 
-export const postnewUserHistory = async (userData) => {
-  const { name, card_number, reading } = userData;
+export const postnewUserHistory = async (newReading) => {
+  const { reading_text, spread_type, tags } = newReading;
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL || '',
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || ''
@@ -10,13 +10,9 @@ export const postnewUserHistory = async (userData) => {
   const { data, error } = await supabase
     .from('readings')
     .insert({
-      reading_text: {
-        "name": `${name}`,
-        "card_number": `${card_number}`,
-        "reading": `${reading}`
-      },
-      spread_type: "three_card",
-      tags: ["love"],
+      reading_text: reading_text,
+      spread_type: spread_type,
+      tags: tags,
     });
 
   if (error) {
