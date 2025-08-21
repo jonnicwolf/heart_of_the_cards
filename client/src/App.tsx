@@ -15,21 +15,13 @@ import Nav from './components/navigation/Nav';
 import { AuthProvider } from './components/contexts/AuthContext';
 
 const App: FC = () => {
-  const location = useLocation();
-  const no_nav_list: string[] = [
-    '/login',
-    '/signup',
-    '/forgot-password'
-  ];
-
   return (
     <Container>
       <AuthProvider>
-        {!no_nav_list.includes(location.pathname) && <Nav />}
+        {/* {!no_nav_list.includes(location.pathname) && <Nav />} */}
+        <Nav />
         <Routes>
-          <Route path='/' element={<PrivateRoute />}>
-            <Route index element={<Home />} />
-          </Route>
+          <Route index element={<Home />} />
           <Route path='/history' element={<HistoryPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SignupPage />} />

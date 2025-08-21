@@ -44,13 +44,6 @@ const Login: FC = () => {
     setLoading(false);
   };
 
-  const handleAnonLogin = (e: MouseEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    signInAnon();
-    navigate('/');
-    setLoading(false);
-  };
-
   return (
     <div className='h-100 p-4 bg-white'>
       <Card className='h-100 d-flex align-items-center'>
@@ -98,9 +91,9 @@ const Login: FC = () => {
           <span className='align-self-center mt-3 mb-3'>or</span>
 
           {/* @ts-ignore */}
-          <Button type='button' className='w-100 border-0' onClick={handleAnonLogin} style={{backgroundColor: '#699897'}}>
+          {/* <Button type='button' className='w-100 border-0' onClick={handleAnonLogin} style={{backgroundColor: '#699897'}}>
               Sign In as Guest
-            </Button>
+            </Button> */}
         </Card.Body>
       </Card>
     </div>
