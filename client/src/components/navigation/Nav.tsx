@@ -1,6 +1,6 @@
 import React, { useState, FC } from 'react';
 import styled from 'styled-components';
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth, } from '../contexts/AuthContext'
 
 import Logout_Btn from './Logout_Btn';
 import { useNavigate } from 'react-router-dom';
@@ -13,8 +13,18 @@ const Nav: FC = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const { logout } = useAuth();
+  const { logout, login, currentUser } = useAuth();
   const navigate = useNavigate();
+
+  const handleLogin = async (): Promise<void> => {
+    try {
+      await login();
+      setError(null);
+      navigate('/');
+    } catch (error: any) {
+      setError(error.message || 'Logout Failed');
+    }
+  };
 
   const handleLogout = async (): Promise<void> => {
     try {
@@ -58,10 +68,17 @@ const Nav: FC = () => {
             <Text>History</Text>
           </Button>
 
-          <Logout onClick={handleLogout}>
-            <Logout_Btn />
-            <Text>Logout</Text>
-          </Logout>
+          { currentUser
+            ?  <Logout onClick={handleLogout}>
+                <Logout_Btn />
+                <Text>Logout</Text>
+              </Logout>
+
+            : <Button onClick={handleLogin}>
+                <Login src="https://img.icons8.com/?size=100&id=1090&format=png&color=#000" alt="Login Icon" />
+                <Text>Login</Text>
+              </Button>
+          }
         </SlideOutMenu>
 
       </MenuLogoWarp>
@@ -127,7 +144,6 @@ const SlideOutMenu = styled.div<ShowMenuProps>`
   align-items: center;
   gap: 1rem;
   color: black;
-  overflow: hidden;
 
   &:hover > button > span{
     height: 1rem;
@@ -159,6 +175,13 @@ const History = styled.img`
     height: 1.3rem;
   }
 `;
+const Login = styled.img`
+  height: 2.5rem;
+  @media only screen and (max-width: 720px) {
+    height: 1.3rem;
+  }
+`;
+
 const Text = styled.span`
   font-family: Bagnard;
   font-size: 1rem;

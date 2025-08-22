@@ -119,6 +119,7 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
+
   const signup = async (email, password) => {
     try {
       const { data, error } = await supabase.auth.signUp({
@@ -188,7 +189,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    // Get initial session
     const getInitialSession = async () => {
       const { data: { session } } = await supabase.auth.getSession();
       setCurrentUser(session?.user || null);
