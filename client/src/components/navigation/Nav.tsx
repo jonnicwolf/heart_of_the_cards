@@ -7,18 +7,18 @@ import { useNavigate } from 'react-router-dom';
 
 interface ShowMenuProps {
   showmenu: boolean;
-}
+};
 
 const Nav: FC = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const { logout, login, currentUser } = useAuth();
+  const { logout, signInWithGoogle, currentUser } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = async (): Promise<void> => {
     try {
-      await login();
+      await signInWithGoogle();
       setError(null);
       navigate('/');
     } catch (error: any) {
