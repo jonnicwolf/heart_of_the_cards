@@ -97,7 +97,7 @@ export const AuthProvider = ({ children }) => {
     }
 
       const { data: { session }, error } = await supabase.auth.getSession();
-      console.log("Initial session:", session, "Error:", error);
+      // console.log("Initial session:", session, "Error:", error);
 
       if (!session || error) {
         const { data: userData, error: userError } = await supabase.auth.getUser();
