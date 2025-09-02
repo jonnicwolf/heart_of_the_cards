@@ -1,4 +1,4 @@
-import React, { FC, useState, } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import Board from '../components/Board';
@@ -6,17 +6,35 @@ import Board from '../components/Board';
 import Modal from '../components/modals/Modal';
 import { useAuth } from '../components/contexts/AuthContext';
 
-
 const Home: FC = () => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(true);
+  const [curQuestion, setCurQuestion] = useState<string>('');
   const {currentUser} = useAuth();
 
   const full_name = currentUser.user_metadata.full_name;
   const user = full_name.split(' ')[0];
 
+  const questions = [
+    "Welcome, seeker. The cards are waiting. What question rests on your heart today?",
+    "The veil is thin, and the deck is ready. Ask your question, and let the cards reveal their wisdom.",
+    "Hey, curious soul! Ready to peek at what the universe has in store? Ask away, and I’ll pull some cards for you.",
+    "Sit, breathe, and focus your thoughts. The cards are listening. What would you like to know?"
+  ];
+
+  const findRandomQuestion = () => questions[Math.floor(Math.random() * questions.length)];
+
+  useEffect(() => {
+    setCurQuestion(findRandomQuestion());
+  }, []);
+
   return (
     <Container>
-      <Welcome>Welcome back, {user}!</Welcome>
+      <WelcomeWrapper>
+        <Welcome>Welcome back, {user}!</Welcome>
+        <hr />
+        <Question>{curQuestion}</Question>
+      </WelcomeWrapper>
+
       {modalIsOpen && !user
         ? <Modal setter={setModalIsOpen} />
         : <Board />}
@@ -68,12 +86,24 @@ const Container = styled.div`
     height: 92vh;
   }
 `;
-
+const WelcomeWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  text-align: center;
+`;
 const Welcome = styled.div`
   font-family: Lora;
   font-family: Bagnard;
   font-size: 4rem;
-  // margin-top: 4rem;
+`;
+ const Question = styled.p`
+  font-size: 2.5rem;
+  font-family: 'Lora';
+  font-weight: bold;
+  color: #4a4a4a;
+  font-style: italic;
+  text-align: center;
 `;
 
 export default Home;

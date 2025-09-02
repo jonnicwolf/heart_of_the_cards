@@ -39,29 +39,7 @@ const Board: FC = () => {
   function handleReload(): void {
     window.location.reload();
   }
-  const questions = [
-    // 'Burning question?',
-    // 'Perhaps a major dilemma?',
-    // 'Pressing concern?',
-    // 'Pour the tea.',
-    // 'Critical matter?',
-    // 'Tell me!',
-    // 'Welcome, ask away!',
-    'Ready when you are, ask away!',
-    'What would you like to know?'
-  ];
-
-  const randomQuestion: string = questions[Math.floor(Math.random() * (questions.length + 1))];
   
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setQuestion(randomQuestion);
-    }, 30000);
-
-    return () => clearInterval(interval);
-  }, [question]);
-
-  const handleChange = (e) => setQuestion(e.target.value);
   function readingParser(tarotString: string): [string, string][] {
     const lines: string[] = tarotString.trim().split('\n');
     const matrix: [string, string][] = [];
@@ -130,12 +108,7 @@ const Board: FC = () => {
   };
 
   function renderInquiry(): JSX.Element {
-    return (
-      <>
-        <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />
-        <Question />
-      </>
-    )
+    return <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />
   };
 
   function renderEye(): JSX.Element {

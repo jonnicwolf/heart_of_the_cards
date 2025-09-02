@@ -97,7 +97,6 @@ export const AuthProvider = ({ children }) => {
     }
 
       const { data: { session }, error } = await supabase.auth.getSession();
-      // console.log("Initial session:", session, "Error:", error);
 
       if (!session || error) {
         const { data: userData, error: userError } = await supabase.auth.getUser();
@@ -113,7 +112,6 @@ export const AuthProvider = ({ children }) => {
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       (event, session) => {
-        console.log("Auth state change:", event, session);
         setCurrentUser(session?.user || null);
         setLoading(false);
       }

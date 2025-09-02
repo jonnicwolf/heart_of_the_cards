@@ -15,7 +15,7 @@ const Inquery: FC<Props> = ({ questionSetter, runFetchSetter }) => {
 
   return (
     <Container>
-      <Query onChange={(e)=> questionSetter(e.target.value)} />
+      <Query onChange={(e)=> questionSetter(e.target.value)} autoFocus placeholder='...ask me anything!' />
       <Button onClick={handleSubmit}>submit</Button>
     </Container>
   );
@@ -68,23 +68,21 @@ const Button = styled.button`
     width: 20vw;
   }
 `;
-export const Question = styled.p`
-  font-size: 3rem;
-  font-family: 'Lora';
-  font-weight: bold;
-  color: #4a4a4a;
-  font-style: italic;
-`;
-const Query = styled.textarea`
+
+const Query = styled.input`
   width: 100%;
   background-color: #fce6c5;
-  text-align: center;
   font-size: 3rem;
   font-family: 'Lora';
   font-weight: bold;
   border: none;
   text-wrap: wrap;
-  border: 1px solid rgba(0,0,0,0.3);
+  cursor: text;
+  text-align: center;
+
+  &: focus {
+    outline: none;
+  }
 `;
 
 export default Inquery;
