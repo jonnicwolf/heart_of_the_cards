@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import { FC, useState } from 'react';
 import { analytics } from '../../firebase';
 import { logEvent } from 'firebase/analytics';
 import { useQuery } from '@tanstack/react-query';
@@ -7,9 +7,9 @@ import styled, { keyframes } from 'styled-components';
 
 import Eye from './p5/Eye';
 import Card from './p5/Card';
-import Inquery, { Question } from './forms/Inquery';
+import Inquery from './forms/Inquery';
 
-import { get_tarot_reading } from '../openai_scripts/get_tarot_reading';
+import { get_tarot_reading } from '../openai_scripts/get_tarot_reading.ts';
 import { ChatCompletion } from 'openai/resources/index.mjs';
 
 interface TarotCard {
