@@ -48,7 +48,7 @@ const Container = styled.div`
   justify-content: center;
   gap: 10vh;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   width: 100vh;
   max-width: 2400px;
   align-self: center;
