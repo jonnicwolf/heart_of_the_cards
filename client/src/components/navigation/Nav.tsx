@@ -1,4 +1,4 @@
-import React, { useState, FC } from 'react';
+import { useState, FC } from 'react';
 import styled from 'styled-components';
 import { useAuth, } from '../contexts/AuthContext'
 
@@ -69,7 +69,7 @@ const Nav: FC = () => {
           </Button>
 
           { currentUser
-            ?  <Logout onClick={handleLogout}>
+            ? <Logout onClick={handleLogout}>
                 <Logout_Btn />
                 <Text>Logout</Text>
               </Logout>
@@ -80,7 +80,6 @@ const Nav: FC = () => {
               </Button>
           }
         </SlideOutMenu>
-
       </MenuLogoWarp>
     </Container>
   );
@@ -120,6 +119,14 @@ const Logout = styled.button`
   gap: 10px;
   padding: 5px;
 
+  img {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  &:hover img {
+    transform: scale(1.2);
+  }
+
   @media only screen and (max-width: 500px) {
     font-size: 10px;
   }
@@ -127,12 +134,12 @@ const Logout = styled.button`
 export const Logo = styled.div<ShowMenuProps>`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   font-size: 2rem;
   font-family: Bagnard;
-  transform: translateY(3px);
-  line-height: ${props => props.showmenu ? '35px' : '25px'};
-  transition: line-height 0.3s ease-in-out;
+  line-height: 25px;
   cursor: pointer;
+
   @media only screen and (max-width: 500px) {
     font-size: 1rem;
     line-height: 15px;
@@ -144,11 +151,8 @@ const SlideOutMenu = styled.div<ShowMenuProps>`
   align-items: center;
   gap: 1rem;
   color: black;
+  transition: all 0.3s ease-in-out;
 
-  &:hover > button > span{
-    height: 1rem;
-    opacity: 1;
-  }
   @media only screen and (max-width: 720px) {
     padding: 0;
     height: 5vh;
@@ -162,6 +166,14 @@ const Button = styled.button`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+
+  img {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  &:hover img {
+    transform: scale(1.2);
+  }
 `;
 const Home = styled.img`
   height: 2.5rem;
@@ -185,8 +197,6 @@ const Login = styled.img`
 const Text = styled.span`
   font-family: Bagnard;
   font-size: 1rem;
-  height: 0;
-  opacity: 0;
   transition: height 0.3s ease-in-out;
 `;
 
