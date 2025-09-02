@@ -7,30 +7,6 @@ interface Props {
 };
 
 const Inquery: FC<Props> = ({ questionSetter, runFetchSetter }) => {
-  const questions = [
-    // 'Burning question?',
-    // 'Perhaps a major dilemma?',
-    // 'Pressing concern?',
-    // 'Pour the tea.',
-    // 'Critical matter?',
-    // 'Tell me!',
-    // 'Welcome, ask away!',
-    'Ready when you are, ask away!',
-    'What would you like to know?'
-  ];
-
-  const randomQuestion: string = questions[Math.floor(Math.random() * (questions.length + 1))];
-  const [question, setQuestion] = useState<string>(randomQuestion);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setQuestion(randomQuestion);
-    }, 30000);
-
-    return () => clearInterval(interval);
-  }, [question]);
-
-  const handleChange = (e) => questionSetter(e.target.value);
 
   function handleSubmit (e) {
     e.preventDefault();
@@ -39,7 +15,7 @@ const Inquery: FC<Props> = ({ questionSetter, runFetchSetter }) => {
 
   return (
     <Container>
-      <Query onChange={handleChange} placeholder={question} />
+      <Query onChange={(e)=> questionSetter(e.target.value)} autoFocus placeholder='...ask me anything!' />
       <Button onClick={handleSubmit}>submit</Button>
     </Container>
   );
@@ -49,10 +25,10 @@ const Container = styled.div`
   height: 50rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  // overflow: scroll;
   width: 80%;
+  border: 1px solid red;
 
   --s: 10px;
   padding: var(--s);
@@ -69,13 +45,13 @@ const Container = styled.div`
 const Button = styled.button`
   width: 200px;
   background: none;
-  border: none
   text-align: center;
   font-size: 3rem;
   font-family: 'Amatic SC';
   font-weight: bold;
-  transform: translateY(-80px);
   cursor: pointer;
+  scale: 1.2;
+
   &: hover {
     border: 2px solid #e1c4ca;
     background: rgba(65,50,63,0.9);
@@ -92,38 +68,20 @@ const Button = styled.button`
     width: 20vw;
   }
 `;
+
 const Query = styled.input`
-  height: 30vh;
-  max-height: 400px;
   width: 100%;
   background-color: #fce6c5;
-  text-align: center;
   font-size: 3rem;
   font-family: 'Lora';
   font-weight: bold;
   border: none;
   text-wrap: wrap;
+  cursor: text;
+  text-align: center;
 
-  &::placeholder {
-    color: #4a4a4a;
-    font-style: italic;
-    animation: blink 1.2s infinite;
-  }
-  @keyframes blink {
-    0%, 100% { opacity: 1 }
-    50% { opacity: 0.3 }
-  }
-  &:focus::placeholder {
-    color: transparent;
-    text-wrap: pretty;
-  }
-  @media only screen and (max-width: 1200px) {
-    font-size: 0.9rem;
-    width: 95vw;
-    height: 55vh;
-  }
-  @media only screen and (max-height: 1400px) {
-    height: 50vh;
+  &: focus {
+    outline: none;
   }
 `;
 

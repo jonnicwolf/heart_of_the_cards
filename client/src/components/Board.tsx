@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { analytics } from '../../firebase';
 import { logEvent } from 'firebase/analytics';
 import { useQuery } from '@tanstack/react-query';
@@ -9,7 +9,7 @@ import Eye from './p5/Eye';
 import Card from './p5/Card';
 import Inquery from './forms/Inquery';
 
-import { get_tarot_reading } from '../openai_scripts/get_tarot_reading';
+import { get_tarot_reading } from '../openai_scripts/get_tarot_reading.ts';
 import { ChatCompletion } from 'openai/resources/index.mjs';
 
 interface TarotCard {
@@ -39,7 +39,7 @@ const Board: FC = () => {
   function handleReload(): void {
     window.location.reload();
   }
-
+  
   function readingParser(tarotString: string): [string, string][] {
     const lines: string[] = tarotString.trim().split('\n');
     const matrix: [string, string][] = [];
@@ -108,7 +108,7 @@ const Board: FC = () => {
   };
 
   function renderInquiry(): JSX.Element {
-    return <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />;
+    return <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />
   };
 
   function renderEye(): JSX.Element {

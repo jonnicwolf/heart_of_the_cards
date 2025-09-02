@@ -1,4 +1,4 @@
-import React, {
+import {
   FC,
   MouseEvent,
   useState,
@@ -6,6 +6,7 @@ import React, {
  } from 'react';
 import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
+
 import {
   Form,
   Card,
@@ -39,13 +40,6 @@ const Login: FC = () => {
   const handleGoogleLogin = async (e: MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
     await signInWithGoogle();
-    navigate('/');
-    setLoading(false);
-  };
-
-  const handleAnonLogin = (e: MouseEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    signInAnon();
     navigate('/');
     setLoading(false);
   };
@@ -97,9 +91,9 @@ const Login: FC = () => {
           <span className='align-self-center mt-3 mb-3'>or</span>
 
           {/* @ts-ignore */}
-          <Button type='button' className='w-100 border-0' onClick={handleAnonLogin} style={{backgroundColor: '#699897'}}>
+          {/* <Button type='button' className='w-100 border-0' onClick={handleAnonLogin} style={{backgroundColor: '#699897'}}>
               Sign In as Guest
-            </Button>
+            </Button> */}
         </Card.Body>
       </Card>
     </div>
