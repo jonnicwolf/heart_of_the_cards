@@ -34,7 +34,8 @@ const App: FC = () => {
 };
 
 const Container = styled.div`
-  max-height: 100%;
+  min-height: 100vh;
+  
   display: flex;
   flex-direction: column;
   background-color: #fce6c5;

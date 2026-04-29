@@ -1,6 +1,4 @@
 import { FC, useState } from 'react';
-import { analytics } from '../../firebase';
-import { logEvent } from 'firebase/analytics';
 import { useQuery } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 import styled, { keyframes } from 'styled-components';
@@ -22,15 +20,15 @@ interface TarotCard {
   type: string;
   value: string;
   value_int: number;
-}
+};
 
 interface CardsResponse {
   cards: TarotCard[];
-}
+};
 
 interface Props {
   windowWidth: boolean;
-}
+};
 
 const Board: FC = () => {
   const [question, setQuestion] = useState<string>('');
@@ -38,7 +36,7 @@ const Board: FC = () => {
 
   function handleReload(): void {
     window.location.reload();
-  }
+  };
   
   function readingParser(tarotString: string): [string, string][] {
     const lines: string[] = tarotString.trim().split('\n');
@@ -52,11 +50,10 @@ const Board: FC = () => {
         const title: string = line.substring(3, colonIndex).trim();
         const description: string = line.substring(colonIndex + 1).trim();
         matrix.push([title, description]);
-      }
-    });
+      }});
 
     return matrix;
-  }
+  };
 
   const getCards = async (): Promise<CardsResponse> => {
     try {
@@ -65,8 +62,7 @@ const Board: FC = () => {
       return await response.json();
     } catch (error: any) {
       throw new Error(`getCard error: ${error.message}`);
-    }
-  };
+    }};
 
   const { data: cards } = useQuery<CardsResponse, Error>({
     queryKey: ['cards'],
@@ -130,17 +126,17 @@ const Board: FC = () => {
   };
 
   function renderBoard(): JSX.Element {
-    if (!runFetch) {
-      logEvent(analytics, 'reading_initiated');
-      return <>{renderInquiry()}</>;
-    } else {
-      return (
+    let result;
+    if (!runFetch) result = renderInquiry()
+    else result = (
         <>
-          {renderEye()}
+          {runFetch && renderEye()}
           {cards && reading && renderReading()}
         </>
       );
-    };
+
+    
+    return result;
   };
 
   return <Container>{renderBoard()}</Container>;
