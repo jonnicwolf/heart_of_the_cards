@@ -4,32 +4,32 @@ import styled from 'styled-components';
 import Board from '../components/Board';
 // @ts-ignore
 import Modal from '../components/modals/Modal';
-import { useAuth } from '../components/contexts/AuthContext';
+//import { useAuth } from '../components/contexts/AuthContext';
 
 const Home: FC = () => {
-  const [modalIsOpen, setModalIsOpen] = useState<boolean>(true);
-  const [curQuestion, setCurQuestion] = useState<string>('');
-  const {currentUser} = useAuth();
+//   const [modalIsOpen, setModalIsOpen] = useState<boolean>(true);
+//   const [curQuestion, setCurQuestion] = useState<string>('');
+//   const {currentUser} = useAuth();
 
-  const full_name = currentUser.user_metadata.full_name;
-  const user = full_name.split(' ')[0];
+//   const full_name = currentUser.user_metadata.full_name;
+//   const user = full_name.split(' ')[0];
 
-  const questions = [
-    "Welcome, seeker. The cards are waiting. What question rests on your heart today?",
-    "The veil is thin, and the deck is ready. Ask your question, and let the cards reveal their wisdom.",
-    "Hey, curious soul! Ready to peek at what the universe has in store? Ask away, and I’ll pull some cards for you.",
-    "Sit, breathe, and focus your thoughts. The cards are listening. What would you like to know?"
-  ];
+//   const questions = [
+//     "Welcome, seeker. The cards are waiting. What question rests on your heart today?",
+//     "The veil is thin, and the deck is ready. Ask your question, and let the cards reveal their wisdom.",
+//     "Hey, curious soul! Ready to peek at what the universe has in store? Ask away, and I’ll pull some cards for you.",
+//     "Sit, breathe, and focus your thoughts. The cards are listening. What would you like to know?"
+//   ];
 
-  const findRandomQuestion = () => questions[Math.floor(Math.random() * questions.length)];
+//   const findRandomQuestion = () => questions[Math.floor(Math.random() * questions.length)];
 
-  useEffect(() => {
-    setCurQuestion(findRandomQuestion());
-  }, []);
+//   useEffect(() => {
+//     setCurQuestion(findRandomQuestion());
+//   }, []);
 
   return (
     <Container>
-      <WelcomeWrapper>
+      {/* <WelcomeWrapper>
         <Welcome>Welcome back, {user}!</Welcome>
         <hr />
         <Question>{curQuestion}</Question>
@@ -37,7 +37,7 @@ const Home: FC = () => {
 
       {modalIsOpen && !user
         ? <Modal setter={setModalIsOpen} />
-        : <Board />}
+        : <Board />} */}
     </Container>
   );
 };

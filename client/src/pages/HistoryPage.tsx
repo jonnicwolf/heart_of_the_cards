@@ -28,15 +28,15 @@ const HistoryPage: FC = () => {
       tags: ["love"],
     };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getUserHistory();
-      setHistory(data || {});
-      console.log(data);
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const data = await getUserHistory();
+  //     setHistory(data || {});
+  //     console.log(data);
+  //   };
 
-    fetchData();
-  },[])
+  //   fetchData();
+  // },[])
 
   console.log(`history: `,history);
   return (

@@ -13,51 +13,51 @@ const Nav: FC = () => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
-  const { logout, signInWithGoogle, currentUser } = useAuth();
-  const navigate = useNavigate();
+  // const { logout, signInWithGoogle, currentUser } = useAuth();
+  // const navigate = useNavigate();
 
-  const handleLogin = async (): Promise<void> => {
-    try {
-      await signInWithGoogle();
-      setError(null);
-      navigate('/');
-    } catch (error: any) {
-      setError(error.message || 'Logout Failed');
-    }
-  };
+  // const handleLogin = async (): Promise<void> => {
+  //   try {
+  //     await signInWithGoogle();
+  //     setError(null);
+  //     navigate('/');
+  //   } catch (error: any) {
+  //     setError(error.message || 'Logout Failed');
+  //   }
+  // };
 
-  const handleLogout = async (): Promise<void> => {
-    try {
-      await logout();
-      setError(null);
-      navigate('/login');
-    } catch (error: any) {
-      return (
-        setError(error.message || 'Logout Failed')
-      );
-    };
-  };
+  // const handleLogout = async (): Promise<void> => {
+  //   try {
+  //     await logout();
+  //     setError(null);
+  //     navigate('/login');
+  //   } catch (error: any) {
+  //     return (
+  //       setError(error.message || 'Logout Failed')
+  //     );
+  //   };
+  // };
 
-  const handleLogoClick = () => {
-    setShowMenu(!showMenu);
-  };
-  const handleHomeClick = () => {
-    navigate('/');
-  };
+  // const handleLogoClick = () => {
+  //   setShowMenu(!showMenu);
+  // };
+  // const handleHomeClick = () => {
+  //   navigate('/');
+  // };
 
-  const handleHistoryClick = (allowHistory: boolean) => {
-    allowHistory ? navigate('/history') : alert('History is currently under maintenance');
-  };
+  // const handleHistoryClick = (allowHistory: boolean) => {
+  //   allowHistory ? navigate('/history') : alert('History is currently under maintenance');
+  // };
 
   return (
     <Container>
       <MenuLogoWarp>
-        <Logo onClick={handleLogoClick} showmenu={showMenu}>
+        {/* <Logo onClick={handleLogoClick} showmenu={showMenu}>
           <span>ESP</span>
           <span>ERI</span>
-        </Logo>
+        </Logo> */}
 
-        <SlideOutMenu showmenu={showMenu}>
+        {/* <SlideOutMenu showmenu={showMenu}>
           <Button onClick={handleHomeClick}>
             <Home src='https://img.icons8.com/?size=100&id=xZbsecl9NwAy&format=png&color=#000' alt=''/>
             <Text>Home</Text>
@@ -66,9 +66,9 @@ const Nav: FC = () => {
           <Button onClick={() => handleHistoryClick(false)}>
             <History src="https://img.icons8.com/?size=100&id=hZ5zdXjC6tJ3&format=png&color=#000" alt="" />
             <Text>History</Text>
-          </Button>
+          </Button> */}
 
-          { currentUser
+          {/* { currentUser
             ? <Logout onClick={handleLogout}>
                 <Logout_Btn />
                 <Text>Logout</Text>
@@ -78,8 +78,8 @@ const Nav: FC = () => {
                 <Login src="https://img.icons8.com/?size=100&id=1090&format=png&color=#000" alt="Login Icon" />
                 <Text>Login</Text>
               </Button>
-          }
-        </SlideOutMenu>
+          } */}
+        {/* </SlideOutMenu> */}
       </MenuLogoWarp>
     </Container>
   );
