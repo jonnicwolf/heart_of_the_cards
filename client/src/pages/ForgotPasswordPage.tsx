@@ -13,9 +13,9 @@ const ForgotPasswordPage: FC = () => {
   return (
     <Container>
       {windowWidth ? null : <GraphicCard />}
-      <SignupCard windowWidth={windowWidth}>
+      {/* <SignupCard windowWidth={windowWidth}>
         <ForgotPassword />
-      </SignupCard>
+      </SignupCard> */}
     </Container>
   );
 };

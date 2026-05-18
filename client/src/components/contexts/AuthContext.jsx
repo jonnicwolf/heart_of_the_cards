@@ -88,37 +88,37 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    const getInitialSession = async () => {
-      if (window.location.hash || window.location.search.includes("code=")) {
-      const { data, error } = await supabase.auth.exchangeCodeForSession(window.location.href);
-      if (error) console.error("Error exchanging code:", error);
-      else console.log("OAuth exchange success:", data);
-    }
+  // useEffect(() => {
+  //   const getInitialSession = async () => {
+  //     if (window.location.hash || window.location.search.includes("code=")) {
+  //     const { data, error } = await supabase.auth.exchangeCodeForSession(window.location.href);
+  //     if (error) console.error("Error exchanging code:", error);
+  //     else console.log("OAuth exchange success:", data);
+  //   }
 
-      const { data: { session }, error } = await supabase.auth.getSession();
+  //     const { data: { session }, error } = await supabase.auth.getSession();
 
-      if (!session || error) {
-        const { data: userData, error: userError } = await supabase.auth.getUser();
-        console.log("getUser result:", userData, "Error:", userError);
-        setCurrentUser(userData?.user || null);
-      } else setCurrentUser(session.user);
+  //     if (!session || error) {
+  //       const { data: userData, error: userError } = await supabase.auth.getUser();
+  //       console.log("getUser result:", userData, "Error:", userError);
+  //       setCurrentUser(userData?.user || null);
+  //     } else setCurrentUser(session.user);
 
-      setLoading(false);
-    };
+  //     setLoading(false);
+  //   };
 
-    getInitialSession();
+  //   getInitialSession();
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event, session) => {
-        setCurrentUser(session?.user || null);
-        setLoading(false);
-      }
-    );
+  //   const { data: { subscription } } = supabase.auth.onAuthStateChange(
+  //     (event, session) => {
+  //       setCurrentUser(session?.user || null);
+  //       setLoading(false);
+  //     }
+  //   );
 
-    return () => subscription.unsubscribe();
-  }, []);
+  //   return () => subscription.unsubscribe();
+  // }, []);
 
   const value = {
     currentUser,

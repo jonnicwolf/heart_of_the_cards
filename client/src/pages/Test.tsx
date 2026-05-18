@@ -1,12 +1,13 @@
 import React, { FC } from 'react'
 import styled from 'styled-components';
 
-import Forest from '../components/threeJs/Forest'
+//import Forest from '../components/threeJs/Forest'
 
 const Test: FC = () => {
   return (
     <Container>
-      <Forest />
+      {/* <Forest /> */}
+      {/* <div>hello</div> */}
     </Container>
   );
 };
