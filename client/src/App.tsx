@@ -11,7 +11,7 @@ import HistoryPage from './pages/HistoryPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import Test from './pages/Test';
 
-import Nav from './components/navigation/Nav';
+
 //import { AuthProvider } from './components/contexts/AuthContext';
 
 const App: FC = () => {
@@ -19,7 +19,7 @@ const App: FC = () => {
     <Container>
       {/* <AuthProvider> */}
         {/* {!no_nav_list.includes(location.pathname) && <Nav />} */}
-        <Nav />
+        {/* <Nav /> */}
         <Routes>
           <Route index element={<Home />} />
           <Route path='/history' element={<HistoryPage />} />
