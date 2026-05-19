@@ -1,4 +1,5 @@
 import React, {FC, useEffect, useRef, useCallback } from 'react';
+import styled from 'styled-components';
 //@ts-ignore
 import p5 from 'p5';
 
@@ -64,6 +65,19 @@ export default function Starfield() {
     return () => p5canvas.remove()
   }, [sketch]);
 
-  //@ts-ignore
-  return <div ref={sketch_ref} />
+  return (
+    <Container>
+      {/* @ts-ignore */}
+      <div ref={sketch_ref} />
+    </Container>
+)
 };
+
+const Container = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+`;

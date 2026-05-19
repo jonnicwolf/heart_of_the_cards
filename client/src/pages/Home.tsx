@@ -5,6 +5,7 @@ import Board from '../components/Board';
 // @ts-ignore
 import Modal from '../components/modals/Modal';
 //import { useAuth } from '../components/contexts/AuthContext';
+import Starfield from '../components/p5/Starfield';
 
 const Home: FC = () => {
 //   const [modalIsOpen, setModalIsOpen] = useState<boolean>(true);
@@ -49,15 +50,14 @@ const Home: FC = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  // justify-content: center;
   gap: 10vh;
   align-items: center;
   height: 100%;
   width: 100vh;
   max-width: 2400px;
   align-self: center;
-  background-color: #000;
-  
+  // background-color: #000;
 
   @media only screen and (max-width: 375px) and (pointer: coarse) and (hover: none) {
     height: 90vh;
@@ -87,9 +87,11 @@ const Container = styled.div`
 const WelcomeWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  
   max-width: 1200px;
-  text-align: center;
+  
   width: 100%;
+  z-index: 1;
 `;
 const LeftSpike = styled.div`
   height: 120px;
@@ -112,6 +114,7 @@ const Divination = styled.div`
   justify-content: center;
   gap: 70px;
   opacity: .7;
+  outline: 1px solid red;
 `;
  const Question = styled.p`
   font-size: 2.5rem;

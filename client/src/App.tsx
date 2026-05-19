@@ -10,6 +10,7 @@ import HistoryPage from './pages/HistoryPage';
 // import LoginPage from './pages/LoginPage';
 import ForgotPasswordPage from './pages/ForgotPasswordPage';
 import Test from './pages/Test';
+import Starfield from './components/p5/Starfield';
 
 
 //import { AuthProvider } from './components/contexts/AuthContext';
@@ -17,6 +18,7 @@ import Test from './pages/Test';
 const App: FC = () => {
   return (
     <Container>
+      <Starfield />
       {/* <AuthProvider> */}
         {/* {!no_nav_list.includes(location.pathname) && <Nav />} */}
         {/* <Nav /> */}
@@ -34,11 +36,14 @@ const App: FC = () => {
 };
 
 const Container = styled.div`
-  min-height: 100vh;
-  
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #fce6c5;
+  // align-items: center;
+  // justify-content: center;
+  // background-color: #fce6c5;
+  background-color: #000;
+  // z-index: 0;
 `;
 
 export default App;
