@@ -18,7 +18,8 @@ import Starfield from './components/p5/Starfield';
 const App: FC = () => {
   return (
     <Container>
-      <Starfield />
+      {/* <Starfield width={window.innerWidth} height={window.innerHeight} /> */}
+      {/* <Starfield width={200} height={200} /> */}
       {/* <AuthProvider> */}
         {/* {!no_nav_list.includes(location.pathname) && <Nav />} */}
         {/* <Nav /> */}
@@ -42,8 +43,8 @@ const Container = styled.div`
   // align-items: center;
   // justify-content: center;
   // background-color: #fce6c5;
-  background-color: #000;
-  // z-index: 0;
+  // background-color: #000;
+  z-index: 0;
 `;
 
 export default App;

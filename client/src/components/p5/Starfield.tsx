@@ -3,8 +3,11 @@ import styled from 'styled-components';
 //@ts-ignore
 import p5 from 'p5';
 
-
-export default function Starfield() {
+interface Props {
+  width: number,
+  height: number
+};
+const Starfield: FC<Props> = ({width, height}) => {
   const sketch_ref = useRef();
 
   //@ts-ignore
@@ -20,7 +23,7 @@ export default function Starfield() {
     }[] = [];
 
     p.setup = () => {
-      p.createCanvas(window.innerWidth, window.innerHeight);
+      p.createCanvas(width,height);
       p.noStroke();
 
       stars = Array.from({ length: 60 }, (_, i) => ({
@@ -45,6 +48,7 @@ export default function Starfield() {
         const alpha = star.opacity * 255 * (0.4 + pulse * 0.6);
 
         p.fill(255, alpha);
+        // p.fill('red', alpha);
 
         p.circle(
           star.x,
@@ -73,11 +77,14 @@ export default function Starfield() {
 )
 };
 
+export default Starfield;
+
 const Container = styled.div`
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
+  // background-color: red;
 `;
