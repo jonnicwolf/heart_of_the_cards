@@ -26,7 +26,7 @@ const Starfield: FC<Props> = ({width, height}) => {
       p.createCanvas(width,height);
       p.noStroke();
 
-      stars = Array.from({ length: 60 }, (_, i) => ({
+      stars = Array.from({ length: 10000 }, (_, i) => ({
         id: i,
         x: Math.random() * p.width,
         y: Math.random() * p.height,
@@ -42,14 +42,10 @@ const Starfield: FC<Props> = ({width, height}) => {
 
       stars.forEach((star) => {
         // pulse animation equivalent
-        const pulse =
-          (Math.sin(p.frameCount * star.speed + star.phase) + 1) / 2;
-
+        const pulse = (Math.sin(p.frameCount * star.speed + star.phase) + 1) / 2;
         const alpha = star.opacity * 255 * (0.4 + pulse * 0.6);
 
         p.fill(255, alpha);
-        // p.fill('red', alpha);
-
         p.circle(
           star.x,
           star.y,
@@ -86,5 +82,4 @@ const Container = styled.div`
   left: 0;
   pointer-events: none;
   z-index: 1;
-  // background-color: red;
 `;

@@ -4,73 +4,13 @@ import styled, { keyframes } from 'styled-components';
 import Board from '../components/Board';
 // @ts-ignore
 import Modal from '../components/modals/Modal';
-import Starfield from '../components/p5/Starfield';
+// import StarField from '../components/StarField';
 import Eye from '../components/p5/Eye';
 
 const Home: FC = () => {
   return (
     <Container>
       <WelcomeWrapper>
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
-        <Starfield width={window.innerWidth} height={window.innerHeight} />
         <Divination>
           <LeftSpike />
           <span>ESPERI</span>
@@ -84,51 +24,41 @@ const Home: FC = () => {
   );
 };
 
-const Middleline = styled.span`
-  height: 100vh;
-  width: 1px;
-  outline: 1px solid red;
-  z-index: 99;
-  
-  top: 0;
-  right: 0;
-  left: 0;
-`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10vh;
   align-items: center;
-  height: 100%;
-  width: 100vh;
+  height: 100vh;
+  width: 100vw;
   max-width: 2400px;
   align-self: center;
   background-color: #000;
 
-  @media only screen and (max-width: 375px) and (pointer: coarse) and (hover: none) {
-    height: 90vh;
-  }
-  @media only screen and (min-width: 321px) and (max-width: 375px) and (pointer: coarse) and (hover: none) {
-    height: 93vh;
-  }
-  @media only screen and (min-width: 376px) and (max-width: 500px) and (pointer: coarse) and (hover: none) {
-    height: 94vh;
-  }
-  @media only screen and (min-width: 501px) and (max-width: 770px) and (pointer: coarse) and (hover: none) {
-    height: 92vh;
-  }
-  @media only screen and (min-width: 771px) and (max-width: 1000px) and (pointer: coarse) and (hover: none) {
-    height: 93vh;
-  }
-  @media only screen and (min-width: 1000px) and (max-width: 1300px) and (pointer: coarse) and (hover: none) {
-    height: 90vh;
-  }
-  @media only screen and (min-width: 750px) and (max-width: 1000px) {
-    height: 92vh;
-  }
-  @media only screen and (min-width: 1001px) and (max-width: 1300px) {
-    height: 92vh;
-  }
+  // @media only screen and (max-width: 375px) and (pointer: coarse) and (hover: none) {
+  //   height: 90vh;
+  // }
+  // @media only screen and (min-width: 321px) and (max-width: 375px) and (pointer: coarse) and (hover: none) {
+  //   height: 93vh;
+  // }
+  // @media only screen and (min-width: 376px) and (max-width: 500px) and (pointer: coarse) and (hover: none) {
+  //   height: 94vh;
+  // }
+  // @media only screen and (min-width: 501px) and (max-width: 770px) and (pointer: coarse) and (hover: none) {
+  //   height: 92vh;
+  // }
+  // @media only screen and (min-width: 771px) and (max-width: 1000px) and (pointer: coarse) and (hover: none) {
+  //   height: 93vh;
+  // }
+  // @media only screen and (min-width: 1000px) and (max-width: 1300px) and (pointer: coarse) and (hover: none) {
+  //   height: 90vh;
+  // }
+  // @media only screen and (min-width: 750px) and (max-width: 1000px) {
+  //   height: 92vh;
+  // }
+  // @media only screen and (min-width: 1001px) and (max-width: 1300px) {
+  //   height: 92vh;
+  // }
 `;
 const WelcomeWrapper = styled.div`
   display: flex;
@@ -206,7 +136,7 @@ const Button = styled.button`
   cursor: pointer;
   color: #b57902;
   border: 1px solid #b57902;
-  padding: 10px;
+  padding: 20px;
 
   &: hover {
     border: 2px solid #e1c4ca;
