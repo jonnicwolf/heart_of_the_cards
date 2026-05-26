@@ -7,6 +7,7 @@ import Board from '../components/Board';
 
 const Home: FC = () => {
   const [step, setStep] = useState(0);
+  const [question, setQuestion] = useState('');
 
   const nextStep = () => {
      setStep(step+1);
@@ -22,7 +23,7 @@ const Home: FC = () => {
       button: 'Draw your cards'
     },
     {
-      component: <Board />,
+      component: <Board question={question} />,
       button: 'Ask another question'
     },
   ];

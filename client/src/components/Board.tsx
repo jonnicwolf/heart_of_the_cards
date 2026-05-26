@@ -1,14 +1,14 @@
 import { FC, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-// import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import styled, { keyframes } from 'styled-components';
 
 import Eye from './p5/Eye';
 import Card from './p5/Card';
 import Inquery from './forms/Inquery';
 
-//import { get_tarot_reading } from '../openai_scripts/get_tarot_reading.ts';
-//import { ChatCompletion } from 'openai/resources/index.mjs';
+import { get_tarot_reading } from '../openai_scripts/get_tarot_reading.ts';
+import { ChatCompletion } from 'openai/resources/index.mjs';
 
 interface TarotCard {
   desc: string;
@@ -26,103 +26,113 @@ interface CardsResponse {
   cards: TarotCard[];
 };
 
-interface Props {
+interface StyleProps {
   windowWidth: boolean;
+  question: string;
+};
+interface Props {
+  question: string;
 };
 
-const Board: FC = () => {
-  const [question, setQuestion] = useState<string>('');
+const Board: FC<Props> = ({
+  question,
+}) => {
   const [runFetch, setRunFetch] = useState<boolean>(false);
 
-  // function handleReload(): void {
-  //   window.location.reload();
-  // };
+  function handleReload(): void {
+    window.location.reload();
+  };
   
-  // function readingParser(tarotString: string): [string, string][] {
-  //   const lines: string[] = tarotString.trim().split('\n');
-  //   const matrix: [string, string][] = [];
+  function readingParser(tarotString: string): [string, string][] {
+    const lines: string[] = tarotString.trim().split('\n');
+    const matrix: [string, string][] = [];
 
-  //   lines.forEach(line => {
-  //     line = line.trim();
+    lines.forEach(line => {
+      line = line.trim();
 
-  //     if (!isNaN(parseInt(line[0])) && line[1] === '.' && line[2] === ' ') {
-  //       const colonIndex: number = line.indexOf(':');
-  //       const title: string = line.substring(3, colonIndex).trim();
-  //       const description: string = line.substring(colonIndex + 1).trim();
-  //       matrix.push([title, description]);
-  //     }});
+      if (!isNaN(parseInt(line[0])) && line[1] === '.' && line[2] === ' ') {
+        const colonIndex: number = line.indexOf(':');
+        const title: string = line.substring(3, colonIndex).trim();
+        const description: string = line.substring(colonIndex + 1).trim();
+        matrix.push([title, description]);
+      }});
 
-  //   return matrix;
-  // };
+    return matrix;
+  };
 
-  // const { data: cardsData, isLoading: cardsLoading } = useQuery<CardsResponse, Error>({
-  //   queryKey: ['cards'],
-  //   queryFn: async () => {
-  //     const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
-  //     if (!response.ok) throw new Error('Failed to fetch cards');
-  //     return response.json();
-  //   },
-  //   enabled: runFetch,
-  //   staleTime: Infinity, // Prevent cards from changing if the component re-renders
-  // });
+  const { data: cardsData, isLoading: cardsLoading } = useQuery<CardsResponse, Error>({
+    queryKey: ['cards'],
+    queryFn: async () => {
+      const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
+      if (!response.ok) throw new Error('Failed to fetch cards');
+      return response.json();
+    },
+    enabled: runFetch,
+    staleTime: Infinity, // Prevent cards from changing if the component re-renders
+  });
 
-  // const { data: readingData } = useQuery<ChatCompletion, Error>({
-  //   queryKey: ['reading', cardsData?.cards],
-  //   queryFn: () => get_tarot_reading(question, cardsData!.cards.map(item => item.name)),
-  //   enabled: !!cardsData && !!question,
-  // });
+  const { data: readingData } = useQuery<ChatCompletion, Error>({
+    queryKey: ['reading', cardsData?.cards],
+    // @ts-ignore
+    queryFn: () => get_tarot_reading(question, cardsData!.cards.map(item => item.name)),
+    enabled: !!cardsData && !!question,
+  });
 
-  // const getCards = async (): Promise<CardsResponse> => {
-  //   try {
-  //     const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
-  //     if (!response.ok) throw new Error('Failed to fetch cards');
-  //     return await response.json();
-  //   } catch (error: any) {
-  //     throw new Error(`getCard error: ${error.message}`);
-  //   }};
+  const getCards = async (): Promise<CardsResponse> => {
+    try {
+      const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
+      if (!response.ok) throw new Error('Failed to fetch cards');
+      return await response.json();
+    } catch (error: any) {
+      throw new Error(`getCard error: ${error.message}`);
+    }};
 
-  // const { data: cards } = useQuery<CardsResponse, Error>({
-  //   queryKey: ['cards'],
-  //   queryFn: getCards,
-  //   enabled: runFetch,
-  // });
+  const { data: cards } = useQuery<CardsResponse, Error>({
+    queryKey: ['cards'],
+    queryFn: getCards,
+    enabled: runFetch,
+  });
 
-  // const { data: reading } = useQuery<ChatCompletion, Error>({
-  //   queryKey: ['reading'],
-  //   // @ts-ignore
-  //   queryFn: () => get_tarot_reading(question, cards?.cards.map(item => item.name)),
-  //   enabled: !!question && !!cards,
-  // });
+  const { data: reading } = useQuery<ChatCompletion, Error>({
+    queryKey: ['reading'],
+    // @ts-ignore
+    queryFn: () => get_tarot_reading(question, cards?.cards.map(item => item.name)),
+    enabled: !!question && !!cards,
+  });
 
-  // const parsedReading: [string, string][] | '' = readingData
-  //   // @ts-ignore
-  //   ? readingParser(reading.choices[0].message.content)
-  //   : '';
+  const parsedReading: [string, string][] | '' = readingData
+    // @ts-ignore
+    ? readingParser(reading.choices[0].message.content)
+    : '';
 
-  // const windowWidth: boolean = window.innerWidth < 500;
+  const windowWidth: boolean = window.innerWidth < 500;
 
-  // function renderReading(): JSX.Element | null {
-  //   if (!parsedReading || !cards) return null;
-  //   return (
-  //     <ReadingContainer windowWidth={windowWidth}>
-  //       {parsedReading.map((item, index) => (
-  //         <CardReading key={uuidv4()}>
-  //           <CardHeader>{item[0]}</CardHeader>
-  //           <CardContainer>
-  //             {cards && <Card key={uuidv4()} name_short={cards.cards[index].name_short} />}
-  //           </CardContainer>
-  //           <br />
-  //           <CardP>{item[1]}</CardP>
-  //         </CardReading>
-  //       ))}
-  //       <Reload onClick={handleReload}>Ask Another</Reload>
-  //     </ReadingContainer>
-  //   );
-  // };
+  function renderReading(): JSX.Element | null {
+    if (!parsedReading || !cards) return null;
+    return (
+      // @ts-ignore
+      <ReadingContainer windowWidth={windowWidth}> 
+        {parsedReading.map((item, index) => (
+          <CardReading key={uuidv4()}>
+            <CardHeader>{item[0]}</CardHeader>
+            <CardContainer>
+              {cards && <Card key={uuidv4()} name_short={cards.cards[index].name_short} />}
+            </CardContainer>
+            <br />
+            <CardP>{item[1]}</CardP>
+          </CardReading>
+        ))}
+        <Reload onClick={handleReload}>Ask Another</Reload>
+      </ReadingContainer>
+    );
+  };
 
-  // function renderInquiry(): JSX.Element {
-  //   return <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />
-  // };
+  function renderInquiry(): JSX.Element {
+    return (
+      <></>
+    // <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />
+  )
+  };
 
   // function renderEye(): JSX.Element {
   //   return (
@@ -142,21 +152,21 @@ const Board: FC = () => {
   //   );
   // };
 
-  // function renderBoard(): JSX.Element {
-  //   let result;
-  //   if (!runFetch) result = renderInquiry()
-  //   else result = (
-  //       <>
-  //         {runFetch && renderEye()}
-  //         {cards && reading && renderReading()}
-  //       </>
-  //     );
+  function renderBoard(): JSX.Element {
+    let result;
+    if (!runFetch) result = renderInquiry()
+    else result = (
+        <>
+          {/* {runFetch && renderEye()} */}
+          {cards && reading && renderReading()}
+        </>
+      );
 
-  //   return result;
-  // };
+    return result;
+  };
 
   return <Container>
-    {/* {renderBoard()} */}
+    {renderBoard()}
   </Container>;
 };
 
@@ -239,7 +249,7 @@ const Container = styled.div`
   z-index: 2;
 `;
 
-const ReadingContainer = styled.div<Props>`
+const ReadingContainer = styled.div<StyleProps>`
   height: 60vh;
   width: 80vw;
   max-width: 1200px;
