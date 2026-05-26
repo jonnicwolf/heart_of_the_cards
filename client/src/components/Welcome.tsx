@@ -1,53 +1,23 @@
-import React, { FC, } from 'react';
+import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import Welcome from '../components/Welcome';
-
-const Home: FC = () => {
+const Welcome = () => {
   return (
-    <Container>
-      <Welcome />
-      
-    </Container>
+    <>
+      <WelcomeWrapper>
+        <Divination>
+          <LeftSpike />
+          <span>ESPERI</span>
+          <RightSpike/>
+        </Divination>
+        <Oracle>T<Sm>HE</Sm> O<Sm>RACLE</Sm></Oracle>
+        <Gaze>Gaze into the eye and discover what the cards reveal</Gaze>
+      </WelcomeWrapper>
+      <Button><span>⟡</span> Begin your reading</Button>
+    </>
   );
 };
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10vh;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  max-width: 2400px;
-  align-self: center;
-  background-color: #000;
-
-  // @media only screen and (max-width: 375px) and (pointer: coarse) and (hover: none) {
-  //   height: 90vh;
-  // }
-  // @media only screen and (min-width: 321px) and (max-width: 375px) and (pointer: coarse) and (hover: none) {
-  //   height: 93vh;
-  // }
-  // @media only screen and (min-width: 376px) and (max-width: 500px) and (pointer: coarse) and (hover: none) {
-  //   height: 94vh;
-  // }
-  // @media only screen and (min-width: 501px) and (max-width: 770px) and (pointer: coarse) and (hover: none) {
-  //   height: 92vh;
-  // }
-  // @media only screen and (min-width: 771px) and (max-width: 1000px) and (pointer: coarse) and (hover: none) {
-  //   height: 93vh;
-  // }
-  // @media only screen and (min-width: 1000px) and (max-width: 1300px) and (pointer: coarse) and (hover: none) {
-  //   height: 90vh;
-  // }
-  // @media only screen and (min-width: 750px) and (max-width: 1000px) {
-  //   height: 92vh;
-  // }
-  // @media only screen and (min-width: 1001px) and (max-width: 1300px) {
-  //   height: 92vh;
-  // }
-`;
 const WelcomeWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -142,4 +112,4 @@ const Button = styled.button`
   // }
 `;
 
-export default Home;
+export default Welcome;
