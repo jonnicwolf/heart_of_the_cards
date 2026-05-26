@@ -13,7 +13,6 @@ const Welcome = () => {
         <Oracle>T<Sm>HE</Sm> O<Sm>RACLE</Sm></Oracle>
         <Gaze>Gaze into the eye and discover what the cards reveal</Gaze>
       </WelcomeWrapper>
-      <Button><span>⟡</span> Begin your reading</Button>
     </>
   );
 };

@@ -26,7 +26,7 @@ const Starfield: FC<Props> = ({width, height}) => {
       p.createCanvas(width,height);
       p.noStroke();
 
-      stars = Array.from({ length: 10000 }, (_, i) => ({
+      stars = Array.from({ length: 2000 }, (_, i) => ({
         id: i,
         x: Math.random() * p.width,
         y: Math.random() * p.height,

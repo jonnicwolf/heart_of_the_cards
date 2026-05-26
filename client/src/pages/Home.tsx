@@ -1,13 +1,37 @@
-import React, { FC, } from 'react';
+import React, { FC, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import Welcome from '../components/Welcome';
+import QuestionBoard from '../components/QuestionBoard';
+import Board from '../components/Board';
 
 const Home: FC = () => {
+  const [step, setStep] = useState(0);
+
+  const nextStep = () => {
+     setStep(step+1);
+  };
+
+  const steps = [
+    {
+      component: <Welcome />,
+      button: 'Begin your reading'
+    },
+    {
+      component: <QuestionBoard />,
+      button: 'Draw your cards'
+    },
+    {
+      component: <Board />,
+      button: 'Ask another question'
+    },
+  ];
   return (
     <Container>
-      <Welcome />
-      
+      {steps[step].component}
+      <Button
+        onClick={nextStep}
+      ><span>⟡</span> {steps[step].button}</Button>
     </Container>
   );
 };
@@ -15,9 +39,11 @@ const Home: FC = () => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10vh;
+  gap: 2vh;
   align-items: center;
+  padding-top: 15vh;
   height: 100vh;
+  overflow: scroll;
   width: 100vw;
   max-width: 2400px;
   align-self: center;
@@ -48,72 +74,6 @@ const Container = styled.div`
   //   height: 92vh;
   // }
 `;
-const WelcomeWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  z-index: 1;
-`;
-const LeftSpike = styled.div`
-  height: 120px;
-  width: 1px;
-  border: 1px solid #b57902;
-  background: linear-gradient(#b57902, #000);
-  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-  transform: rotate(270deg);
-`;
-const RightSpike = styled(LeftSpike)`
-  transform: rotate(90deg);
-`;
-const Divination = styled.div`
-  font-family: Lora;
-  font-family: Bagnard;
-  font-size: 2rem;
-  display: flex;
-  color: #b57902;
-  letter-spacing: 4px;
-  align-items: center;
-  justify-content: center;
-  gap: 70px;
-  opacity: .7;
-  margin-top: 20rem;
-`;
- const Question = styled.p`
-  font-size: 2.5rem;
-  font-family: 'Lora';
-  font-weight: bold;
-  color: #4a4a4a;
-  font-style: italic;
-  text-align: center;
-`;
-const blink = keyframes`
-  0% { width: 100px; }
-  1% { width: 0; }
-  4% { width: 100px; }
-  100% { width: 100px; }
-`;
-const EyeContainer = styled.div`
-  clip-path: ellipse(45% 50% at 50% 50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: ${blink} 7s infinite;
-`;
-const Oracle = styled.div`
-  font-family: 'Lora';
-  color: white;
-  font-size: 6rem;
-`;
-const Sm = styled.span`
-  display: inline-block;
-  font-size: 4rem;
-`;
-const Gaze = styled.p`
-  font-family: Elsie Swash Caps;
-  color: gray;
-  font-size: 2rem;
-`;
 const Button = styled.button`
   background: none;
   text-align: center;
@@ -126,7 +86,7 @@ const Button = styled.button`
   padding: 20px;
 
   &: hover {
-    border: 2px solid #e1c4ca;
+    border: 1px solid #e1c4ca;
     background: rgba(65,50,63,0.9);
     color: white;
     transition: all 0.3s linear;
@@ -140,6 +100,20 @@ const Button = styled.button`
   //   font-size: 1.5rem;
   //   width: 20vw;
   // }
+`;
+
+const blink = keyframes`
+  0% { width: 100px; }
+  1% { width: 0; }
+  4% { width: 100px; }
+  100% { width: 100px; }
+`;
+const EyeContainer = styled.div`
+  clip-path: ellipse(45% 50% at 50% 50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: ${blink} 7s infinite;
 `;
 
 export default Home;
