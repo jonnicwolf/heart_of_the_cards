@@ -1,11 +1,5 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, } from 'react';
 import styled, { keyframes } from 'styled-components';
-
-import Board from '../components/Board';
-// @ts-ignore
-import Modal from '../components/modals/Modal';
-// import StarField from '../components/StarField';
-import Eye from '../components/p5/Eye';
 
 const Home: FC = () => {
   return (
@@ -64,7 +58,6 @@ const WelcomeWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  // max-width: 1200px;
   width: 100%;
   z-index: 1;
 `;
