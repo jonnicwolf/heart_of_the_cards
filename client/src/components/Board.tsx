@@ -3,9 +3,11 @@ import { useQuery } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 import styled, { keyframes } from 'styled-components';
 
+
 import Eye from './p5/Eye';
 import Card from './p5/Card';
 import Inquery from './forms/Inquery';
+import Loader from './Loader.tsx';
 
 import { get_tarot_reading } from '../openai_scripts/get_tarot_reading.ts';
 import { ChatCompletion } from 'openai/resources/index.mjs';
@@ -28,7 +30,6 @@ interface CardsResponse {
 
 interface StyleProps {
   windowWidth: boolean;
-  question: string;
 };
 interface Props {
   question: string;
@@ -60,39 +61,45 @@ const Board: FC<Props> = ({
     return matrix;
   };
 
-  const { data: cardsData, isLoading: cardsLoading } = useQuery<CardsResponse, Error>({
-    queryKey: ['cards'],
-    queryFn: async () => {
-      const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
-      if (!response.ok) throw new Error('Failed to fetch cards');
-      return response.json();
-    },
-    enabled: runFetch,
-    staleTime: Infinity, // Prevent cards from changing if the component re-renders
-  });
+  // const { data: cardsData, isLoading: cardsLoading } = useQuery<CardsResponse, Error>({
+  //   queryKey: ['cards'],
+  //   queryFn: async () => {
+  //     const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
+  //     if (!response.ok) throw new Error('Failed to fetch cards');
+  //     return response.json();
+  //   },
+  //   enabled: runFetch,
+  //   staleTime: Infinity, // Prevent cards from changing if the component re-renders
+  // });
 
-  const { data: readingData } = useQuery<ChatCompletion, Error>({
-    queryKey: ['reading', cardsData?.cards],
-    // @ts-ignore
-    queryFn: () => get_tarot_reading(question, cardsData!.cards.map(item => item.name)),
-    enabled: !!cardsData && !!question,
-  });
+  // const { data: readingData } = useQuery<ChatCompletion, Error>({
+  //   queryKey: ['reading', cardsData?.cards],
+  //   // @ts-ignore
+  //   queryFn: () => {
+  //     get_tarot_reading(question, cardsData!.cards.map(item => item.name))
+  //   },
+  //   enabled: !!cardsData && !!question,
+  // });
 
   const getCards = async (): Promise<CardsResponse> => {
     try {
       const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
       if (!response.ok) throw new Error('Failed to fetch cards');
+
       return await response.json();
     } catch (error: any) {
       throw new Error(`getCard error: ${error.message}`);
-    }};
+  }};
 
   const { data: cards } = useQuery<CardsResponse, Error>({
     queryKey: ['cards'],
+    // @ts-ignore
     queryFn: getCards,
-    enabled: runFetch,
+    enabled: true,
+    // enabled: runFetch,
   });
 
+  console.log('cards: ', cards)
   const { data: reading } = useQuery<ChatCompletion, Error>({
     queryKey: ['reading'],
     // @ts-ignore
@@ -100,7 +107,8 @@ const Board: FC<Props> = ({
     enabled: !!question && !!cards,
   });
 
-  const parsedReading: [string, string][] | '' = readingData
+  // const parsedReading: [string, string][] | '' = readingData
+  const parsedReading: [string, string][] | '' = reading
     // @ts-ignore
     ? readingParser(reading.choices[0].message.content)
     : '';
@@ -131,8 +139,17 @@ const Board: FC<Props> = ({
     return (
       <></>
     // <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />
-  )
+    );
   };
+
+  function loader(): JSX.Element {
+    return (
+    <>
+      <Loader/>
+      <P>The spirits are channeling your reading...</P>
+    </>
+    )
+  }
 
   // function renderEye(): JSX.Element {
   //   return (
@@ -152,21 +169,35 @@ const Board: FC<Props> = ({
   //   );
   // };
 
-  function renderBoard(): JSX.Element {
-    let result;
-    if (!runFetch) result = renderInquiry()
-    else result = (
-        <>
-          {/* {runFetch && renderEye()} */}
-          {cards && reading && renderReading()}
-        </>
-      );
-
-    return result;
+  // @ts-ignore
+  function renderBoard(): JSX.Element | null {
+    // if (cardsLoading || !cards || !reading) {
+    // if (cards || !cards || !reading) {
+    if (cards  || !reading) {
+      return loader()
+    }
+    else {
+      return renderReading();
+    };
+    // return renderReading()!;
   };
+  // function renderBoard(): JSX.Element {
+  //   let result;
+  //   if (!runFetch) result = loader()
+  //   else result = (
+  //       <>
+  //         {/* {runFetch && renderEye()} */}
+  //         {cards && reading && renderReading()}
+  //       </>
+  //     );
+
+  //   return result;
+  // };
 
   return <Container>
-    {renderBoard()}
+    {
+      renderBoard()
+    }
   </Container>;
 };
 
@@ -191,7 +222,11 @@ const blink = keyframes`
   4% { width: 100px; }
   100% { width: 100px; }
 `;
-
+const P = styled.p`
+  font-family: Elsie Swash Caps;
+  color: gray;
+  font-size: 2rem;
+`;
 const EyeContainer = styled.div`
   clip-path: polygon(50% 0%, 80% 50%, 50% 100%, 20% 50%);
   display: flex;

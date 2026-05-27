@@ -1,7 +1,20 @@
-import react from 'react';
+import react, { FC, useState, Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 
-const QuestionBoard = () => {
+interface Props {
+  setter: Dispatch<SetStateAction<string>>;
+};
+
+const QuestionBoard: FC<Props> = ({
+  setter
+}) => {
+  
+  // @ts-ignore
+  const questionHandler = (e) => {
+    e.preventDefault()
+    setter(e.target.value);
+  };
+
   return (
     <>
       <>
@@ -16,7 +29,11 @@ const QuestionBoard = () => {
 
       <div style={{textAlign: 'center'}}>
         <Question>What weighs upon your mind?</Question>
-        <Textarea placeholder='Ask the cards your question...' autoCapitalize='sentences' />
+        <Textarea 
+           placeholder='Ask the cards your question...'
+           autoCapitalize='sentences'
+           onChange={questionHandler}
+           />
       </div>
     </>
   );

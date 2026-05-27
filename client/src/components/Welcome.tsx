@@ -36,7 +36,6 @@ const RightSpike = styled(LeftSpike)`
   transform: rotate(90deg);
 `;
 const Divination = styled.div`
-  font-family: Lora;
   font-family: Bagnard;
   font-size: 2rem;
   display: flex;

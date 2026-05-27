@@ -19,7 +19,7 @@ const Home: FC = () => {
       button: 'Begin your reading'
     },
     {
-      component: <QuestionBoard />,
+      component: <QuestionBoard setter={setQuestion} />,
       button: 'Draw your cards'
     },
     {
@@ -27,6 +27,7 @@ const Home: FC = () => {
       button: 'Ask another question'
     },
   ];
+
   return (
     <Container>
       {steps[step].component}
