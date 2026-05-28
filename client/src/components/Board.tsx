@@ -91,7 +91,7 @@ const Board: FC<Props> = ({
       throw new Error(`getCard error: ${error.message}`);
   }};
 
-  const { data: cards } = useQuery<CardsResponse, Error>({
+  const { data: cards, isLoading: cardsLoading } = useQuery<CardsResponse, Error>({
     queryKey: ['cards'],
     // @ts-ignore
     queryFn: getCards,
@@ -173,11 +173,11 @@ const Board: FC<Props> = ({
   function renderBoard(): JSX.Element | null {
     // if (cardsLoading || !cards || !reading) {
     // if (cards || !cards || !reading) {
-    if (cards  || !reading) {
-      return loader()
+    if (cardsLoading || !cards || !reading) {
+     return loader();
     }
     else {
-      return renderReading();
+      return renderReading()!;
     };
     // return renderReading()!;
   };
