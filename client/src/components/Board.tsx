@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 import styled, { keyframes } from 'styled-components';
@@ -99,7 +99,6 @@ const Board: FC<Props> = ({
     // enabled: runFetch,
   });
 
-  console.log('cards: ', cards)
   const { data: reading } = useQuery<ChatCompletion, Error>({
     queryKey: ['reading'],
     // @ts-ignore
@@ -124,7 +123,7 @@ const Board: FC<Props> = ({
           <CardReading key={uuidv4()}>
             <CardHeader>{item[0]}</CardHeader>
             <CardContainer>
-              {cards && <Card key={uuidv4()} name_short={cards.cards[index].name_short} />}
+              <Card key={uuidv4()} name_short={cards?.cards[index].name_short} />
             </CardContainer>
             <br />
             <CardP>{item[1]}</CardP>
@@ -143,13 +142,32 @@ const Board: FC<Props> = ({
   };
 
   function loader(): JSX.Element {
+    console.log('loaderCards: ',cards)
     return (
     <>
       <Loader/>
       <P>The spirits are channeling your reading...</P>
+      {/* @ts-ignore */}
+      <CardBox>
+        {cards && cards.cards.map((card, i) => (
+          <>
+          {/* <CardReading key={uuidv4()}> */}
+            {/* <CardHeader>{card.name[i]}</CardHeader> */}
+            <CardContainer>
+              {/* @ts-ignore */}
+              {cards?.cards[i] && (
+                <Card
+                  key={uuidv4()}
+                  name_short={cards.cards[i].name_short} />)}
+              </CardContainer>
+            {/* </CardReading> */}
+          </>
+          ))}
+      </CardBox>
     </>
-    )
-  }
+    );
+  };
+
 
   // function renderEye(): JSX.Element {
   //   return (
@@ -200,6 +218,12 @@ const Board: FC<Props> = ({
     }
   </Container>;
 };
+
+const CardBox = styled.div`
+  display: flex;
+  gap: 2vw;
+
+`
 
 const EyeWrapper = styled.div`
   display: flex;
@@ -282,6 +306,7 @@ const Container = styled.div`
   width: 100%;
   gap: 5vh;
   z-index: 2;
+  outline: 2px solid blue;
 `;
 
 const ReadingContainer = styled.div<StyleProps>`
@@ -303,6 +328,7 @@ const CardReading = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 5vh;
+  outline: 1px solid red;
 `;
 
 const CardHeader = styled.h2`
