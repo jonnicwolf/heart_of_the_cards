@@ -8,7 +8,7 @@ import Board from '../components/Board';
 const Home: FC = () => {
   const [step, setStep] = useState(0);
   const [question, setQuestion] = useState('');
-
+  
   const nextStep = () => {
      setStep(step+1);
   };

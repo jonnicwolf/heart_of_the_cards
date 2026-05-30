@@ -2,7 +2,7 @@ import { FC, useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { v4 as uuidv4 } from 'uuid';
 import styled, { keyframes } from 'styled-components';
-
+import { randomCards, cards } from '../../public/directory';
 
 import Eye from './p5/Eye';
 import Card from './p5/Card';
@@ -64,7 +64,7 @@ const Board: FC<Props> = ({
   // const { data: cardsData, isLoading: cardsLoading } = useQuery<CardsResponse, Error>({
   //   queryKey: ['cards'],
   //   queryFn: async () => {
-  //     const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
+  //     const response = await fetch('3https://tarotapi.dev/api/v1/cards/random?n=');
   //     if (!response.ok) throw new Error('Failed to fetch cards');
   //     return response.json();
   //   },
@@ -81,23 +81,25 @@ const Board: FC<Props> = ({
   //   enabled: !!cardsData && !!question,
   // });
 
-  const getCards = async (): Promise<CardsResponse> => {
-    try {
-      const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
-      if (!response.ok) throw new Error('Failed to fetch cards');
+  // const getCards = async (): Promise<CardsResponse> => {
+  //   try {
+  //     const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
+  //     if (!response.ok) throw new Error('Failed to fetch cards');
 
-      return await response.json();
-    } catch (error: any) {
-      throw new Error(`getCard error: ${error.message}`);
-  }};
+  //     return await response.json();
+  //   } catch (error: any) {
+  //     throw new Error(`getCard error: ${error.message}`);
+  // }};
 
-  const { data: cards, isLoading: cardsLoading } = useQuery<CardsResponse, Error>({
-    queryKey: ['cards'],
-    // @ts-ignore
-    queryFn: getCards,
-    enabled: true,
-    // enabled: runFetch,
-  });
+  // const { data: cards, isLoading: cardsLoading } = useQuery<CardsResponse, Error>({
+  //   queryKey: ['cards'],
+  //   // @ts-ignore
+  //   queryFn: getCards,
+  //   enabled: true,
+  //   // enabled: runFetch,
+  // });
+
+  const dealtcards = randomCards(cards);
 
   const { data: reading } = useQuery<ChatCompletion, Error>({
     queryKey: ['reading'],
@@ -142,23 +144,23 @@ const Board: FC<Props> = ({
   };
 
   function loader(): JSX.Element {
-    console.log('loaderCards: ',cards)
+    console.log('loaderCards: ',dealtcards)
     return (
     <>
       <Loader/>
       <P>The spirits are channeling your reading...</P>
-      {/* @ts-ignore */}
       <CardBox>
-        {cards && cards.cards.map((card, i) => (
+      {/* @ts-ignore */}
+        {dealtcards && dealtcards.map((card, i) => (
           <>
           {/* <CardReading key={uuidv4()}> */}
             {/* <CardHeader>{card.name[i]}</CardHeader> */}
             <CardContainer>
               {/* @ts-ignore */}
-              {cards?.cards[i] && (
+              {dealtcards[i] && (
                 <Card
                   key={uuidv4()}
-                  name_short={cards.cards[i].name_short} />)}
+                  name_short={card.code} /> )}
               </CardContainer>
             {/* </CardReading> */}
           </>
@@ -191,7 +193,8 @@ const Board: FC<Props> = ({
   function renderBoard(): JSX.Element | null {
     // if (cardsLoading || !cards || !reading) {
     // if (cards || !cards || !reading) {
-    if (cardsLoading || !cards || !reading) {
+    // if (cardsLoading || !cards || !reading) {
+    if (!reading) {
      return loader();
     }
     else {
