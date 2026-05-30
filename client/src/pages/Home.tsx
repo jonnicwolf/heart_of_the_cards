@@ -49,7 +49,7 @@ const Container = styled.div`
   width: 100vw;
   max-width: 2400px;
   align-self: center;
-  background-color: #000;
+  // background-color: #000;
 
   // @media only screen and (max-width: 375px) and (pointer: coarse) and (hover: none) {
   //   height: 90vh;

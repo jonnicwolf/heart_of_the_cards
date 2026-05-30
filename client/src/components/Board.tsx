@@ -117,22 +117,22 @@ const Board: FC<Props> = ({
   const windowWidth: boolean = window.innerWidth < 500;
 
   function renderReading(): JSX.Element | null {
-    if (!parsedReading || !cards) return null;
+    if (!parsedReading || !dealtcards) return null;
     return (
       // @ts-ignore
-      <ReadingContainer windowWidth={windowWidth}> 
+      <>
         {parsedReading.map((item, index) => (
           <CardReading key={uuidv4()}>
             <CardHeader>{item[0]}</CardHeader>
             <CardContainer>
-              <Card key={uuidv4()} name_short={cards?.cards[index].name_short} />
+              <Card key={uuidv4()} name_short={dealtcards[index].code} />
             </CardContainer>
             <br />
             <CardP>{item[1]}</CardP>
           </CardReading>
         ))}
         <Reload onClick={handleReload}>Ask Another</Reload>
-      </ReadingContainer>
+      </>
     );
   };
 
@@ -144,17 +144,19 @@ const Board: FC<Props> = ({
   };
 
   function loader(): JSX.Element {
-    console.log('loaderCards: ',dealtcards)
+    // console.log('loaderCards: ',dealtcards)
     return (
-    <>
+    <LoadingContainer>
       <Loader/>
       <P>The spirits are channeling your reading...</P>
       <CardBox>
       {/* @ts-ignore */}
         {dealtcards && dealtcards.map((card, i) => (
           <>
-          {/* <CardReading key={uuidv4()}> */}
-            {/* <CardHeader>{card.name[i]}</CardHeader> */}
+          <CardReading key={uuidv4()}>
+            <CardHeader>
+              {card.name}
+              </CardHeader>
             <CardContainer>
               {/* @ts-ignore */}
               {dealtcards[i] && (
@@ -162,11 +164,11 @@ const Board: FC<Props> = ({
                   key={uuidv4()}
                   name_short={card.code} /> )}
               </CardContainer>
-            {/* </CardReading> */}
+            </CardReading>
           </>
           ))}
       </CardBox>
-    </>
+    </LoadingContainer>
     );
   };
 
@@ -227,7 +229,12 @@ const CardBox = styled.div`
   gap: 2vw;
 
 `
-
+const LoadingContainer = styled.div`
+  outline: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 const EyeWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -323,6 +330,8 @@ const ReadingContainer = styled.div<StyleProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
+  outline: 10px solid red;
+  z-index: 99;
 `;
 
 const CardReading = styled.div`
@@ -330,26 +339,32 @@ const CardReading = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 5vh;
-  outline: 1px solid red;
+  // margin-bottom: 5vh;
+  outline: 1px solid pink;
 `;
 
-const CardHeader = styled.h2`
+const CardHeader = styled.span`
   font-family: Bagnard;
-  font-size: 6rem;
+  // font-size: 6rem;
   text-align: center;
-  @media only screen and (max-width: 720px) {
-    font-size: 2rem;
-  }
+  outline: 1px solid red;
+  color: red;
+  // @media only screen and (max-width: 720px) {
+  //   font-size: 2rem;
+  // }
 `;
 
 const CardP = styled.p`
   font-family: Bebas Neue;
   font-size: 2rem;
   text-align: center;
-  @media only screen and (max-width: 720px) {
-    font-size: 1rem;
-  }
+  padding: 10px;
+  outline: 5px solid red;
+
+
+  // @media only screen and (max-width: 720px) {
+  //   font-size: 1rem;
+  // }
 `;
 
 const Reload = styled.button`
