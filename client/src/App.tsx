@@ -11,7 +11,7 @@ import Starfield from './components/p5/Starfield';
 const App: FC = () => {
   return (
     <Container>
-      {/* <Starfield width={window.innerWidth} height={window.innerHeight} /> */}
+      <Starfield width={window.innerWidth} height={window.innerHeight} />
         <Routes>
           <Route index element={<Home />} />
           <Route path='/history' element={<HistoryPage />} />
@@ -28,6 +28,7 @@ const Container = styled.div`
   display: flex; 
   flex-direction: column;
   z-index: 0;
+  background-color: #000;
 `;
 
 export default App;

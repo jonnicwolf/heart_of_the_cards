@@ -34,15 +34,25 @@ interface StyleProps {
 interface Props {
   question: string;
 };
-
+interface Cards {
+  name: string;
+  code: string;
+}
 const Board: FC<Props> = ({
   question,
 }) => {
-  const [runFetch, setRunFetch] = useState<boolean>(false);
+  const [dealtCards, setDealtCards] = useState<Cards[]>([]);
+
+  useEffect(() => {
+    if (cards && dealtCards.length === 0) setDealtCards(randomCards(cards))
+  }, [cards])
 
   function handleReload(): void {
     window.location.reload();
   };
+
+
+  
   
   function readingParser(tarotString: string): [string, string][] {
     const lines: string[] = tarotString.trim().split('\n');
@@ -60,6 +70,8 @@ const Board: FC<Props> = ({
 
     return matrix;
   };
+
+  console.log('dealtCard: ',dealtCards)
 
   // const { data: cardsData, isLoading: cardsLoading } = useQuery<CardsResponse, Error>({
   //   queryKey: ['cards'],
@@ -99,8 +111,6 @@ const Board: FC<Props> = ({
   //   // enabled: runFetch,
   // });
 
-  const dealtcards = randomCards(cards);
-
   const { data: reading } = useQuery<ChatCompletion, Error>({
     queryKey: ['reading'],
     // @ts-ignore
@@ -117,7 +127,7 @@ const Board: FC<Props> = ({
   const windowWidth: boolean = window.innerWidth < 500;
 
   function renderReading(): JSX.Element | null {
-    if (!parsedReading || !dealtcards) return null;
+    if (!parsedReading || !dealtCards) return null;
     return (
       // @ts-ignore
       <>
@@ -125,7 +135,7 @@ const Board: FC<Props> = ({
           <CardReading key={uuidv4()}>
             <CardHeader>{item[0]}</CardHeader>
             <CardContainer>
-              <Card key={uuidv4()} name_short={dealtcards[index].code} />
+              <Card key={uuidv4()} name_short={dealtCards[index].code} />
             </CardContainer>
             <br />
             <CardP>{item[1]}</CardP>
@@ -145,21 +155,27 @@ const Board: FC<Props> = ({
 
   function loader(): JSX.Element {
     // console.log('loaderCards: ',dealtcards)
+    const times = ['PAST', 'PRESENT', 'FUTURE'];
+
     return (
     <LoadingContainer>
       <Loader/>
       <P>The spirits are channeling your reading...</P>
       <CardBox>
       {/* @ts-ignore */}
-        {dealtcards && dealtcards.map((card, i) => (
+        {dealtCards && dealtCards.map((card, i) => (
           <>
           <CardReading key={uuidv4()}>
             <CardHeader>
-              {card.name}
-              </CardHeader>
+              <TitleBox>
+                <Sm>{times[i]}</Sm>
+                <span>{card.name}</span>
+              </TitleBox>
+            </CardHeader>
+
             <CardContainer>
               {/* @ts-ignore */}
-              {dealtcards[i] && (
+              {dealtCards[i] && (
                 <Card
                   key={uuidv4()}
                   name_short={card.code} /> )}
@@ -224,13 +240,23 @@ const Board: FC<Props> = ({
   </Container>;
 };
 
+const TitleBox = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 const CardBox = styled.div`
   display: flex;
   gap: 2vw;
 
 `
+const Sm = styled.span`
+  display: inline-block;
+  font-size: 0.8rem;
+  font-family: Bebas Neue;
+  letter-spacing: 0.07em;
+  color: gray;
+`;
 const LoadingContainer = styled.div`
-  outline: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -316,7 +342,6 @@ const Container = styled.div`
   width: 100%;
   gap: 5vh;
   z-index: 2;
-  outline: 2px solid blue;
 `;
 
 const ReadingContainer = styled.div<StyleProps>`
@@ -330,7 +355,6 @@ const ReadingContainer = styled.div<StyleProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  outline: 10px solid red;
   z-index: 99;
 `;
 
@@ -339,16 +363,14 @@ const CardReading = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // margin-bottom: 5vh;
-  outline: 1px solid pink;
+  margin-bottom: 5vh;
 `;
 
 const CardHeader = styled.span`
   font-family: Bagnard;
-  // font-size: 6rem;
   text-align: center;
-  outline: 1px solid red;
-  color: red;
+  color: white;
+  font-size: 2rem
   // @media only screen and (max-width: 720px) {
   //   font-size: 2rem;
   // }
@@ -359,7 +381,6 @@ const CardP = styled.p`
   font-size: 2rem;
   text-align: center;
   padding: 10px;
-  outline: 5px solid red;
 
 
   // @media only screen and (max-width: 720px) {
