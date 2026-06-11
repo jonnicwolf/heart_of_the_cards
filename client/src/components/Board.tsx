@@ -1,5 +1,6 @@
 import { FC, useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
+// @ts-ignore
 import { v4 as uuidv4 } from 'uuid';
 import styled, { keyframes } from 'styled-components';
 import { randomCards, cards } from '../../public/directory';
@@ -42,6 +43,7 @@ const Board: FC<Props> = ({
   question,
 }) => {
   const [dealtCards, setDealtCards] = useState<Cards[]>([]);
+  const [chatRes, setChatRes] = useState('');
 
   useEffect(() => {
     if (cards && dealtCards.length === 0) setDealtCards(randomCards(cards))
@@ -51,9 +53,6 @@ const Board: FC<Props> = ({
     window.location.reload();
   };
 
-
-  
-  
   function readingParser(tarotString: string): [string, string][] {
     const lines: string[] = tarotString.trim().split('\n');
     const matrix: [string, string][] = [];
@@ -71,54 +70,25 @@ const Board: FC<Props> = ({
     return matrix;
   };
 
-  console.log('dealtCard: ',dealtCards)
-
-  // const { data: cardsData, isLoading: cardsLoading } = useQuery<CardsResponse, Error>({
-  //   queryKey: ['cards'],
-  //   queryFn: async () => {
-  //     const response = await fetch('3https://tarotapi.dev/api/v1/cards/random?n=');
-  //     if (!response.ok) throw new Error('Failed to fetch cards');
-  //     return response.json();
-  //   },
-  //   enabled: runFetch,
-  //   staleTime: Infinity, // Prevent cards from changing if the component re-renders
-  // });
-
-  // const { data: readingData } = useQuery<ChatCompletion, Error>({
-  //   queryKey: ['reading', cardsData?.cards],
-  //   // @ts-ignore
-  //   queryFn: () => {
-  //     get_tarot_reading(question, cardsData!.cards.map(item => item.name))
-  //   },
-  //   enabled: !!cardsData && !!question,
-  // });
-
-  // const getCards = async (): Promise<CardsResponse> => {
-  //   try {
-  //     const response = await fetch('https://tarotapi.dev/api/v1/cards/random?n=3');
-  //     if (!response.ok) throw new Error('Failed to fetch cards');
-
-  //     return await response.json();
-  //   } catch (error: any) {
-  //     throw new Error(`getCard error: ${error.message}`);
-  // }};
-
-  // const { data: cards, isLoading: cardsLoading } = useQuery<CardsResponse, Error>({
-  //   queryKey: ['cards'],
-  //   // @ts-ignore
-  //   queryFn: getCards,
-  //   enabled: true,
-  //   // enabled: runFetch,
-  // });
-
   const { data: reading } = useQuery<ChatCompletion, Error>({
-    queryKey: ['reading'],
+    queryKey: ['reading', question, dealtCards],
     // @ts-ignore
-    queryFn: () => get_tarot_reading(question, cards?.cards.map(item => item.name)),
-    enabled: !!question && !!cards,
+    queryFn: async () => {
+      if (!question) throw new Error("Missing question prerequisite.")
+      else if (dealtCards.length === 0) throw new Error("Missing card prerequisite.")
+
+      const cardNames = dealtCards.map(c => c.name);
+      const result = await get_tarot_reading(question, cardNames);
+
+      if (!result) throw new Error("AI returned an empty reponse.");
+
+      return result;
+    },
+    enabled: !!question && dealtCards.length > 0,
   });
 
-  // const parsedReading: [string, string][] | '' = readingData
+  console.log('reading: ', reading);
+
   const parsedReading: [string, string][] | '' = reading
     // @ts-ignore
     ? readingParser(reading.choices[0].message.content)

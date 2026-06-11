@@ -5,6 +5,7 @@ export async function get_tarot_reading (
   question: string,
   cards: string[]
 ): Promise<ChatCompletion | undefined> {
+  console.log('getReading: ', cards)
   if (cards.length > 0 && question) {
     try {
       const openai = new OpenAI({
@@ -27,6 +28,7 @@ export async function get_tarot_reading (
 
   3. Nine of Pentacles: This card signifies success, independence, and self-sufficiency. It suggests that the project has the potential to attract attention and admiration from others. People may be impressed by your hard work, dedication, and the high-quality results that the project can deliver. Overall, this card indicates a positive outcome in terms of how people will perceive the project.' Never deviate from this format` }],
           });
+          console.log('chatResponse: ', chatCompletion)
           return chatCompletion;
         }
         catch (error: any) {
