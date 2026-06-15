@@ -52,6 +52,7 @@ const Board: FC<Props> = ({
   function handleReload(): void {
     window.location.reload();
   };
+  const times = ['PAST', 'PRESENT', 'FUTURE'];
 
   function readingParser(tarotString: string): [string, string][] {
     const lines: string[] = tarotString.trim().split('\n');
@@ -87,74 +88,73 @@ const Board: FC<Props> = ({
     enabled: !!question && dealtCards.length > 0,
   });
 
-  console.log('reading: ', reading);
-
   const parsedReading: [string, string][] | '' = reading
     // @ts-ignore
     ? readingParser(reading.choices[0].message.content)
     : '';
 
-  const windowWidth: boolean = window.innerWidth < 500;
-
   function renderReading(): JSX.Element | null {
     if (!parsedReading || !dealtCards) return null;
     return (
-      // @ts-ignore
       <>
-        {parsedReading.map((item, index) => (
-          <CardReading key={uuidv4()}>
-            <CardHeader>{item[0]}</CardHeader>
-            <CardContainer>
-              <Card key={uuidv4()} name_short={dealtCards[index].code} />
-            </CardContainer>
-            <br />
-            <CardP>{item[1]}</CardP>
-          </CardReading>
-        ))}
-        <Reload onClick={handleReload}>Ask Another</Reload>
-      </>
-    );
-  };
+        {/* @ts-ignore */}
+        <ReadingContainer>
+          <CardP style={{color: 'white'}}>THE CARDS HAVE SPOKEN</CardP>
+          
+          {dealtCards.map((card, i) => (
+            <CardReadingRow key={card.code}>
+              <CardHeaderBlock>
+                <TimePeriodLabel>{times[i]}</TimePeriodLabel>
+                <CardNameTitle>{card.name}</CardNameTitle>
+              </CardHeaderBlock>
 
-  function renderInquiry(): JSX.Element {
-    return (
-      <></>
-    // <Inquery questionSetter={setQuestion} runFetchSetter={setRunFetch} />
-    );
-  };
+              <FlexContentRow>
+                <CardCanvasWrapper>
+                  <Card name_short={card.code} />
+                </CardCanvasWrapper>
+
+                {parsedReading[i] && (
+                  <DropCapInterpretation>
+                    {parsedReading[i][1]}
+                  </DropCapInterpretation>
+                )}
+              </FlexContentRow>
+    
+            </CardReadingRow>
+          ))}
+        </ReadingContainer>
+      </>
+    )};
 
   function loader(): JSX.Element {
-    // console.log('loaderCards: ',dealtcards)
-    const times = ['PAST', 'PRESENT', 'FUTURE'];
-
     return (
-    <LoadingContainer>
-      <Loader/>
-      <P>The spirits are channeling your reading...</P>
-      <CardBox>
-      {/* @ts-ignore */}
-        {dealtCards && dealtCards.map((card, i) => (
-          <>
-          <CardReading key={uuidv4()}>
-            <CardHeader>
-              <TitleBox>
-                <Sm>{times[i]}</Sm>
-                <span>{card.name}</span>
-              </TitleBox>
-            </CardHeader>
+      <LoadingContainer>
+        <Loader/>
+        <P>The spirits are channeling your reading...</P>
+        <CardBox>
+        {/* @ts-ignore */}
+          {dealtCards && dealtCards.map((card, i) => (
+            <>
+            <CardReading key={uuidv4()}>
+              <CardHeader>
+                <TitleBox>
+                  <Sm>{times[i]}</Sm>
+                  <span>{card.name}</span>
+                </TitleBox>
+              </CardHeader>
 
-            <CardContainer>
-              {/* @ts-ignore */}
-              {dealtCards[i] && (
-                <Card
-                  key={uuidv4()}
-                  name_short={card.code} /> )}
-              </CardContainer>
-            </CardReading>
-          </>
-          ))}
-      </CardBox>
-    </LoadingContainer>
+              <CardContainer>
+                {/* @ts-ignore */}
+                {dealtCards[i] && (
+                  <Card
+                    key={uuidv4()}
+                    name_short={card.code} /> )}
+                </CardContainer>
+              </CardReading>
+            </>
+            ))}
+        </CardBox>
+      </LoadingContainer>
     );
   };
 
@@ -179,29 +179,13 @@ const Board: FC<Props> = ({
 
   // @ts-ignore
   function renderBoard(): JSX.Element | null {
-    // if (cardsLoading || !cards || !reading) {
-    // if (cards || !cards || !reading) {
-    // if (cardsLoading || !cards || !reading) {
     if (!reading) {
      return loader();
     }
     else {
       return renderReading()!;
     };
-    // return renderReading()!;
   };
-  // function renderBoard(): JSX.Element {
-  //   let result;
-  //   if (!runFetch) result = loader()
-  //   else result = (
-  //       <>
-  //         {/* {runFetch && renderEye()} */}
-  //         {cards && reading && renderReading()}
-  //       </>
-  //     );
-
-  //   return result;
-  // };
 
   return <Container>
     {
@@ -210,15 +194,18 @@ const Board: FC<Props> = ({
   </Container>;
 };
 
+const CardFoo = styled.div`
+  display: flex;
+  gap: 10px;
+`;
 const TitleBox = styled.div`
   display: flex;
   flex-direction: column;
-`
+`;
 const CardBox = styled.div`
   display: flex;
   gap: 2vw;
-
-`
+`;
 const Sm = styled.span`
   display: inline-block;
   font-size: 0.8rem;
@@ -244,6 +231,7 @@ const CardContainer = styled.div`
   width: 250px;
   height: 405px;
   overflow: hidden;
+  outline: 1px solid red;
 `;
 
 const blink = keyframes`
@@ -255,6 +243,7 @@ const blink = keyframes`
 const P = styled.p`
   font-family: Elsie Swash Caps;
   color: gray;
+  color: red;
   font-size: 2rem;
 `;
 const EyeContainer = styled.div`
@@ -308,19 +297,18 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
-  gap: 5vh;
+  // height: 100%;
+  // width: 100%;
+  // gap: 5vh;
   z-index: 2;
 `;
 
 const ReadingContainer = styled.div<StyleProps>`
-  height: 60vh;
-  width: 80vw;
+  // height: 60vh;
+  // width: 80vw;
   max-width: 1200px;
   color: white;
-  overflow: scroll;
-  background: rgba(0, 0, 0, 0.7);
+  // overflow: scroll;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -335,12 +323,15 @@ const CardReading = styled.div`
   align-items: center;
   margin-bottom: 5vh;
 `;
+const CardReading1 = styled.div`
+  justify-content: left;
+`;
 
 const CardHeader = styled.span`
   font-family: Bagnard;
   text-align: center;
   color: white;
-  font-size: 2rem
+  font-size: 2rem;
   // @media only screen and (max-width: 720px) {
   //   font-size: 2rem;
   // }
@@ -351,8 +342,6 @@ const CardP = styled.p`
   font-size: 2rem;
   text-align: center;
   padding: 10px;
-
-
   // @media only screen and (max-width: 720px) {
   //   font-size: 1rem;
   // }
@@ -383,6 +372,77 @@ const Reload = styled.button`
   @media only screen and (min-width: 701px) and (max-width: 1300px) {
     font-size: 1.5rem;
     width: 20vw;
+  }
+`;
+
+const CardReadingRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 8vh;
+`;
+
+const CardHeaderBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+  padding-bottom: 5px;
+`;
+
+const TimePeriodLabel = styled.span`
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: #888;
+`;
+
+const CardNameTitle = styled.h2`
+  font-family: 'Bagnard', serif;
+  font-size: 2.5rem;
+  color: #fff;
+  margin: 0;
+`;
+
+const FlexContentRow = styled.div`
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const CardCanvasWrapper = styled.div`
+  flex-shrink: 0; // Prevents the text from squeezing your canvas smaller
+  width: 240px;
+  height: 400px;
+  overflow: hidden;
+`;
+
+const DropCapInterpretation = styled.p`
+  font-family: 'Bebas Neue', sans-serif; /* Your original paragraph font choice */
+  font-size: 1.6rem;
+  line-height: 1.4;
+  color: #e0e0e0;
+  margin: 0;
+  text-align: justify;
+
+  /* Drop Cap */
+  &::first-letter {
+    font-family: 'Bagnard', 'Elsie Swash Caps', serif; /* Use a dramatic font for dropcap */
+    font-size: 4.8rem;
+    float: left;
+    line-height: 0.85;
+    padding-top: 4px;
+    padding-right: 8px;
+    padding-left: 3px;
+    color: #e1c4ca; /* Soft rosy-gold highlight accent */
+    font-weight: bold;
   }
 `;
 

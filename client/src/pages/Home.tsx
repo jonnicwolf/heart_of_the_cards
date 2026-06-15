@@ -12,28 +12,35 @@ const Home: FC = () => {
   const nextStep = () => {
      setStep(step+1);
   };
+  function handleReload(): void {
+    window.location.reload();
+  };
 
   const steps = [
     {
       component: <Welcome />,
-      button: 'Begin your reading'
+      button: <Button onClick={nextStep}>
+        <span>⟡</span>Begin your reading
+      </Button>
     },
     {
       component: <QuestionBoard setter={setQuestion} />,
-      button: 'Draw your cards'
+      button: <Button onClick={nextStep}>
+                <span>⟡</span>Draw your cards
+              </Button>
     },
     {
       component: <Board question={question} />,
-      button: 'Ask another question'
+      button: <Button onClick={handleReload}>
+                <span>⟡</span>Ask another question
+              </Button>
     },
   ];
 
   return (
     <Container>
       {steps[step].component}
-      <Button
-        onClick={nextStep}
-      ><span>⟡</span> {steps[step].button}</Button>
+      {steps[step].button}
     </Container>
   );
 };
@@ -49,7 +56,6 @@ const Container = styled.div`
   width: 100vw;
   max-width: 2400px;
   align-self: center;
-  // background-color: #000;
 
   // @media only screen and (max-width: 375px) and (pointer: coarse) and (hover: none) {
   //   height: 90vh;
