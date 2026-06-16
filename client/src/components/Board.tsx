@@ -231,7 +231,6 @@ const CardContainer = styled.div`
   width: 250px;
   height: 405px;
   overflow: hidden;
-  outline: 1px solid red;
 `;
 
 const blink = keyframes`
