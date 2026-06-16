@@ -29,11 +29,11 @@ const QuestionBoard: FC<Props> = ({
 
       <div style={{textAlign: 'center'}}>
         <Question>What weighs upon your mind?</Question>
-        <Textarea 
-           placeholder='Ask the cards your question...'
-           autoCapitalize='sentences'
-           onChange={questionHandler}
-           />
+        <Textarea
+          placeholder='Ask the cards your question...'
+          autoCapitalize='sentences'
+          onChange={questionHandler}
+         />
       </div>
     </>
   );
@@ -63,42 +63,23 @@ const Title = styled.div`
   font-family: 'Lora';
   color: white;
   font-size: 6rem;
+
+  @media (max-width: 768px) {
+    font-size: 3rem;
+  }
 `;
 const Sm = styled.span`
   display: inline-block;
-  font-size: 4rem;
+  font-size: 2rem;
 `;
 const Question = styled.p`
   font-family: Elsie Swash Caps;
   color: #b57902;
   font-size: 2rem;
-`;
-const Button = styled.button`
-  background: none;
-  text-align: center;
-  font-size: 2rem;
-  font-family: 'Amatic SC';
-  font-weight: bold;
-  cursor: pointer;
-  color: #b57902;
-  border: 1px solid #b57902;
-  padding: 20px;
 
-  &: hover {
-    border: 1px solid #e1c4ca;
-    background: rgba(65,50,63,0.9);
-    color: white;
-    transition: all 0.3s linear;
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
   }
-  // @media only screen and (max-width: 500px) {
-  //   width: 20vw;
-  //   font-size: 1rem;
-  //   transform: translateY(-40px)
-  // }
-  // @media only screen and (min-width: 701px) and (max-width: 1300px) {
-  //   font-size: 1.5rem;
-  //   width: 20vw;
-  // }
 `;
 const Textarea = styled.textarea`
   background: rgba(255,255,255,0.1);
@@ -115,6 +96,11 @@ const Textarea = styled.textarea`
     background: rgba(66, 66, 66, 0.9);
     color: white;
     transition: all 0.3s linear;
+  }
+
+  @media (max-width: 768px) {
+    height: 30vh;
+    width: 90vw;
   }
 `;
 
