@@ -57,30 +57,10 @@ const Container = styled.div`
   max-width: 2400px;
   align-self: center;
 
-  // @media only screen and (max-width: 375px) and (pointer: coarse) and (hover: none) {
-  //   height: 90vh;
-  // }
-  // @media only screen and (min-width: 321px) and (max-width: 375px) and (pointer: coarse) and (hover: none) {
-  //   height: 93vh;
-  // }
-  // @media only screen and (min-width: 376px) and (max-width: 500px) and (pointer: coarse) and (hover: none) {
-  //   height: 94vh;
-  // }
-  // @media only screen and (min-width: 501px) and (max-width: 770px) and (pointer: coarse) and (hover: none) {
-  //   height: 92vh;
-  // }
-  // @media only screen and (min-width: 771px) and (max-width: 1000px) and (pointer: coarse) and (hover: none) {
-  //   height: 93vh;
-  // }
-  // @media only screen and (min-width: 1000px) and (max-width: 1300px) and (pointer: coarse) and (hover: none) {
-  //   height: 90vh;
-  // }
-  // @media only screen and (min-width: 750px) and (max-width: 1000px) {
-  //   height: 92vh;
-  // }
-  // @media only screen and (min-width: 1001px) and (max-width: 1300px) {
-  //   height: 92vh;
-  // }
+  @media only screen and (max-width: 375px) and (pointer: coarse) and (hover: none) {
+    height: 90vh;
+  }
+  
 `;
 const Button = styled.button`
   background: none;

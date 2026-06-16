@@ -3,17 +3,15 @@ import styled, { keyframes } from 'styled-components';
 
 const Welcome = () => {
   return (
-    <>
-      <WelcomeWrapper>
-        <Divination>
-          <LeftSpike />
-          <span>ESPERI</span>
-          <RightSpike/>
-        </Divination>
-        <Oracle>T<Sm>HE</Sm> O<Sm>RACLE</Sm></Oracle>
-        <Gaze>Gaze into the eye and discover what the cards reveal</Gaze>
-      </WelcomeWrapper>
-    </>
+    <WelcomeWrapper>
+      <Divination>
+        <LeftSpike />
+        <span>ESPERI</span>
+        <RightSpike/>
+      </Divination>
+      <Oracle>T<Sm>HE</Sm> O<Sm>RACLE</Sm></Oracle>
+      <Gaze>Gaze into the eye and discover what the cards reveal</Gaze>
+    </WelcomeWrapper>
   );
 };
 
@@ -31,6 +29,10 @@ const LeftSpike = styled.div`
   background: linear-gradient(#b57902, #000);
   clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
   transform: rotate(270deg);
+
+  @media (max-width: 768px) {
+    height: 60px;
+  }
 `;
 const RightSpike = styled(LeftSpike)`
   transform: rotate(90deg);
@@ -45,7 +47,13 @@ const Divination = styled.div`
   justify-content: center;
   gap: 70px;
   opacity: .7;
-  margin-top: 20rem;
+  margin-top: 15vh;
+
+  @media (max-width: 768px) {
+    gap: 30px;
+    font-size: 1.5rem;
+    margin-top: 8vh;
+  }
 `;
  const Question = styled.p`
   font-size: 2.5rem;
@@ -72,42 +80,33 @@ const Oracle = styled.div`
   font-family: 'Lora';
   color: white;
   font-size: 6rem;
+
+  @media (max-width: 768px) {
+    font-size: 3.5rem;
+  }
+  @media (max-width: 380px) {
+    font-size: 2.8rem;
+  }
 `;
 const Sm = styled.span`
   display: inline-block;
   font-size: 4rem;
+
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
 `;
 const Gaze = styled.p`
   font-family: Elsie Swash Caps;
   color: gray;
   font-size: 2rem;
-`;
-const Button = styled.button`
-  background: none;
-  text-align: center;
-  font-size: 2rem;
-  font-family: 'Amatic SC';
-  font-weight: bold;
-  cursor: pointer;
-  color: #b57902;
-  border: 1px solid #b57902;
-  padding: 20px;
+  font-wrap: wrap; 
 
-  &: hover {
-    border: 2px solid #e1c4ca;
-    background: rgba(65,50,63,0.9);
-    color: white;
-    transition: all 0.3s linear;
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    padding: 15px;
+    text-align: center;
   }
-  // @media only screen and (max-width: 500px) {
-  //   width: 20vw;
-  //   font-size: 1rem;
-  //   transform: translateY(-40px)
-  // }
-  // @media only screen and (min-width: 701px) and (max-width: 1300px) {
-  //   font-size: 1.5rem;
-  //   width: 20vw;
-  // }
 `;
 
 export default Welcome;
