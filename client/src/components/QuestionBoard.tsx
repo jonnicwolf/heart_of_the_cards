@@ -8,7 +8,6 @@ interface Props {
 const QuestionBoard: FC<Props> = ({
   setter
 }) => {
-  
   // @ts-ignore
   const questionHandler = (e) => {
     e.preventDefault()

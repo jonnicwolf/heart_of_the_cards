@@ -7,7 +7,6 @@ import { randomCards, cards } from '../../public/directory';
 
 import Eye from './p5/Eye';
 import Card from './p5/Card';
-import Inquery from './forms/Inquery';
 import Loader from './Loader.tsx';
 
 import { get_tarot_reading } from '../openai_scripts/get_tarot_reading.ts';
@@ -43,15 +42,11 @@ const Board: FC<Props> = ({
   question,
 }) => {
   const [dealtCards, setDealtCards] = useState<Cards[]>([]);
-  const [chatRes, setChatRes] = useState('');
 
   useEffect(() => {
     if (cards && dealtCards.length === 0) setDealtCards(randomCards(cards))
-  }, [cards])
+  }, [cards]);
 
-  function handleReload(): void {
-    window.location.reload();
-  };
   const times = ['PAST', 'PRESENT', 'FUTURE'];
 
   function readingParser(tarotString: string): [string, string][] {
@@ -119,7 +114,6 @@ const Board: FC<Props> = ({
                   </DropCapInterpretation>
                 )}
               </FlexContentRow>
-    
             </CardReadingRow>
           ))}
         </ReadingContainer>
@@ -135,24 +129,24 @@ const Board: FC<Props> = ({
         {/* @ts-ignore */}
           {dealtCards && dealtCards.map((card, i) => (
             <>
-            <CardReading key={uuidv4()}>
-              <CardHeader>
-                <TitleBox>
-                  <Sm>{times[i]}</Sm>
-                  <span>{card.name}</span>
-                </TitleBox>
-              </CardHeader>
+              <CardReading key={uuidv4()}>
+                <CardHeader>
+                  <TitleBox>
+                    <Sm>{times[i]}</Sm>
+                    <span>{card.name}</span>
+                  </TitleBox>
+                </CardHeader>
 
-              <CardContainer>
-                {/* @ts-ignore */}
-                {dealtCards[i] && (
-                  <Card
-                    key={uuidv4()}
-                    name_short={card.code} /> )}
+                <CardContainer>
+                  {/* @ts-ignore */}
+                  {dealtCards[i] && (
+                    <Card
+                      key={uuidv4()}
+                      name_short={card.code} /> )}
                 </CardContainer>
               </CardReading>
             </>
-            ))}
+          ))}
         </CardBox>
       </LoadingContainer>
     );
@@ -205,6 +199,10 @@ const TitleBox = styled.div`
 const CardBox = styled.div`
   display: flex;
   gap: 2vw;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 const Sm = styled.span`
   display: inline-block;
@@ -241,9 +239,12 @@ const blink = keyframes`
 `;
 const P = styled.p`
   font-family: Elsie Swash Caps;
-  color: gray;
-  color: red;
+  color: #b57902;
   font-size: 2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.3rem;
+  }
 `;
 const EyeContainer = styled.div`
   clip-path: polygon(50% 0%, 80% 50%, 50% 100%, 20% 50%);
@@ -296,18 +297,12 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  // height: 100%;
-  // width: 100%;
-  // gap: 5vh;
   z-index: 2;
 `;
 
 const ReadingContainer = styled.div<StyleProps>`
-  // height: 60vh;
-  // width: 80vw;
   max-width: 1200px;
   color: white;
-  // overflow: scroll;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -321,19 +316,19 @@ const CardReading = styled.div`
   justify-content: center;
   align-items: center;
   margin-bottom: 5vh;
-`;
-const CardReading1 = styled.div`
-  justify-content: left;
+
+  @media (max-width: 768px) {
+    max-width: 100vw;
+  }
 `;
 
-const CardHeader = styled.span`
+const CardHeader = styled.div`
   font-family: Bagnard;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
   font-size: 2rem;
-  // @media only screen and (max-width: 720px) {
-  //   font-size: 2rem;
-  // }
 `;
 
 const CardP = styled.p`
@@ -341,37 +336,6 @@ const CardP = styled.p`
   font-size: 2rem;
   text-align: center;
   padding: 10px;
-  // @media only screen and (max-width: 720px) {
-  //   font-size: 1rem;
-  // }
-`;
-
-const Reload = styled.button`
-  width: 300px;
-  background: none;
-  border: none;
-  text-align: center;
-  align-self: center;
-  color: #e1c4ca;
-  font-size: 4rem;
-  font-family: 'Amatic SC';
-  font-weight: bold;
-  transform: translateY(-60px);
-  cursor: pointer;
-  transition: all 0.3s linear;
-  &:hover {
-    border: 2px solid #e1c4ca;
-    background: rgba(65, 50, 63, 0.9);
-  }
-  @media only screen and (max-width: 500px) {
-    width: 20vw;
-    font-size: 1rem;
-    transform: translateY(-40px);
-  }
-  @media only screen and (min-width: 701px) and (max-width: 1300px) {
-    font-size: 1.5rem;
-    width: 20vw;
-  }
 `;
 
 const CardReadingRow = styled.div`
@@ -388,6 +352,10 @@ const CardHeaderBlock = styled.div`
   margin-bottom: 15px;
   border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
   padding-bottom: 5px;
+
+  @media (max-width: 768px) {
+    align-items: center;
+  }
 `;
 
 const TimePeriodLabel = styled.span`
@@ -417,14 +385,14 @@ const FlexContentRow = styled.div`
 `;
 
 const CardCanvasWrapper = styled.div`
-  flex-shrink: 0; // Prevents the text from squeezing your canvas smaller
+  flex-shrink: 0;
   width: 240px;
   height: 400px;
   overflow: hidden;
 `;
 
 const DropCapInterpretation = styled.p`
-  font-family: 'Bebas Neue', sans-serif; /* Your original paragraph font choice */
+  font-family: 'Bebas Neue', sans-serif;
   font-size: 1.6rem;
   line-height: 1.4;
   color: #e0e0e0;
@@ -433,14 +401,14 @@ const DropCapInterpretation = styled.p`
 
   /* Drop Cap */
   &::first-letter {
-    font-family: 'Bagnard', 'Elsie Swash Caps', serif; /* Use a dramatic font for dropcap */
+    font-family: 'Bagnard', 'Elsie Swash Caps', serif;
     font-size: 4.8rem;
     float: left;
     line-height: 0.85;
     padding-top: 4px;
     padding-right: 8px;
     padding-left: 3px;
-    color: #e1c4ca; /* Soft rosy-gold highlight accent */
+    color: #e1c4ca;
     font-weight: bold;
   }
 `;
