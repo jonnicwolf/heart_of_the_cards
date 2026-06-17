@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Home from './pages/Home';
@@ -24,7 +24,6 @@ const App: FC = () => {
 
 const Container = styled.div`
   height: 100vh;
-  // height: 1%;
   display: flex; 
   flex-direction: column;
   z-index: 0;

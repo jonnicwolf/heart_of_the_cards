@@ -1,4 +1,4 @@
-import react, { FC, useState, Dispatch, SetStateAction } from 'react';
+import { FC, Dispatch, SetStateAction } from 'react';
 import styled from 'styled-components';
 
 interface Props {
@@ -32,7 +32,7 @@ const QuestionBoard: FC<Props> = ({
           placeholder='Ask the cards your question...'
           autoCapitalize='sentences'
           onChange={questionHandler}
-         />
+        />
       </div>
     </>
   );
@@ -43,7 +43,6 @@ const SpikeWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: 118px;
-  // gap: 10vh;
   width: 100%;
   z-index: 1;
 `;

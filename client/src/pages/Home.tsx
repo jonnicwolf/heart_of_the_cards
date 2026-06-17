@@ -1,5 +1,5 @@
-import React, { FC, useState } from 'react';
-import styled, { keyframes } from 'styled-components';
+import { FC, useState } from 'react';
+import styled from 'styled-components';
 
 import Welcome from '../components/Welcome';
 import QuestionBoard from '../components/QuestionBoard';
@@ -88,20 +88,6 @@ const Button = styled.button`
   //   font-size: 1.5rem;
   //   width: 20vw;
   // }
-`;
-
-const blink = keyframes`
-  0% { width: 100px; }
-  1% { width: 0; }
-  4% { width: 100px; }
-  100% { width: 100px; }
-`;
-const EyeContainer = styled.div`
-  clip-path: ellipse(45% 50% at 50% 50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: ${blink} 7s infinite;
 `;
 
 export default Home;
