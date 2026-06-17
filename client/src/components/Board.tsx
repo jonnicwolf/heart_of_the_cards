@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import styled, { keyframes } from 'styled-components';
 import { randomCards, cards } from '../../public/directory';
 
-import Eye from './p5/Eye';
+// import Eye from './p5/Eye';
 import Card from './p5/Card';
 import Loader from './Loader.tsx';
 
@@ -173,25 +173,18 @@ const Board: FC<Props> = ({
 
   // @ts-ignore
   function renderBoard(): JSX.Element | null {
-    if (!reading) {
-     return loader();
-    }
-    else {
-      return renderReading()!;
-    };
+    return !reading 
+      ? loader()
+      : renderReading()!
   };
 
-  return <Container>
-    {
-      renderBoard()
-    }
-  </Container>;
+  return (
+    <Container>
+      { renderBoard() }
+    </Container>
+  );
 };
 
-const CardFoo = styled.div`
-  display: flex;
-  gap: 10px;
-`;
 const TitleBox = styled.div`
   display: flex;
   flex-direction: column;

@@ -55,26 +55,12 @@ const Divination = styled.div`
     margin-top: 8vh;
   }
 `;
- const Question = styled.p`
-  font-size: 2.5rem;
-  font-family: 'Lora';
-  font-weight: bold;
-  color: #4a4a4a;
-  font-style: italic;
-  text-align: center;
-`;
+
 const blink = keyframes`
   0% { width: 100px; }
   1% { width: 0; }
   4% { width: 100px; }
   100% { width: 100px; }
-`;
-const EyeContainer = styled.div`
-  clip-path: ellipse(45% 50% at 50% 50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: ${blink} 7s infinite;
 `;
 const Oracle = styled.div`
   font-family: 'Lora';
